@@ -15,34 +15,31 @@ VERSION = 2.0.0
 TEMPLATE = app
 
 QT += core gui network xml webkit
-### Qt version should be 4, or over.
+
+### Qt version should be 4.8.2, or over.
 ### greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG(debug, debug|release) {
-### DEBUG MODE CONFIG ###
+    ### DEBUG MODE CONFIG ###
 
     DESTDIR = ./debug
     MOC_DIR = ./debug/moc
     OBJECTS_DIR = ./debug/obj
     RCC_DIR = ./debug/rcc
     UI_DIR = ./debug/ui
-
     DEFINES += DEBUG _DEBUG
 
 } else {
-### RELEASE MODE CONFIG ###
+    ### RELEASE MODE CONFIG ###
 
     DESTDIR = ./release
     MOC_DIR = ./release/moc
     OBJECTS_DIR = ./release/obj
     RCC_DIR = ./release/rcc
     UI_DIR = ./release/ui
-
     DEFINES += NDEBUG _NDEBUG
 
 }
-
-# main source code
 
 #-----------------------------------------------------------------------------
 #   OpenSSL (version 1.0.0e)
@@ -53,7 +50,7 @@ CONFIG(debug, debug|release) {
 INCLUDEPATH += ./openssl/include
 DEPENDPATH  += ./openssl/include
 
-# MinGW
+# MinGW (MSYS)
 win32:win32-g++: LIBS += -L./openssl/lib/MinGW -leay32
 
 # Visual C++
@@ -67,12 +64,11 @@ unix:!symbian: LIBS += -L./openssl/lib/ -lcrypto
 #-----------------------------------------------------------------------------
 # main source code 
 
+include( ./lmc/resources/lang/translations.pri )
+
 include( ./lmcapp/lmcapp.pri )
 
 include( ./lmc/lmc.pri )
-
-# todo: check path
-include( ./lmc/resources/lang/translations.pri )
 
 #-----------------------------------------------------------------------------
 

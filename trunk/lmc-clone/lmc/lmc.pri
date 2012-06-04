@@ -4,33 +4,20 @@
 #
 #-----------------------------------------------------------------------------
 
-#------------------------------------------------------------------------------
-# TODO:
-#  1. set resource files. (import files)
-#------------------------------------------------------------------------------
-
-# win32: RC_FILE = ./resources/lmcwin32.rc
-# win32: OTHER_FILES += ./resources/lmcwin32.rc
-# macx: ICON = lmc.icns
-
-# note: check building
-# $$TARGET
-
+# note:
+#  1. tray icon does not work...
 win32 {
     RC_FILE = ./lmc/resources/lmc.rc
     OTHER_FILES += ./lmc/resources/lmc.rc
     OTHER_FILES += ./build/buildwin32.bat
-
-    # QMAKE_POST_BUILD = %QTDIR%\bin\rcc -binary ./lmc/resource.qrc -o ./release/lmc.rcc
-    # $$DESTDIR/
-    # system( "%QTDIR%\bin\rcc -binary ./lmc/resource.qrc -o ./release/lmc.rcc" )
-    # system( ./build/build.cmd )
 }
 
+# todo: fix it & build & test on platforms. (such as ubuntu/fedora...)
 unix {
     OTHER_FILES += ./build/buildx11
 }
 
+# todo: fix it & build & test
 macx {
     ICON = ./lmc/resource/lmc.icns
     OTHER_FILES += ./build/buildmacos
