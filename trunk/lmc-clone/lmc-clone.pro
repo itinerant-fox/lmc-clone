@@ -71,9 +71,12 @@ unix:!symbian: LIBS += -L./openssl/lib/ -lcrypto
 
 include( ./lmc/resources/lang/translations.pri )
 
+include( ./trace/trace.pri )
+DEFINES += USE_LMC_TRACE
+
 include( ./lmcapp/lmcapp.pri )
 
-include( ./trace/trace.pri )
+include( ./crypto/crypto.pri )
 
 include( ./xmlmessage/xmlmessage.pri )
 

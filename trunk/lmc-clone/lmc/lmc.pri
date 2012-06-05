@@ -81,7 +81,6 @@ HEADERS  += \
     ./lmc/stdlocation.h \
     ./lmc/definitions.h \
     ./lmc/datagram.h \
-    ./lmc/crypto.h \
     ./lmc/aboutdialog.h \
     ./lmc/chathelper.h \
     ./lmc/theme.h \
@@ -121,7 +120,6 @@ SOURCES += \
     ./lmc/helpwindow.cpp \
     ./lmc/filemodelview.cpp \
     ./lmc/datagram.cpp \
-    ./lmc/crypto.cpp \
     ./lmc/chatwindow.cpp \
     ./lmc/broadcastwindow.cpp \
     ./lmc/aboutdialog.cpp \

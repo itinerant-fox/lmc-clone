@@ -21,30 +21,37 @@
 **
 ****************************************************************************/
 
+#ifndef CRYPTO_H
+#define CRYPTO_H
+
 #include <QtGlobal>
+#include <QByteArray>
+#include <QString>
 #include <QMap>
 #include <QDataStream>
 
+// openssl 1.0.0e
+//  note: check version of openssl
 #include <openssl/rand.h>
 #include <openssl/rsa.h>
 #include <openssl/pem.h>
 #include <openssl/aes.h>
 
-#ifndef CRYPTO_H
-#define CRYPTO_H
-
 class lmcCrypto
 {
+
 public:
 	lmcCrypto(void);
 	~lmcCrypto(void);
 
+public:
 	QByteArray generateRSA(void);
 	QByteArray generateAES(QString* lpszUserId, QByteArray& pubKey);
 	void retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv);
 	QByteArray encrypt(QString* lpszUserId, QByteArray& clearData);
 	QByteArray decrypt(QString* lpszUserId, QByteArray& cipherData);
 
+public:
 	QByteArray publicKey;
 
 private:
@@ -53,6 +60,7 @@ private:
 	QMap<QString, EVP_CIPHER_CTX> decryptMap;
 	int bits;
 	long exponent;
+
 };
 
 #endif // CRYPTO_H

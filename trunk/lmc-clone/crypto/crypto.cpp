@@ -21,8 +21,10 @@
 **
 ****************************************************************************/
 
-
+#ifdef USE_LMC_TRACE
 #include "trace.h"
+#endif
+
 #include "crypto.h"
 
 //-----------------------------------------------------------------------------
@@ -133,8 +135,11 @@ QByteArray lmcCrypto::encrypt(QString* lpszUserId, QByteArray& clearData)
 {
 	int outLen = clearData.length() + AES_BLOCK_SIZE;
 	unsigned char* outBuffer = (unsigned char*)malloc(outLen);
-	if(outBuffer == NULL) {
+    if(outBuffer == NULL)
+    {
+#ifdef USE_LMC_TRACE
         lmctrace("Error: Buffer not allocated");
+#endif
 		return QByteArray();
 	}
 	int foutLen = 0;
@@ -150,7 +155,11 @@ QByteArray lmcCrypto::encrypt(QString* lpszUserId, QByteArray& clearData)
 			}
 		}
 	}
+
+#ifdef USE_LMC_TRACE
     lmctrace("Error: Message encryption failed");
+#endif
+
 	return QByteArray();
 }
 
@@ -160,16 +169,22 @@ QByteArray lmcCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData)
 {
 	int outLen = cipherData.length();
 	unsigned char* outBuffer = (unsigned char*)malloc(outLen);
-	if(outBuffer == NULL) {
+    if(outBuffer == NULL)
+    {
+#ifdef USE_LMC_TRACE
         lmctrace("Error: Buffer not allocated");
+#endif
 		return QByteArray();
 	}
 	int foutLen = 0;
 
 	EVP_CIPHER_CTX ctx = decryptMap.value(*lpszUserId);
-	if(EVP_DecryptInit_ex(&ctx, NULL, NULL, NULL, NULL)) {
-		if(EVP_DecryptUpdate(&ctx, outBuffer, &outLen, (unsigned char*)cipherData.data(), cipherData.length())) {
-			if(EVP_DecryptFinal_ex(&ctx, outBuffer + outLen, &foutLen)) {
+    if ( EVP_DecryptInit_ex(&ctx, NULL, NULL, NULL, NULL) )
+    {
+        if(EVP_DecryptUpdate(&ctx, outBuffer, &outLen, (unsigned char*)cipherData.data(), cipherData.length()))
+        {
+            if(EVP_DecryptFinal_ex(&ctx, outBuffer + outLen, &foutLen))
+            {
 				outLen += foutLen;
 				QByteArray byteArray((char*)outBuffer, outLen);
 				free(outBuffer);
@@ -177,7 +192,11 @@ QByteArray lmcCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData)
 			}
 		}
 	}
+
+#ifdef USE_LMC_TRACE
     lmctrace("Error: Message decryption failed");
+#endif
+
 	return QByteArray();
 }
 
