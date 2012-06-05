@@ -32,23 +32,29 @@ Translators Application::translators;
 Translators Application::sysTranslators;
 
 Application::Application(const QString& id, int& argc, char** argv) 
-	: QtSingleApplication(id, argc, argv) {
+    : QtSingleApplication(id, argc, argv)
+{
 }
 
-Application::~Application(void) {
+Application::~Application(void)
+{
 }
 
-void Application::loadTranslations(const QString& dir) {
+void Application::loadTranslations(const QString& dir)
+{
 	loadTranslations(QDir(dir));
 }
 
-void Application::loadTranslations(const QDir& dir) {
+void Application::loadTranslations(const QDir& dir)
+{
 	// <language>_<country>
 	QString filter = "*_*.qm";
 	QDir::Filters filters = QDir::Files | QDir::Readable;
 	QDir::SortFlags sort = QDir::Name;
+
 	QFileInfoList entries = dir.entryInfoList(QStringList() << filter, filters, sort);
-	foreach (QFileInfo file, entries) {
+    foreach (QFileInfo file, entries)
+    {
 		// pick country and language out of the file name
 		QStringList parts = file.baseName().split("_");
 		QString language = parts.at(parts.count() - 2).toLower();
@@ -68,7 +74,8 @@ void Application::loadTranslations(const QDir& dir) {
 		return;
 
 	entries = sysDir.entryInfoList(QStringList() << filter, filters, sort);
-	foreach (QFileInfo file, entries) {
+    foreach (QFileInfo file, entries)
+    {
 		// pick country and language out of the file name
 		QStringList parts = file.baseName().split("_");
 		QString language = parts.at(parts.count() - 2).toLower();
@@ -76,19 +83,22 @@ void Application::loadTranslations(const QDir& dir) {
 
 		// construct and load translator
 		QTranslator* translator = new QTranslator(instance());
-		if (translator->load(file.absoluteFilePath())) {
+        if (translator->load(file.absoluteFilePath()))
+        {
 			QString locale = language + "_" + country;
 			sysTranslators.insert(locale, translator);
 		}
 	}
 }
 
-const QStringList Application::availableLanguages() {
+const QStringList Application::availableLanguages()
+{
 	// the content won't get copied thanks to implicit sharing and constness
 	return QStringList(translators.keys());
 }
 
-void Application::setLanguage(const QString& locale) {
+void Application::setLanguage(const QString& locale)
+{
 	// remove previous translator
 	if(current)
 		removeTranslator(current);

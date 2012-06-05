@@ -24,10 +24,12 @@
 
 #include <QDesktopWidget>
 #include <QFile>
+
 #include "aboutdialog.h"
 
 //	constructor
-lmcAboutDialog::lmcAboutDialog(QWidget *parent, Qt::WFlags flags) : QDialog(parent, flags) {
+lmcAboutDialog::lmcAboutDialog(QWidget *parent, Qt::WFlags flags) : QDialog(parent, flags)
+{
 	ui.setupUi(this);
 	//	set minimum size
 	layout()->setSizeConstraint(QLayout::SetMinimumSize);

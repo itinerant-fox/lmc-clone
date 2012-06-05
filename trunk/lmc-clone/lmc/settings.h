@@ -25,6 +25,7 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#include <QtGlobal>
 #include <QSettings>
 #include <QApplication>
 #include <QDir>
@@ -180,7 +181,10 @@ class lmcSettingsBase : public QSettings
 public:
 	lmcSettingsBase(void);
 	lmcSettingsBase(const QString& fileName, Format format);
-	lmcSettingsBase(Format format, Scope scope, const QString& organization, const QString& application);
+    lmcSettingsBase(Format format,
+                    Scope scope,
+                    const QString& organization,
+                    const QString& application);
 	~lmcSettingsBase(void);
 
 public:
@@ -193,8 +197,18 @@ class lmcSettings : public lmcSettingsBase
 {
 
 public:
-	lmcSettings(void) : lmcSettingsBase(QSettings::IniFormat, QSettings::UserScope, IDA_COMPANY, IDA_PRODUCT) {}
-	~lmcSettings(void) {}
+
+    lmcSettings(void) : lmcSettingsBase(
+                            QSettings::IniFormat,
+                            QSettings::UserScope,
+                            IDA_COMPANY,
+                            IDA_PRODUCT )
+    {
+    }
+
+    ~lmcSettings(void)
+    {
+    }
 
 public:
 	bool migrateSettings(void);

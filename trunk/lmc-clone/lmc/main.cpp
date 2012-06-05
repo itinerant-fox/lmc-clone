@@ -60,6 +60,7 @@ int showSwitches(void) {
 int main(int argc, char *argv[])
 {
     Application application( appId, argc, argv );
+
     QDir::setCurrent( QApplication::applicationDirPath() );
 
 #ifdef Q_WS_MAC
@@ -81,7 +82,8 @@ int main(int argc, char *argv[])
 	QString messageList;
 	QStringList arguments = QApplication::arguments();
 
-    for ( int index = 0; index < arguments.count(); index++ ) {
+    for ( int index = 0; index < arguments.count(); index++ )
+    {
         if ( arguments.at(index).compare("/?", Qt::CaseInsensitive) == 0 )
 			return showSwitches();
         else if ( arguments.at(index).compare("/inst", Qt::CaseInsensitive) == 0 )
@@ -102,20 +104,26 @@ int main(int argc, char *argv[])
 	messageList += "/trace\n";
 #endif
 
+    // note: lmccore is factory of appliation.
 	lmcCore core;
+
 	//	handle command line args if this is first instance
 	//	some args are handled when the application is initializing
-	core.init(messageList);
+    core.init( messageList );
 	messageList += "/new\n";	//	indicates this is a new instance
 	//	the remaining args are handled after initializing all the layers
-	if(!core.receiveAppMessage(messageList))
+
+    if( ! core.receiveAppMessage( messageList ) )
 		return 0;
-	if(!core.start())
+
+    if( ! core.start() )
 		return 1;
 
-	QObject::connect(&application, SIGNAL(messageReceived(const QString&)),
-		&core, SLOT(receiveAppMessage(const QString&)));
-	QObject::connect(&application, SIGNAL(aboutToQuit()), &core, SLOT(aboutToExit()));
+    QObject::connect( &application, SIGNAL(messageReceived(const QString&)),
+                      &core, SLOT(receiveAppMessage(const QString&)) );
+
+    QObject::connect( &application, SIGNAL(aboutToQuit()),
+                      &core, SLOT(aboutToExit()) );
 
     int ret = application.exec();
 

@@ -245,8 +245,8 @@ void lmcMainWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMes
 
 	switch(type) {
 	case MT_Avatar:
-		fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
-		fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
+        fileOp =  Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+        fileMode =  Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
 		if(fileOp == FO_Request) {
 			cacheDir = QDir(StdLocation::cacheDir());
 			fileName = "avt_" + * lpszUserId + "_part.png";

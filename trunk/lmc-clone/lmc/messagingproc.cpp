@@ -148,9 +148,9 @@ void lmcMessaging::connectionLost(QString* lpszUserId) {
 
 void lmcMessaging::receiveProgress(QString* lpszUserId, QString* lpszData) {
 	XmlMessage xmlMessage(*lpszData);
-	int fileMode = Helper::indexOf(FileModeNames, FM_Max, xmlMessage.data(XN_MODE));
-	int fileOp = Helper::indexOf(FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP));
-	int fileType = Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
+    int fileMode =  Helper::indexOf(FileModeNames, FM_Max, xmlMessage.data(XN_MODE));
+    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP));
+    int fileType =  Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
 	QString fileId = xmlMessage.data(XN_FILEID);
 
 	//	determine type of message to be sent to app layer based on file type
@@ -282,8 +282,8 @@ void lmcMessaging::prepareFile(MessageType type, qint64 msgId, bool retry, QStri
     Q_UNUSED(msgId);
     Q_UNUSED(retry);
 
-	int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
-	int fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
+    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+    int fileMode =  Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
 
 	User* user = getUser(lpszUserId);
 	QString szMessage = pMessage->toString();
@@ -416,8 +416,8 @@ void lmcMessaging::processMessage(MessageHeader* pHeader, XmlMessage* pMessage) 
 }
 
 void lmcMessaging::processFile(MessageHeader* pHeader, XmlMessage* pMessage) {
-	int fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
-	int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+    int fileMode =  Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
+    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
 	QString szMessage = pMessage->toString();
 
     lmctrace("Processing file message type " + QString::number(fileOp) + " from user " +

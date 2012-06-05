@@ -104,7 +104,7 @@ void lmcTcpNetwork::sendMessage(QString* lpszReceiverId, QString* lpszData) {
 			return;
 		}
 		//	cipherData should now contain encrypted content
-		Datagram::addHeader(DT_Message, cipherData);
+        Datagram::addHeader(DT_Message, cipherData);
 		msgStream->sendMessage(cipherData);
 		return;
 	}
@@ -112,9 +112,10 @@ void lmcTcpNetwork::sendMessage(QString* lpszReceiverId, QString* lpszData) {
     lmctrace("Warning: Socket not found. Message sending failed");
 }
 
-void lmcTcpNetwork::initSendFile(QString* lpszReceiverId, QString* lpszAddress, QString* lpszData) {
+void lmcTcpNetwork::initSendFile(QString* lpszReceiverId, QString* lpszAddress, QString* lpszData)
+{
 	XmlMessage xmlMessage(*lpszData);
-	int type = Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
+    int type =  Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
 
 	FileSender* sender = new FileSender(xmlMessage.data(XN_FILEID), *lpszReceiverId, xmlMessage.data(XN_FILEPATH), 
 		xmlMessage.data(XN_FILENAME), xmlMessage.data(XN_FILESIZE).toLongLong(), *lpszAddress, tcpPort, (FileType)type);
@@ -125,7 +126,7 @@ void lmcTcpNetwork::initSendFile(QString* lpszReceiverId, QString* lpszAddress, 
 
 void lmcTcpNetwork::initReceiveFile(QString* lpszSenderId, QString* lpszAddress, QString* lpszData) {
 	XmlMessage xmlMessage(*lpszData);
-	int type = Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
+    int type =  Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
 
 	FileReceiver* receiver = new FileReceiver(xmlMessage.data(XN_FILEID), *lpszSenderId, xmlMessage.data(XN_FILEPATH), 
 		xmlMessage.data(XN_FILENAME), xmlMessage.data(XN_FILESIZE).toLongLong(), *lpszAddress, tcpPort, (FileType)type);
@@ -139,7 +140,7 @@ void lmcTcpNetwork::fileOperation(FileMode mode, QString* lpszUserId, QString* l
 
 	XmlMessage xmlMessage(*lpszData);
 
-	int fileOp = Helper::indexOf(FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP));
+    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP));
 	QString id = xmlMessage.data(XN_FILEID);
 
 	if(mode == FM_Send) {
@@ -228,21 +229,25 @@ void lmcTcpNetwork::update(FileMode mode, FileOp op, FileType type, QString* lps
 	emit progressReceived(lpszUserId, &szMessage);
 }
 
-void lmcTcpNetwork::receiveMessage(QString* lpszUserId, QString* lpszAddress, QByteArray& datagram) {
+void lmcTcpNetwork::receiveMessage( QString* lpszUserId,
+                                    QString* lpszAddress,
+                                    QByteArray& datagram )
+{
 	DatagramHeader* pHeader = NULL;
-	if(!Datagram::getHeader(datagram, &pHeader))
+    if( ! Datagram::getHeader(datagram, &pHeader) )
 		return;
 	
 	pHeader->userId = *lpszUserId;
 	pHeader->address = *lpszAddress;
-	QByteArray cipherData = Datagram::getData(datagram);
+    QByteArray cipherData = Datagram::getData( datagram );
     QByteArray clearData;
 	QString szMessage;
 
     lmctrace("TCP stream type " + QString::number(pHeader->type) +
 					" received from user " + *lpszUserId + " at " + *lpszAddress);
 
-	switch(pHeader->type) {
+    switch( pHeader->type )
+    {
 	case DT_PublicKey:
 		//	send a session key back
 		sendSessionKey(lpszUserId, cipherData);
@@ -294,7 +299,7 @@ void lmcTcpNetwork::sendPublicKey(QString* lpszUserId) {
 	if(msgStream) {
 		QByteArray publicKey = crypto->publicKey;
 		QString sh = DatagramTypeNames[DT_PublicKey];
-		Datagram::addHeader(DT_PublicKey, publicKey);
+        Datagram::addHeader(DT_PublicKey, publicKey);
 		msgStream->sendMessage(publicKey);
 	}
 }
@@ -312,7 +317,7 @@ void lmcTcpNetwork::sendSessionKey(QString* lpszUserId, QByteArray& publicKey) {
 	if(msgStream) {
         lmctrace("Sending session key to user " + *lpszUserId);
 		QByteArray sessionKey = crypto->generateAES(lpszUserId, publicKey);
-		Datagram::addHeader(DT_Handshake, sessionKey);
+        Datagram::addHeader(DT_Handshake, sessionKey);
 		msgStream->sendMessage(sessionKey);
 	}
 }
