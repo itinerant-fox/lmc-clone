@@ -25,18 +25,24 @@
 #ifndef TRANSFERWINDOW_H
 #define TRANSFERWINDOW_H
 
+#include <QtGlobal>
 #include <QWidget>
 #include <QFileInfo>
 #include <QFileIconProvider>
 #include <QDir>
 #include <QToolBar>
 #include <QToolButton>
+#include <QDesktopServices>
+#include <QDesktopWidget>
+#include <QUrl>
+
 #include "ui_transferwindow.h"
 #include "shared.h"
 #include "settings.h"
 #include "stdlocation.h"
 #include "soundplayer.h"
 #include "xmlmessage.h"
+#include "settingsdialog.h"
 
 class lmcTransferWindow : public QWidget
 {

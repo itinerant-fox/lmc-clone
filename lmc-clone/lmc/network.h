@@ -30,6 +30,7 @@
 #include <QHostAddress>
 #include <QTimer>
 
+#include "trace.h"
 #include "crypto.h"
 #include "xmlmessage.h"
 #include "settings.h"

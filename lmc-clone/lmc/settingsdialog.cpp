@@ -30,6 +30,20 @@
 
 #include "settingsdialog.h"
 
+QString fileStorageDir(void)
+{
+    // notice: settings and stdlocation is cross-referenced.
+
+    lmcSettings settings;
+
+    QString path = QDir::toNativeSeparators( QDesktopServices::storageLocation(
+        QDesktopServices::DocumentsLocation ) + "/"SL_FILESTORAGEDIR );
+
+    path = settings.value(IDS_FILESTORAGEPATH, path).toString();
+
+    return path;
+}
+
 lmcSettingsDialog::lmcSettingsDialog(QWidget *parent, Qt::WFlags flags)
     : QDialog(parent, flags)
 {
@@ -528,7 +542,8 @@ void lmcSettingsDialog::loadSettings(void) {
 	ui.chkAutoShowFile->setChecked(pSettings->value(IDS_AUTOSHOWFILE, IDS_AUTOSHOWFILE_VAL).toBool());
 	ui.rdbFileTop->setChecked(pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
 	ui.rdbFileBottom->setChecked(!pSettings->value(IDS_FILETOP, IDS_FILETOP_VAL).toBool());
-	ui.txtFilePath->setText(StdLocation::fileStorageDir());
+    // ui.txtFilePath->setText(StdLocation::fileStorageDir());
+    ui.txtFilePath->setText( fileStorageDir() );
 
 	QString themePath = pSettings->value(IDS_THEME, IDS_THEME_VAL).toString();
 	for(int index = 0; index < ui.cboTheme->count(); index ++) {

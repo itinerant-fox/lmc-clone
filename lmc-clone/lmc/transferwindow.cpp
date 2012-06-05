@@ -22,9 +22,7 @@
 ****************************************************************************/
 
 
-#include <QDesktopServices>
-#include <QDesktopWidget>
-#include <QUrl>
+
 #include "transferwindow.h"
 
 lmcTransferWindow::lmcTransferWindow(QWidget *parent) : QWidget(parent) {
@@ -102,7 +100,8 @@ void lmcTransferWindow::createTransfer(FileMode mode, QString* lpszUserId, QStri
 		fileView.state = FileView::TS_Wait;
 	} else {
 		fileView.fileName = getFreeFileName(pMessage->data(XN_FILENAME));
-		fileView.filePath =	QDir(StdLocation::fileStorageDir()).absoluteFilePath(fileView.fileName);
+        // fileView.filePath =	QDir(StdLocation::fileStorageDir()).absoluteFilePath(fileView.fileName);
+        fileView.filePath =	QDir(fileStorageDir()).absoluteFilePath(fileView.fileName);
 		fileView.mode = FileView::TM_Receive;
 		fileView.state = FileView::TS_Confirm;
 	}
@@ -457,7 +456,8 @@ void lmcTransferWindow::updateProgress(FileView* view, qint64 currentPos) {
 QString lmcTransferWindow::getFreeFileName(QString fileName) {
 	QString freeFileName = fileName;
 
-	QString fileDir = StdLocation::fileStorageDir();
+    // QString fileDir = StdLocation::fileStorageDir();
+    QString fileDir = fileStorageDir();
 	QDir dir(fileDir);
 	QString filePath = dir.absoluteFilePath(fileName);
 	QString baseName = fileName.mid(0, fileName.lastIndexOf("."));
