@@ -25,23 +25,25 @@
 #ifndef STDLOCATION_H
 #define STDLOCATION_H
 
+#include <QtGlobal>
+#include <QString>
 #include <QDir>
 #include <QFileInfo>
 #include <QDesktopServices>
 #include <QDateTime>
 
-#include "settings.h"
-
 #define SL_TRANSFERHISTORY		"transfers.lst"
 #define SL_FILESTORAGEDIR		"Received Files"
 #define SL_CACHEDIR				"cache"
-// #define SL_RESOURCE				"lmc.rcc"
+///// #define SL_RESOURCE				"lmc.rcc"
 #define SL_LANGDIR				"lang"
 #define SL_THEMEDIR				"themes"
 #define SL_GROUPFILE			"group.cfg"
 #define SL_AVATARFILE			"avt_local.png"
 #define SL_LOGDIR				"logs"
 #define SL_TEMPCONFIG			"lmctmpconf.ini"
+
+///// #include "settings.h"
 
 class StdLocation
 {
@@ -53,15 +55,21 @@ public:
 			QDesktopServices::DataLocation) + "/"SL_TRANSFERHISTORY);
 	}
 
+    /*
     static QString fileStorageDir(void)
     {
+        // notice: settings and stdlocation is cross-referenced.
+
 		lmcSettings settings;
 
-		QString path = QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::DocumentsLocation) + "/"SL_FILESTORAGEDIR);
+        QString path = QDir::toNativeSeparators( QDesktopServices::storageLocation(
+            QDesktopServices::DocumentsLocation ) + "/"SL_FILESTORAGEDIR );
+
 		path = settings.value(IDS_FILESTORAGEPATH, path).toString();
+
 		return path;
 	}
+    //*/
 
     static QString cacheDir(void)
     {

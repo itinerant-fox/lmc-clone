@@ -45,6 +45,8 @@
 #include "soundplayer.h"
 #include "strings.h"
 
+QString fileStorageDir(void);
+
 class lmcSettingsDialog : public QDialog
 {
 	Q_OBJECT

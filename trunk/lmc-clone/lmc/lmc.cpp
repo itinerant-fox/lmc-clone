@@ -160,7 +160,7 @@ bool lmcCore::start(void)
 	adaptiveRefresh = false;
 	pTimer->start(10000);
 	bool autoStart = pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool();
-	lmcSettings::setAutoStart(autoStart);
+    setAutoStart(autoStart);
 
 	return true;
 }
@@ -220,7 +220,7 @@ void lmcCore::settingsChanged(void) {
 	refreshTime = pSettings->value(IDS_REFRESHTIME, IDS_REFRESHTIME_VAL).toInt() * 1000;
 	pTimer->setInterval(refreshTime);
 	bool autoStart = pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool();
-	lmcSettings::setAutoStart(autoStart);
+    setAutoStart(autoStart);
 	QString appLang = pSettings->value(IDS_LANGUAGE, IDS_LANGUAGE_VAL).toString();
 	if(appLang.compare(lang) != 0) {
 		lang = appLang;
@@ -430,10 +430,10 @@ bool lmcCore::receiveAppMessage(const QString& szMessage) {
 	}
 	if(messageList.contains("/sync", Qt::CaseInsensitive)) {
 		bool autoStart = pSettings->value(IDS_AUTOSTART, IDS_AUTOSTART_VAL).toBool();
-		lmcSettings::setAutoStart(autoStart);
+        setAutoStart(autoStart);
 	}
 	if(messageList.contains("/unsync", Qt::CaseInsensitive)) {
-		lmcSettings::setAutoStart(false);
+        setAutoStart(false);
 	}
 	if(messageList.contains("/term", Qt::CaseInsensitive)) {
 		doNotExit = false;

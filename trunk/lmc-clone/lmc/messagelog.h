@@ -25,9 +25,20 @@
 #ifndef MESSAGELOG_H
 #define MESSAGELOG_H
 
+#include <QtGlobal>
+#include <QString>
+#include <QEvent>
+#include <QUrl>
+#include <QHash>
+#include <QList>
+#include <QMenu>
+#include <QFont>
+#include <QColor>
+#include <QAction>
 #include <QWebView>
 #include <QWebFrame>
 #include <QWebElement>
+
 #include "shared.h"
 #include "chatdefinitions.h"
 #include "chathelper.h"

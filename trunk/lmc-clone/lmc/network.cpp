@@ -22,7 +22,7 @@
 ****************************************************************************/
 
 
-#include "trace.h"
+
 #include "network.h"
 
 lmcNetwork::lmcNetwork(void) {

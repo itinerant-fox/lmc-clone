@@ -30,8 +30,6 @@
 #include <QApplication>
 #include <QDir>
 
-#include "shared.h"
-
 //	Application settings definitions and default values
 #define IDS_VERSION				"Application/Version"
 #define IDS_VERSION_VAL			"1.2.10"
@@ -175,6 +173,12 @@
 #define IDS_BROADCASTHDR		"BroadcastList"
 #define IDS_BROADCAST			"Broadcast"
 
+#include "shared.h"
+#include "stdlocation.h"
+
+/**
+ * @brief The lmcSettingsBase class
+ */
 class lmcSettingsBase : public QSettings
 {
 
@@ -190,9 +194,17 @@ public:
 public:
 	using QSettings::setValue;
 	void setValue(const QString& key, const QVariant& value, const QVariant& defaultValue);
-
 };
 
+/**
+ * @brief setAutoStart
+ * @param on
+ */
+void setAutoStart( bool on );
+
+/**
+ * @brief The lmcSettings class
+ */
 class lmcSettings : public lmcSettingsBase
 {
 
@@ -211,12 +223,13 @@ public:
     }
 
 public:
+
 	bool migrateSettings(void);
+
 	bool loadFromConfig(const QString& configFile);
 
-    static void setAutoStart(bool on);
-
 private:
+
 	bool migrateSettings(const QString& configFile);
 
 };
