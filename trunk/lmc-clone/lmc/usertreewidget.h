@@ -32,6 +32,7 @@
 #include <QString>
 #include <QStyledItemDelegate>
 #include <QPainter>
+
 #include "uidefinitions.h"
 
 class lmcUserTreeWidgetItem : public QTreeWidgetItem {

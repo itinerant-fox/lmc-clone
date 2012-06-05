@@ -30,12 +30,14 @@
 #include <QNetworkAddressEntry>
 #include <QHostAddress>
 #include <QList>
+
 #include "shared.h"
 #include "datagram.h"
 #include "settings.h"
 #include "crypto.h"
 
-class lmcUdpNetwork : public QObject {
+class lmcUdpNetwork : public QObject
+{
 	Q_OBJECT
 
 public:

@@ -25,8 +25,12 @@
 #ifndef UPDATEWINDOW_H
 #define UPDATEWINDOW_H
 
+#include <QtGlobal>
 #include <QWidget>
+
+#include "definitions.h"
 #include "xmlmessage.h"
+#include "strings.h"
 
 namespace Ui {
     class UpdateWindow;

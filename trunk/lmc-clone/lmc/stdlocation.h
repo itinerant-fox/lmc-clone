@@ -29,6 +29,7 @@
 #include <QFileInfo>
 #include <QDesktopServices>
 #include <QDateTime>
+
 #include "settings.h"
 
 #define SL_TRANSFERHISTORY		"transfers.lst"
@@ -42,14 +43,18 @@
 #define SL_LOGDIR				"logs"
 #define SL_TEMPCONFIG			"lmctmpconf.ini"
 
-class StdLocation {
+class StdLocation
+{
 public:
-	static QString transferHistory(void) {
+
+    static QString transferHistory(void)
+    {
 		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
 			QDesktopServices::DataLocation) + "/"SL_TRANSFERHISTORY);
 	}
 
-	static QString fileStorageDir(void) {
+    static QString fileStorageDir(void)
+    {
 		lmcSettings settings;
 
 		QString path = QDir::toNativeSeparators(QDesktopServices::storageLocation(
@@ -58,12 +63,14 @@ public:
 		return path;
 	}
 
-	static QString cacheDir(void) {
+    static QString cacheDir(void)
+    {
 		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
 			QDesktopServices::DataLocation) + "/"SL_CACHEDIR);
 	}
 
-	static QString libDir(void) {
+    static QString libDir(void)
+    {
 		return QDir::toNativeSeparators(QDir::currentPath());
 	}
 
@@ -73,24 +80,29 @@ public:
 	}
     //*/
 
-	static QString resLangDir(void) {
+    static QString resLangDir(void)
+    {
 		return ":/"SL_LANGDIR;
 	}
 
-	static QString sysLangDir(void) {
+    static QString sysLangDir(void)
+    {
 		return QDir::toNativeSeparators(QDir::currentPath() + "/"SL_LANGDIR);
 	}
 
-	static QString userLangDir(void) {
+    static QString userLangDir(void)
+    {
 		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
 			QDesktopServices::DataLocation) + "/"SL_LANGDIR);
 	}
 
-	static QString resThemeDir(void) {
+    static QString resThemeDir(void)
+    {
 		return ":/"SL_THEMEDIR;
 	}
 
-	static QString sysThemeDir(void) {
+    static QString sysThemeDir(void)
+    {
 		return QDir::toNativeSeparators(QDir::currentPath() + "/"SL_THEMEDIR);
 	}
 

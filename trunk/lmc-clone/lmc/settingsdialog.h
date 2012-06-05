@@ -25,6 +25,7 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
+#include <QtGlobal>
 #include <QDialog>
 #include <QListWidget>
 #include <QFileDialog>
@@ -32,6 +33,7 @@
 #include <QColorDialog>
 #include <QDesktopServices>
 #include <QSound>
+
 #include "ui_settingsdialog.h"
 #include "shared.h"
 #include "settings.h"
@@ -41,8 +43,10 @@
 #include "messagelog.h"
 #include "theme.h"
 #include "soundplayer.h"
+#include "strings.h"
 
-class lmcSettingsDialog : public QDialog {
+class lmcSettingsDialog : public QDialog
+{
 	Q_OBJECT
 
 public:

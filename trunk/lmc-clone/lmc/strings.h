@@ -28,7 +28,8 @@
 #include <QStringList>
 #include <QCoreApplication>
 
-class lmcStrings {
+class lmcStrings
+{
 	Q_DECLARE_TR_FUNCTIONS(lmcStrings)
 
 public:

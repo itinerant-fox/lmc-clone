@@ -29,10 +29,12 @@
 #include <QTextStream>
 #include <QDateTime>
 #include <QDir>
+
 #include "stdlocation.h"
 #include "xmlmessage.h"
 
-class lmcTrace {
+class lmcTrace
+{
 public:
 	lmcTrace(void);
 	~lmcTrace(void);

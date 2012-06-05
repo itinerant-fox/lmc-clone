@@ -28,6 +28,7 @@
 #include <QSettings>
 #include <QApplication>
 #include <QDir>
+
 #include "shared.h"
 
 //	Application settings definitions and default values
@@ -173,22 +174,29 @@
 #define IDS_BROADCASTHDR		"BroadcastList"
 #define IDS_BROADCAST			"Broadcast"
 
-class lmcSettingsBase : public QSettings {
+class lmcSettingsBase : public QSettings
+{
+
 public:
 	lmcSettingsBase(void);
 	lmcSettingsBase(const QString& fileName, Format format);
 	lmcSettingsBase(Format format, Scope scope, const QString& organization, const QString& application);
 	~lmcSettingsBase(void);
 
+public:
 	using QSettings::setValue;
 	void setValue(const QString& key, const QVariant& value, const QVariant& defaultValue);
+
 };
 
-class lmcSettings : public lmcSettingsBase {
+class lmcSettings : public lmcSettingsBase
+{
+
 public:
 	lmcSettings(void) : lmcSettingsBase(QSettings::IniFormat, QSettings::UserScope, IDA_COMPANY, IDA_PRODUCT) {}
 	~lmcSettings(void) {}
 
+public:
 	bool migrateSettings(void);
 	bool loadFromConfig(const QString& configFile);
 
@@ -196,6 +204,7 @@ public:
 
 private:
 	bool migrateSettings(const QString& configFile);
+
 };
 
 #endif // SETTINGS_H

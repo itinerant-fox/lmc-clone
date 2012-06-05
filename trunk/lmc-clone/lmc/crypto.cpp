@@ -25,7 +25,10 @@
 #include "trace.h"
 #include "crypto.h"
 
-lmcCrypto::lmcCrypto(void) {
+//-----------------------------------------------------------------------------
+
+lmcCrypto::lmcCrypto(void)
+{
 	pRsa = NULL;
 	encryptMap.clear();
 	decryptMap.clear();
@@ -33,12 +36,21 @@ lmcCrypto::lmcCrypto(void) {
 	exponent = 65537;
 }
 
-lmcCrypto::~lmcCrypto(void) {
-	RSA_free(pRsa);
+//-----------------------------------------------------------------------------
+
+lmcCrypto::~lmcCrypto(void)
+{
+    if ( NULL != pRsa )
+    {
+        RSA_free(pRsa);
+        pRsa = NULL;
+    }
 }
 
+//-----------------------------------------------------------------------------
 //	creates an RSA key pair and returns the string representation of the public key
-QByteArray lmcCrypto::generateRSA(void) {
+QByteArray lmcCrypto::generateRSA(void)
+{
 	unsigned char* buf = (unsigned char*)malloc(bits);
 	RAND_seed(buf, bits);
 	pRsa = RSA_generate_key(bits, exponent, NULL, NULL);
@@ -56,8 +68,10 @@ QByteArray lmcCrypto::generateRSA(void) {
 	return publicKey;
 }
 
+//-----------------------------------------------------------------------------
 //	generates a random aes key and iv, and encrypts it with the public key
-QByteArray lmcCrypto::generateAES(QString* lpszUserId, QByteArray& pubKey) {
+QByteArray lmcCrypto::generateAES(QString* lpszUserId, QByteArray& pubKey)
+{
 	char* pemKey = pubKey.data();
 	RSA* rsa = RSA_new();
 	BIO* bio = BIO_new_mem_buf(pemKey, pubKey.length());
@@ -94,8 +108,10 @@ QByteArray lmcCrypto::generateAES(QString* lpszUserId, QByteArray& pubKey) {
 	return baKeyIv;
 }
 
+//-----------------------------------------------------------------------------
 //	decrypts the aes key and iv with the private key
-void lmcCrypto::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
+void lmcCrypto::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv)
+{
 	unsigned char* keyIv = (unsigned char*)malloc(RSA_size(pRsa));
     RSA_private_decrypt(aesKeyIv.length(), (unsigned char*)aesKeyIv.data(), keyIv, pRsa, RSA_PKCS1_OAEP_PADDING);
 
@@ -111,7 +127,10 @@ void lmcCrypto::retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv) {
 	free(keyIv);
 }
 
-QByteArray lmcCrypto::encrypt(QString* lpszUserId, QByteArray& clearData) {
+//-----------------------------------------------------------------------------
+
+QByteArray lmcCrypto::encrypt(QString* lpszUserId, QByteArray& clearData)
+{
 	int outLen = clearData.length() + AES_BLOCK_SIZE;
 	unsigned char* outBuffer = (unsigned char*)malloc(outLen);
 	if(outBuffer == NULL) {
@@ -135,7 +154,10 @@ QByteArray lmcCrypto::encrypt(QString* lpszUserId, QByteArray& clearData) {
 	return QByteArray();
 }
 
-QByteArray lmcCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData) {
+//-----------------------------------------------------------------------------
+
+QByteArray lmcCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData)
+{
 	int outLen = cipherData.length();
 	unsigned char* outBuffer = (unsigned char*)malloc(outLen);
 	if(outBuffer == NULL) {
@@ -158,3 +180,5 @@ QByteArray lmcCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData) {
 	lmcTrace::write("Error: Message decryption failed");
 	return QByteArray();
 }
+
+//-----------------------------------------------------------------------------

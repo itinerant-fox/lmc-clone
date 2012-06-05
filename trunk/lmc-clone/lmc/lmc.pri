@@ -25,6 +25,8 @@ macx {
 
 #------------------------------------------------------------------------------
 
+#------------------------------------------------------------------------------
+
 RESOURCES += \
     lmc/resource.qrc
 
@@ -81,7 +83,6 @@ HEADERS  += \
     ./lmc/datagram.h \
     ./lmc/crypto.h \
     ./lmc/aboutdialog.h \
-    ./lmc/xmlmessage.h \
     ./lmc/chathelper.h \
     ./lmc/theme.h \
     ./lmc/messagelog.h \
@@ -125,7 +126,6 @@ SOURCES += \
     ./lmc/chatwindow.cpp \
     ./lmc/broadcastwindow.cpp \
     ./lmc/aboutdialog.cpp \
-    ./lmc/xmlmessage.cpp \
     ./lmc/chathelper.cpp \
     ./lmc/theme.cpp \
     ./lmc/messagelog.cpp \

@@ -26,6 +26,7 @@
 #define SOUNDPLAYER_H
 
 #include <QSound>
+
 #include "uidefinitions.h"
 #include "settings.h"
 

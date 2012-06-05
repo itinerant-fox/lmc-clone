@@ -25,6 +25,7 @@
 #include <QDesktopServices>
 #include <QTimer>
 #include <QUrl>
+
 #include "mainwindow.h"
 
 lmcMainWindow::lmcMainWindow(QWidget *parent, Qt::WFlags flags) : QWidget(parent, flags) {

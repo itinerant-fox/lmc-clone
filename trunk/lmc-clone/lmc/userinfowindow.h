@@ -25,12 +25,15 @@
 #ifndef USERINFOWINDOW_H
 #define USERINFOWINDOW_H
 
+#include <QtGlobal>
 #include <QDialog>
+
 #include "ui_userinfowindow.h"
 #include "shared.h"
 #include "settings.h"
 #include "stdlocation.h"
 #include "xmlmessage.h"
+#include "strings.h"
 
 class lmcUserInfoWindow : public QDialog
 {
