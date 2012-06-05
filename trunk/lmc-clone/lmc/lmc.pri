@@ -91,8 +91,7 @@ HEADERS  += \
     ./lmc/userinfowindow.h \
     ./lmc/chatroomwindow.h \
     ./lmc/userselectdialog.h \
-    ./lmc/subcontrols.h \
-    ./lmc/trace.h  
+    ./lmc/subcontrols.h
 
 #------------------------------------------------------------------------------
 
@@ -134,8 +133,8 @@ SOURCES += \
     ./lmc/userinfowindow.cpp \
     ./lmc/chatroomwindow.cpp \
     ./lmc/userselectdialog.cpp \
-    ./lmc/subcontrols.cpp \
-    ./lmc/trace.cpp  
+    ./lmc/subcontrols.cpp
+
 
 #------------------------------------------------------------------------------
 

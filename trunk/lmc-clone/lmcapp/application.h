@@ -25,12 +25,13 @@
 #ifndef APPLICATION_H
 #define APPLICATION_H
 
-#include "qtsingleapplication.h"
+#include <QtGlobal>
 #include <QHash>
 #include <QStringList>
+#include <QDir>
+#include <QTranslator>
 
-class QDir;
-class QTranslator;
+#include "qtsingleapplication.h"
 
 typedef QHash<QString, QTranslator*> Translators;
 

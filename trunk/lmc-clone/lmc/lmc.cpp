@@ -109,12 +109,22 @@ void lmcCore::init(const QString& szCommandArgs)
 		}
 	}
 
-	lmcTrace::init(pInitParams);
-	lmcTrace::write("Application initialized");
+    // trace
+    bool traceMode = Helper::stringToBool( pInitParams->data(XN_TRACEMODE) );
+    QString strLogDir = StdLocation::logDir();
+    QString strLogFileName = pInitParams->data(XN_LOGFILE);
+    if ( lmcTraceInit( traceMode, strLogDir, strLogFileName ) )
+    {
+        lmctrace( "Application initialized" );
+    }
+    else
+    {
+        // failed to init. trace
+    }
 
 	loadSettings();
 
-	lmcTrace::write("Settings loaded");
+    lmctrace("Settings loaded");
 
 	pMessaging->init(pInitParams);
 
@@ -126,7 +136,7 @@ void lmcCore::init(const QString& szCommandArgs)
 
 bool lmcCore::start(void)
 {
-	lmcTrace::write("Application started");
+    lmctrace("Application started");
 
 	pMessaging->start();
 
@@ -266,7 +276,8 @@ void lmcCore::stop(void) {
 	pMessaging->stop();
 	pMainWindow->stop();
 
-	lmcTrace::write("Application stopped");
+    lmctrace("Application stopped");
+
 }
 
 //	This slot handles the exit signal emitted by main window when the user
@@ -281,7 +292,7 @@ void lmcCore::aboutToExit(void) {
 	stop();
 	pSettings->setValue(IDS_VERSION, IDA_VERSION);
 
-	lmcTrace::write("Application exit");
+    lmctrace("Application exit");
 
 	pSettings->sync();
 }

@@ -53,7 +53,7 @@ lmcMessaging::~lmcMessaging(void) {
 }
 
 void lmcMessaging::init(XmlMessage *pInitParams) {
-	lmcTrace::write("Messaging initialized");
+    lmctrace("Messaging initialized");
 
 	pNetwork->init(pInitParams);
 
@@ -88,7 +88,7 @@ void lmcMessaging::init(XmlMessage *pInitParams) {
 }
 
 void lmcMessaging::start(void) {
-	lmcTrace::write("Messaging started");
+    lmctrace("Messaging started");
 	pNetwork->start();
 
 	sendBroadcast(MT_Depart, NULL);
@@ -96,7 +96,7 @@ void lmcMessaging::start(void) {
 }
 
 void lmcMessaging::update(void) {
-	lmcTrace::write("Refreshing contacts list...");
+    lmctrace("Refreshing contacts list...");
 	sendBroadcast(MT_Announce, NULL);
 
 	for(int index = 0; index < userList.count(); index++)
@@ -112,7 +112,7 @@ void lmcMessaging::stop(void) {
 
 	saveGroups();
 
-	lmcTrace::write("Messaging stopped");
+    lmctrace("Messaging stopped");
 }
 
 bool lmcMessaging::isConnected(void) {
@@ -313,7 +313,7 @@ bool lmcMessaging::addUser(QString szUserId, QString szVersion, QString szAddres
 		if(userList[index].id.compare(szUserId) == 0)
 			return false;
 
-	lmcTrace::write("Adding new user: " + szUserId + ", " + szVersion + ", " + szAddress);
+    lmctrace("Adding new user: " + szUserId + ", " + szVersion + ", " + szAddress);
 
 	if(!userGroupMap.contains(szUserId) || !groupList.contains(Group(userGroupMap.value(szUserId))))
 		userGroupMap.insert(szUserId, GRP_DEFAULT_ID);

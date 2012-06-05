@@ -52,28 +52,6 @@
 
 #define DELIMITER		"||"
 #define DELIMITER_ESC	"\\|\\|"
-// #define APP_MARKER		"lmcmessage"
-
-/****************************************************************************
-**	Datagram type definitions
-**	The enum and the string array should always be synced
-****************************************************************************/
-enum DatagramType {
-	DT_None = 0,
-	DT_Broadcast,
-	DT_PublicKey,
-	DT_Handshake,
-	DT_Message,
-	DT_Max
-};
-
-const QString DatagramTypeNames[] = {
-	"",
-	"BRDCST",
-	"PUBKEY",
-	"HNDSHK",
-	"MESSAG"
-};
 
 /****************************************************************************
 **	Message type definitions

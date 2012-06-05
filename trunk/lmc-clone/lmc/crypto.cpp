@@ -134,7 +134,7 @@ QByteArray lmcCrypto::encrypt(QString* lpszUserId, QByteArray& clearData)
 	int outLen = clearData.length() + AES_BLOCK_SIZE;
 	unsigned char* outBuffer = (unsigned char*)malloc(outLen);
 	if(outBuffer == NULL) {
-		lmcTrace::write("Error: Buffer not allocated");
+        lmctrace("Error: Buffer not allocated");
 		return QByteArray();
 	}
 	int foutLen = 0;
@@ -150,7 +150,7 @@ QByteArray lmcCrypto::encrypt(QString* lpszUserId, QByteArray& clearData)
 			}
 		}
 	}
-	lmcTrace::write("Error: Message encryption failed");
+    lmctrace("Error: Message encryption failed");
 	return QByteArray();
 }
 
@@ -161,7 +161,7 @@ QByteArray lmcCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData)
 	int outLen = cipherData.length();
 	unsigned char* outBuffer = (unsigned char*)malloc(outLen);
 	if(outBuffer == NULL) {
-		lmcTrace::write("Error: Buffer not allocated");
+        lmctrace("Error: Buffer not allocated");
 		return QByteArray();
 	}
 	int foutLen = 0;
@@ -177,7 +177,7 @@ QByteArray lmcCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData)
 			}
 		}
 	}
-	lmcTrace::write("Error: Message decryption failed");
+    lmctrace("Error: Message decryption failed");
 	return QByteArray();
 }
 
