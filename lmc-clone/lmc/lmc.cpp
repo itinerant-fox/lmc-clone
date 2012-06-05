@@ -110,9 +110,13 @@ void lmcCore::init(const QString& szCommandArgs)
 	}
 
     // trace
-    bool traceMode = Helper::stringToBool( pInitParams->data(XN_TRACEMODE) );
+    LmcTraceMode traceMode = DoNotTrace;
+    if ( Helper::stringToBool( pInitParams->data(XN_TRACEMODE) ) )
+        traceMode = TraceFile;
+
     QString strLogDir = StdLocation::logDir();
     QString strLogFileName = pInitParams->data(XN_LOGFILE);
+
     if ( lmcTraceInit( traceMode, strLogDir, strLogFileName ) )
     {
         lmctrace( "Application initialized" );
