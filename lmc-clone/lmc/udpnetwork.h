@@ -25,6 +25,7 @@
 #ifndef UDPNETWORK_H
 #define UDPNETWORK_H
 
+#include <QtGlobal>
 #include <QObject>
 #include <QUdpSocket>
 #include <QNetworkAddressEntry>
