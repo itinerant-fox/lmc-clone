@@ -348,7 +348,7 @@ void MsgStream::sendMessage(QByteArray& data) {
 
 	qint64 numBytesWritten = socket->write(outData);
 	if(numBytesWritten < 0)
-		lmcTrace::write("Error: Socket write failed");
+        lmctrace("Error: Socket write failed");
 }
 
 void MsgStream::connected(void) {
@@ -360,7 +360,7 @@ void MsgStream::connected(void) {
 	//	from receiver, which will trigger readyRead signal
 	qint64 numBytesWritten = socket->write(outData);
 	if(numBytesWritten < 0)
-		lmcTrace::write("Error: Socket write failed");
+        lmctrace("Error: Socket write failed");
 }
 
 void MsgStream::disconnected(void) {
@@ -403,9 +403,9 @@ void MsgStream::bytesWritten(qint64 bytes) {
 		return;
 
 	if(outDataLen > 0)
-		lmcTrace::write("Warning: Socket write operation not completed");
+        lmctrace("Warning: Socket write operation not completed");
 	if(outDataLen < 0)
-		lmcTrace::write("Warning: Socket write overrun");
+        lmctrace("Warning: Socket write overrun");
 
 	//	TODO: handle situation when entire message is not written to stream in one write operation
 	//	The following code is not functional currently, hence commented out.

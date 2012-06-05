@@ -73,6 +73,8 @@ include( ./lmc/resources/lang/translations.pri )
 
 include( ./lmcapp/lmcapp.pri )
 
+include( ./trace/trace.pri )
+
 include( ./xmlmessage/xmlmessage.pri )
 
 include( ./lmc/lmc.pri )
