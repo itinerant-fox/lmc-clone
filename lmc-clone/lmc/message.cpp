@@ -49,7 +49,7 @@ bool Message::getHeader(QString* lpszMessage, MessageHeader** ppHeader, XmlMessa
 	// add time stamp to message
 	(*ppMessage)->addHeader(XN_TIME, QString::number(QDateTime::currentDateTimeUtc().toMSecsSinceEpoch()));
 
-	int type = Helper::indexOf(MessageTypeNames, MT_Max, (*ppMessage)->header(XN_TYPE));
+    int type =  Helper::indexOf(MessageTypeNames, MT_Max, (*ppMessage)->header(XN_TYPE));
 	if(type < 0)
 		return false;
 

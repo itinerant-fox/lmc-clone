@@ -27,7 +27,8 @@
 
 #include <QTableWidget>
 
-class lmcImagePicker : public QTableWidget {
+class lmcImagePicker : public QTableWidget
+{
 	Q_OBJECT
 
 public:

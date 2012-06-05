@@ -25,11 +25,21 @@
 #ifndef DATAGRAM_H
 #define DATAGRAM_H
 
+#include <cstddef>
+#include <QtGlobal>
 #include <QString>
 #include <QStringList>
+#include <QByteArray>
+#include <QDataStream>
 
-#include "shared.h"
-#include "xmlmessage.h"
+enum DatagramType {
+    DT_None = 0,
+    DT_Broadcast,
+    DT_PublicKey,
+    DT_Handshake,
+    DT_Message,
+    DT_Max
+};
 
 enum DatagramHeaderMember
 {
@@ -39,12 +49,34 @@ enum DatagramHeaderMember
 	DH_Max
 };
 
-class Datagram
+struct DatagramHeader
 {
-public:
-	static void addHeader(DatagramType type, QByteArray& baData);
-	static bool getHeader(QByteArray& baDatagram, DatagramHeader** ppHeader);
-	static QByteArray getData(QByteArray& baDatagram);
+    DatagramType type;
+    QString userId;
+    QString address;
+
+    DatagramHeader(DatagramType dtType, QString szUserId, QString szAddress) {
+        type = dtType;
+        userId = szUserId;
+        address = szAddress;
+    }
+};
+
+const QString DatagramTypeNames[] = {
+    "",
+    "BRDCST",
+    "PUBKEY",
+    "HNDSHK",
+    "MESSAG"
+};
+
+#include "Helper.h"
+
+namespace Datagram
+{
+    void addHeader( DatagramType type, QByteArray& baData );
+    bool getHeader( QByteArray& baDatagram, DatagramHeader** ppHeader );
+    QByteArray getData( QByteArray& baDatagram );
 };
 
 #endif // DATAGRAM_H

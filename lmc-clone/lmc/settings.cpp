@@ -32,8 +32,13 @@ lmcSettingsBase::lmcSettingsBase(const QString& fileName, Format format) :
 	QSettings(fileName, format) {
 }
 
-lmcSettingsBase::lmcSettingsBase(Format format, Scope scope, const QString& organization, const QString& application) :
-	QSettings(format, scope, organization, application) {
+lmcSettingsBase::lmcSettingsBase(
+        Format format,
+        Scope scope,
+        const QString& organization,
+        const QString& application )
+    : QSettings(format, scope, organization, application)
+{
 }
 
 lmcSettingsBase::~lmcSettingsBase(void) {

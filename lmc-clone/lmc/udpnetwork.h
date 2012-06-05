@@ -31,11 +31,12 @@
 #include <QNetworkAddressEntry>
 #include <QHostAddress>
 #include <QList>
+#include <QNetworkInterface>
 
-#include "shared.h"
-#include "datagram.h"
-#include "settings.h"
+#include "trace.h"
 #include "crypto.h"
+#include "settings.h"
+#include "datagram.h"
 
 class lmcUdpNetwork : public QObject
 {
@@ -45,6 +46,7 @@ public:
 	lmcUdpNetwork(void);
 	~lmcUdpNetwork(void);
 
+public:
 	void init(int nPort = 0);
 	void start(void);
 	void stop(void);
@@ -85,6 +87,7 @@ private:
 	QHostAddress		subnetMask;
 	QList<QHostAddress>	broadcastList;
 	QHostAddress		defBroadcast;
+
 };
 
 #endif // UDPNETWORK_H

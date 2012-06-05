@@ -40,7 +40,8 @@
 #define HC_IDMARKER		"ID"
 #define HC_DTMARKER		"DT"
 
-struct DBHeader {
+struct DBHeader
+{
 	QString marker;
 	int version;
 	qint16 headerSize;
@@ -48,13 +49,20 @@ struct DBHeader {
 	qint64 first;
 	qint64 last;
 
-	DBHeader() {
+    DBHeader()
+    {
 		this->marker = HC_DBMARKER;
 		this->headerSize = HC_HDRSIZE;
 		this->version = HC_VERSION;
 	}
 
-	DBHeader(QString szMarker, qint16 nHeaderSize, int nVersion, int nCount, qint64 nFirst, qint64 nLast) {
+    DBHeader(QString szMarker,
+             qint16 nHeaderSize,
+             int nVersion,
+             int nCount,
+             qint64 nFirst,
+             qint64 nLast)
+    {
 		this->marker = szMarker;
 		this->headerSize = nHeaderSize;
 		this->version = nVersion;
@@ -64,21 +72,24 @@ struct DBHeader {
 	}
 };
 
-struct MsgInfo {
+struct MsgInfo
+{
 	QString name;
 	QDateTime date;
 	qint64 offset;
 
 	MsgInfo() { }
 
-	MsgInfo(QString name, QDateTime date, qint64 offset) {
+    MsgInfo(QString name, QDateTime date, qint64 offset)
+    {
 		this->name = name;
 		this->date = date;
 		this->offset = offset;
 	}
 };
 
-class History {
+class History
+{
 public:
 	static QString historyFile(void);
 	static int save(QString user, QDateTime timeStamp, QString* lpszData);

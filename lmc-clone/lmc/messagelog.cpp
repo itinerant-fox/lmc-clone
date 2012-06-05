@@ -132,7 +132,7 @@ void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStr
 		break;
 	case MT_ChatState:
 		message = pMessage->data(XN_CHATSTATE);
-		caption = getChatStateMessage((ChatState)Helper::indexOf(ChatStateNames, CS_Max, message));
+        caption = getChatStateMessage((ChatState) Helper::indexOf(ChatStateNames, CS_Max, message));
 		if(!caption.isNull()) {
 			html = themeData.stateMsg;
 			html.replace("%iconpath%", "qrc"IDR_BLANK);
@@ -176,7 +176,7 @@ void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QStr
 	case MT_Join:
 	case MT_Leave:
 		message = pMessage->data(XN_GROUPMSGOP);
-		caption = getChatRoomMessage((GroupMsgOp)Helper::indexOf(GroupMsgOpNames, GMO_Max, message));
+        caption = getChatRoomMessage((GroupMsgOp) Helper::indexOf(GroupMsgOpNames, GMO_Max, message));
 		if(!caption.isNull()) {
 			html = themeData.sysMsg;
 			html.replace("%iconpath%", "qrc"IDR_BLANK);
@@ -516,7 +516,7 @@ void lmcMessageLog::appendFileMessage(MessageType type, QString* lpszUserName, X
 	htmlMsg = themeData.reqMsg;
 	htmlMsg.replace("%iconpath%", "qrc"IDR_FILEMSG);
 
-	FileOp fileOp = (FileOp)Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+    FileOp fileOp = (FileOp) Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
 
 	if(type == MT_LocalFile) {
 		tempId = "send" + fileId;

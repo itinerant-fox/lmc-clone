@@ -22,10 +22,11 @@
 ****************************************************************************/
 
 
-#include "trace.h"
+
 #include "udpnetwork.h"
 
-lmcUdpNetwork::lmcUdpNetwork(void) {
+lmcUdpNetwork::lmcUdpNetwork(void)
+{
 	pUdpReceiver = new QUdpSocket(this);
 	pUdpSender = new QUdpSocket(this);
 	localId = QString::null;
@@ -41,7 +42,8 @@ lmcUdpNetwork::lmcUdpNetwork(void) {
 lmcUdpNetwork::~lmcUdpNetwork(void) {
 }
 
-void lmcUdpNetwork::init(int nPort) {
+void lmcUdpNetwork::init(int nPort)
+{
 	pSettings = new lmcSettings();
 	nUdpPort = nPort > 0 ? nPort : pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt();
 	multicastAddress = QHostAddress(pSettings->value(IDS_MULTICAST, IDS_MULTICAST_VAL).toString());

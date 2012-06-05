@@ -660,7 +660,7 @@ void lmcCore::processMessage(MessageType type, QString* lpszUserId, XmlMessage* 
 }
 
 void lmcCore::processFile(MessageType type, QString *lpszUserId, XmlMessage* pMessage) {
-	int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
 	switch(fileOp) {
 	case FO_Accept:
 		showTransferWindow();
@@ -757,7 +757,7 @@ void lmcCore::routeGroupMessage(MessageType type, QString* lpszUserId, XmlMessag
 			break;
 		default:
 			threadId = pMessage->data(XN_THREAD);
-			op = Helper::indexOf(GroupMsgOpNames, GMO_Max, pMessage->data(XN_GROUPMSGOP));
+            op =  Helper::indexOf(GroupMsgOpNames, GMO_Max, pMessage->data(XN_GROUPMSGOP));
 
 			if(op == GMO_Request) {
 				//	Check if a chat room with the thread id already exists

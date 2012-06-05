@@ -32,9 +32,11 @@
 #include <QToolButton>
 #include <QLabel>
 #include <QLineEdit>
+
 #include "uidefinitions.h"
 
-class lmcToolButton : public QToolButton {
+class lmcToolButton : public QToolButton
+{
 public:
 	lmcToolButton(QWidget* parent = 0);
 
@@ -42,7 +44,8 @@ protected:
 	void paintEvent(QPaintEvent*);
 };
 
-class lmcLabel : public QLabel {
+class lmcLabel : public QLabel
+{
 public:
 	lmcLabel(QWidget* parent = 0);
 
@@ -60,7 +63,8 @@ private:
 	QString elidedText;
 };
 
-class lmcLineEdit : public QLineEdit {
+class lmcLineEdit : public QLineEdit
+{
 	Q_OBJECT
 
 public:

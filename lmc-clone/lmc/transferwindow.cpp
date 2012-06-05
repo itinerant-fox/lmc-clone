@@ -122,8 +122,8 @@ void lmcTransferWindow::receiveMessage(MessageType type, QString* lpszUserId, Xm
     Q_UNUSED(type);
     Q_UNUSED(lpszUserId);
 	
-	int fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
-	int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+    int fileMode =  Helper::indexOf( FileModeNames, FM_Max, pMessage->data(XN_MODE) );
+    int fileOp =  Helper::indexOf( FileOpNames, FO_Max, pMessage->data(XN_FILEOP) );
 	QString id = pMessage->data(XN_FILEID);
 
 	FileView* view = NULL;

@@ -573,8 +573,8 @@ void lmcChatWindow::encodeMessage(QString* lpszMessage) {
 }
 
 void lmcChatWindow::processFileOp(XmlMessage* pMessage) {
-	int fileOp = Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
-	int fileMode = Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
+    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+    int fileMode =  Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
 	QString fileId = pMessage->data(XN_FILEID);
 
     switch(fileOp) {

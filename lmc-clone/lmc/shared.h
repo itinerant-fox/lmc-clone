@@ -36,93 +36,19 @@
 #include "uidefinitions.h"
 #endif
 
-struct User
-{
-	QString id;
-	QString name;
-	QString address;
-	QString version;
-	QString status;
-	int avatar;
-	QString group;
-	QString note;
+#include "User.h"
 
-    User(void)
-    {
-    }
-
-    User(QString szId,
-         QString szVersion,
-         QString szAddress,
-         QString szName,
-         QString szStatus,
-         QString szGroup,
-         int nAvatar,
-         QString szNote)
-    {
-		this->id = szId;
-		this->version = szVersion;
-		this->address = szAddress;
-		this->name = szName;
-		this->status = szStatus;
-		this->group = szGroup;
-		this->avatar = nAvatar;
-		this->note = szNote;
-	}
-
-};
-
-struct Group
-{
-	QString id;
-	QString name;
-
-	Group(void) {}
-	Group(QString szId) {
-		this->id = szId;
-	}
-	Group(QString szId, QString szName) {
-		this->id = szId;
-		this->name = szName;
-	}
-
-	bool operator == (const Group& v) const { return (this->id.compare(v.id) == 0); }
-};
+#include "Group.h"
 
 
 /****************************************************************************
 **	Datagram type definitions
 **	The enum and the string array should always be synced
 ****************************************************************************/
-enum DatagramType {
-    DT_None = 0,
-    DT_Broadcast,
-    DT_PublicKey,
-    DT_Handshake,
-    DT_Message,
-    DT_Max
-};
 
-const QString DatagramTypeNames[] = {
-    "",
-    "BRDCST",
-    "PUBKEY",
-    "HNDSHK",
-    "MESSAG"
-};
+#include "datagram.h"
 
-struct DatagramHeader
-{
-	DatagramType type;
-	QString userId;
-	QString address;
 
-	DatagramHeader(DatagramType dtType, QString szUserId, QString szAddress) {
-		type = dtType;
-		userId = szUserId;
-		address = szAddress;
-	}
-};
 
 struct MessageHeader
 {
@@ -139,22 +65,6 @@ struct MessageHeader
 	}
 };
 
-class Helper
-{
-public:
-	static int indexOf(const QString array[], int size, const QString& value);
-	static int statusIndexFromCode(QString status);
-	static QString formatSize(qint64 size);
-	static QString getUuid(void);
-	static QString getLogonName(void);
-	static QString getHostName(void);
-	static QString getOSName(void);
-	static QString escapeDelimiter(QString* lpszData);
-	static QString unescapeDelimiter(QString* lpszData);
-	static int compareVersions(const QString& version1, const QString& version2);
-	static QString boolToString(bool value);
-	static bool stringToBool(const QString& value);
-	static bool copyFile(const QString& source, const QString& destination);
-};
+#include "Helper.h"
 
 #endif // SHARED_H

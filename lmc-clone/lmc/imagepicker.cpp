@@ -26,12 +26,19 @@
 #include <QHeaderView>
 #include <QPainter>
 #include <QMouseEvent>
-#include <qmath.h>
+#include <QMath.h>
+
 #include "uidefinitions.h"
 #include "imagepicker.h"
 
-lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picSize, int columns, int* selected, int actionIndex)
-	: QTableWidget(parent)
+lmcImagePicker::lmcImagePicker(
+        QWidget *parent,
+        QList<QString>* source,
+        int picSize,
+        int columns,
+        int* selected,
+        int actionIndex )
+    : QTableWidget(parent)
 {
 	setMouseTracking(true);
 
@@ -84,10 +91,13 @@ lmcImagePicker::lmcImagePicker(QWidget *parent, QList<QString>* source, int picS
 	this->hoverItem = NULL;
 }
 
-lmcImagePicker::~lmcImagePicker() {
+lmcImagePicker::~lmcImagePicker()
+{
 }
 
-void lmcImagePicker::currentChanged(const QModelIndex& current, const QModelIndex& previous) {
+void lmcImagePicker::currentChanged(const QModelIndex& current,
+                                    const QModelIndex& previous)
+{
 	QMenu* pMenu = (QMenu*)this->parent();
 	if(current.isValid()) {
 		int index = current.row() * max_col + current.column();
@@ -105,7 +115,8 @@ void lmcImagePicker::currentChanged(const QModelIndex& current, const QModelInde
 	pMenu->close();
 }
 
-void lmcImagePicker::mouseMoveEvent(QMouseEvent* e) {
+void lmcImagePicker::mouseMoveEvent(QMouseEvent* e)
+{
 	QTableWidget::mouseMoveEvent(e);	
 
 	QTableWidgetItem* currentItem = itemAt(e->pos());
@@ -116,7 +127,8 @@ void lmcImagePicker::mouseMoveEvent(QMouseEvent* e) {
 	}
 }
 
-void lmcImagePicker::paintEvent(QPaintEvent* e) {
+void lmcImagePicker::paintEvent(QPaintEvent* e)
+{
 	QTableWidget::paintEvent(e);
 
 	//	If mouse is hovered over an item, draw a border around it
@@ -129,7 +141,8 @@ void lmcImagePicker::paintEvent(QPaintEvent* e) {
 	}
 }
 
-void lmcImagePicker::leaveEvent(QEvent* e) {
+void lmcImagePicker::leaveEvent(QEvent* e)
+{
 	QTableWidget::leaveEvent(e);
 
 	hoverItem = NULL;

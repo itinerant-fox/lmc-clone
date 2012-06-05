@@ -28,13 +28,16 @@
 #include <QObject>
 #include <QTcpSocket>
 #include <QTcpServer>
+
 #include "shared.h"
 #include "datagram.h"
 #include "settings.h"
 #include "netstreamer.h"
 #include "crypto.h"
+#include "xmlmessage.h"
 
-class lmcTcpNetwork : public QObject {
+class lmcTcpNetwork : public QObject
+{
 	Q_OBJECT
 
 public:
