@@ -29,7 +29,9 @@
 #include <QDateTime>
 #include <QUuid>
 #include <QHostInfo>
+
 #include "definitions.h"
+
 #ifdef QWIDGET_H
 #include "uidefinitions.h"
 #endif
@@ -45,9 +47,19 @@ struct User
 	QString group;
 	QString note;
 
-	User(void) {}
-	User(QString szId, QString szVersion, QString szAddress, QString szName, QString szStatus, QString szGroup,
-		 int nAvatar, QString szNote) {
+    User(void)
+    {
+    }
+
+    User(QString szId,
+         QString szVersion,
+         QString szAddress,
+         QString szName,
+         QString szStatus,
+         QString szGroup,
+         int nAvatar,
+         QString szNote)
+    {
 		this->id = szId;
 		this->version = szVersion;
 		this->address = szAddress;
@@ -57,9 +69,11 @@ struct User
 		this->avatar = nAvatar;
 		this->note = szNote;
 	}
+
 };
 
-struct Group {
+struct Group
+{
 	QString id;
 	QString name;
 
@@ -75,7 +89,8 @@ struct Group {
 	bool operator == (const Group& v) const { return (this->id.compare(v.id) == 0); }
 };
 
-struct DatagramHeader {
+struct DatagramHeader
+{
 	DatagramType type;
 	QString userId;
 	QString address;
@@ -87,20 +102,23 @@ struct DatagramHeader {
 	}
 };
 
-struct MessageHeader {
+struct MessageHeader
+{
 	MessageType type;
 	qint64 id;
 	QString userId;
 	QString address;
 
-	MessageHeader(MessageType mtType, qint64 nId, QString szUserId) {
+    MessageHeader(MessageType mtType, qint64 nId, QString szUserId)
+    {
 		type = mtType;
 		id = nId;
 		userId = szUserId;
 	}
 };
 
-class Helper {
+class Helper
+{
 public:
 	static int indexOf(const QString array[], int size, const QString& value);
 	static int statusIndexFromCode(QString status);

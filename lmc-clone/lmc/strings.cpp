@@ -33,13 +33,16 @@ QStringList lmcStrings::m_soundDesc;
 QStringList lmcStrings::m_awayTimeDesc;
 QStringList lmcStrings::m_userListView;
 
-lmcStrings::lmcStrings(void) {
+lmcStrings::lmcStrings(void)
+{
 }
 
-lmcStrings::~lmcStrings(void) {
+lmcStrings::~lmcStrings(void)
+{
 }
 
-void lmcStrings::retranslate(void) {
+void lmcStrings::retranslate(void)
+{
 	m_appName.clear();
 	m_appDesc.clear();
 	m_autoConn.clear();
@@ -50,13 +53,15 @@ void lmcStrings::retranslate(void) {
 	m_userListView.clear();
 }
 
-const QString lmcStrings::appName(void) {
+const QString lmcStrings::appName(void)
+{
 	if(m_appName.isEmpty())
 		m_appName = tr("LAN Messenger");
 	return m_appName;
 }
 
-const QString lmcStrings::appDesc(void) {
+const QString lmcStrings::appDesc(void)
+{
 	if(m_appDesc.isEmpty())
         m_appDesc = tr("LAN Messenger is a free peer-to-peer messaging application for\n"\
                        "intra-network communication and does not require a server.\n"\
@@ -64,13 +69,15 @@ const QString lmcStrings::appDesc(void) {
 	return m_appDesc;
 }
 
-const QString lmcStrings::autoConn(void) {
+const QString lmcStrings::autoConn(void)
+{
 	if(m_autoConn.isEmpty())
 		m_autoConn = tr("Automatic");
 	return m_autoConn;
 }
 
-const QStringList lmcStrings::fontSize(void) {
+const QStringList lmcStrings::fontSize(void)
+{
 	if(m_fontSize.isEmpty()) {
 		m_fontSize.append(tr("Small text"));
 		m_fontSize.append(tr("Medium text"));

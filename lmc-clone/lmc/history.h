@@ -30,6 +30,7 @@
 #include <QDataStream>
 #include <QDateTime>
 #include <QList>
+
 #include "settings.h"
 
 #define HC_FILENAME		"messenger.db"

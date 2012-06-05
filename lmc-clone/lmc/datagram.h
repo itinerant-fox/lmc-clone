@@ -27,6 +27,7 @@
 
 #include <QString>
 #include <QStringList>
+
 #include "shared.h"
 #include "xmlmessage.h"
 
@@ -38,7 +39,8 @@ enum DatagramHeaderMember
 	DH_Max
 };
 
-class Datagram {
+class Datagram
+{
 public:
 	static void addHeader(DatagramType type, QByteArray& baData);
 	static bool getHeader(QByteArray& baDatagram, DatagramHeader** ppHeader);

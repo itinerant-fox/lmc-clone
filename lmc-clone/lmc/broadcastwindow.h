@@ -28,7 +28,8 @@
 #include <QWidget>
 #include <QToolBar>
 #include <QMenu>
-#include <qevent.h>
+#include <QEvent.h>
+
 #include "ui_broadcastwindow.h"
 #include "shared.h"
 #include "settings.h"
@@ -37,6 +38,7 @@
 #include "chatdefinitions.h"
 #include "chathelper.h"
 #include "xmlmessage.h"
+#include "strings.h"
 
 class lmcBroadcastWindow : public QWidget
 {

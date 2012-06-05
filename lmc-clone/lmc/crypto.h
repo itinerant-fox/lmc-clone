@@ -21,9 +21,10 @@
 **
 ****************************************************************************/
 
-
+#include <QtGlobal>
 #include <QMap>
 #include <QDataStream>
+
 #include <openssl/rand.h>
 #include <openssl/rsa.h>
 #include <openssl/pem.h>

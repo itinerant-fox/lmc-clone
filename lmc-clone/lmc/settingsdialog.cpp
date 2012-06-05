@@ -27,6 +27,7 @@
 #include <QSystemTrayIcon>
 #include <QLocale>
 #include <QMessageBox>
+
 #include "settingsdialog.h"
 
 lmcSettingsDialog::lmcSettingsDialog(QWidget *parent, Qt::WFlags flags)

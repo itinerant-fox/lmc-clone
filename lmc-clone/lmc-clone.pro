@@ -2,7 +2,7 @@
 #
 # lmc-clone
 #
-# lmc : LAN Messenger, Instant messaging client.
+# lmc : LAN Messenger, instant messaging client.
 #   http://lanmsngr.sourceforge.net/
 #   http://sourceforge.net/projects/lanmsngr/
 #
@@ -51,11 +51,16 @@ INCLUDEPATH += ./openssl/include
 DEPENDPATH  += ./openssl/include
 
 # MinGW (MSYS)
-win32:win32-g++: LIBS += -L./openssl/lib/MinGW -leay32
+win32:win32-g++: LIBS += -leay32
+win32:win32-g++: LIBS += -L./openssl/lib/MinGW
+win32:win32-g++: LIBS += -L../lmc-clone/openssl/lib/MinGW
 
 # Visual C++
-win32:win32-msvc2008: LIBS += -L./openssl/lib/VC -leay32
-win32:win32-msvc2010: LIBS += -L./openssl/lib/VC -leay32
+win32:win32-msvc2008: LIBS += -leay32
+win32:win32-msvc2008: LIBS += -L./openssl/lib/VC
+
+win32:win32-msvc2010: LIBS += -leay32
+win32:win32-msvc2010: LIBS += -L./openssl/lib/VC
 
 win32:LIBS += -liphlpapi
 
@@ -67,6 +72,8 @@ unix:!symbian: LIBS += -L./openssl/lib/ -lcrypto
 include( ./lmc/resources/lang/translations.pri )
 
 include( ./lmcapp/lmcapp.pri )
+
+include( ./xmlmessage/xmlmessage.pri )
 
 include( ./lmc/lmc.pri )
 

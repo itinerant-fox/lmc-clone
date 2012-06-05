@@ -27,13 +27,16 @@
 bool lmcTrace::traceMode;
 QString lmcTrace::fileName;
 
-lmcTrace::lmcTrace(void) {
+lmcTrace::lmcTrace(void)
+{
 }
 
-lmcTrace::~lmcTrace(void) {
+lmcTrace::~lmcTrace(void)
+{
 }
 
-void lmcTrace::init(XmlMessage* pInitParams) {
+void lmcTrace::init(XmlMessage* pInitParams)
+{
 	traceMode = Helper::stringToBool(pInitParams->data(XN_TRACEMODE));
 	fileName = pInitParams->data(XN_LOGFILE);
 
@@ -42,7 +45,8 @@ void lmcTrace::init(XmlMessage* pInitParams) {
 		  "-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
 }
 
-void lmcTrace::write(const QString& string) {
+void lmcTrace::write(const QString& string)
+{
 	if(!traceMode)
 		return;
 

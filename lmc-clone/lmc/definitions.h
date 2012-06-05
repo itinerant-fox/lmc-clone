@@ -34,7 +34,7 @@
 #define IDA_PRODUCT		"lmc"
 #define IDA_COMPANY		"lmc"
 #endif
-#define IDA_VERSION		"1.2.30"
+#define IDA_VERSION		"2.0.0"
 #define IDA_DESCRIPTION	"LAN Messenger is a free peer-to-peer messaging application for intra-network communication "\
 						"and does not require a server.\n"\
 						"LAN Messenger works on essentially every popular desktop platform."
@@ -52,7 +52,7 @@
 
 #define DELIMITER		"||"
 #define DELIMITER_ESC	"\\|\\|"
-#define APP_MARKER		"lmcmessage"
+// #define APP_MARKER		"lmcmessage"
 
 /****************************************************************************
 **	Datagram type definitions
@@ -80,37 +80,37 @@ const QString DatagramTypeNames[] = {
 **	The enum and the string array should always be synced
 ****************************************************************************/
 enum MessageType {
-	MT_Blank = 0,
-	MT_Announce,
-	MT_Depart,
-	MT_UserData,
-	MT_Broadcast,
-	MT_Status,
-	MT_Avatar,
-	MT_UserName,
-	MT_Ping,
-	MT_Message,
-	MT_GroupMessage,
-	MT_PublicMessage,
-	MT_File,
-	MT_Acknowledge,
-	MT_Failed,
-	MT_Error,
-	MT_OldVersion,
-	MT_Query,
-	MT_Info,
-	MT_ChatState,
-	MT_Note,
-	//	These are used only for local communication between layers
-	MT_Group,
-	MT_Version,
-	MT_WebFailed,
-	MT_LocalFile,
-	MT_LocalAvatar,
-	MT_Refresh,
-	MT_Join,
-	MT_Leave,
-	MT_Max
+    MT_Blank = 0,
+    MT_Announce,
+    MT_Depart,
+    MT_UserData,
+    MT_Broadcast,
+    MT_Status,
+    MT_Avatar,
+    MT_UserName,
+    MT_Ping,
+    MT_Message,
+    MT_GroupMessage,
+    MT_PublicMessage,
+    MT_File,
+    MT_Acknowledge,
+    MT_Failed,
+    MT_Error,
+    MT_OldVersion,
+    MT_Query,
+    MT_Info,
+    MT_ChatState,
+    MT_Note,
+    //	These are used only for local communication between layers
+    MT_Group,
+    MT_Version,
+    MT_WebFailed,
+    MT_LocalFile,
+    MT_LocalAvatar,
+    MT_Refresh,
+    MT_Join,
+    MT_Leave,
+    MT_Max
 };
 
 const QString MessageTypeNames[] = {

@@ -29,6 +29,7 @@
 #include <QNetworkAddressEntry>
 #include <QHostAddress>
 #include <QTimer>
+
 #include "udpnetwork.h"
 #include "tcpnetwork.h"
 #include "webnetwork.h"
@@ -36,7 +37,8 @@
 #include "settings.h"
 #include "xmlmessage.h"
 
-class lmcNetwork : public QObject {
+class lmcNetwork : public QObject
+{
 	Q_OBJECT
 
 public:
