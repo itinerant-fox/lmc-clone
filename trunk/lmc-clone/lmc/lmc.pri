@@ -91,7 +91,8 @@ HEADERS  += \
     lmc/subcontrols.h \
     lmc/User.h \
     lmc/Group.h \
-    lmc/Helper.h
+    lmc/Helper.h \
+    lmc/main.h
 
 #------------------------------------------------------------------------------
 

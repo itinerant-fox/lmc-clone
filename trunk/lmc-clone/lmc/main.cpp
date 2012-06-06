@@ -21,41 +21,14 @@
 **
 ****************************************************************************/
 
+#include "main.h"
 
-#include "application.h"
-#include "lmc.h"
-#include "stdlocation.h"
-
-#include <QResource>
-#include <QMessageBox>
+lmcCore* g_core = NULL;
 
 //	Define a unique application id. This is a combination of two GUIDs
 const QString appId = "93fab548-2cf5-4a1e-8758-a416a5ec2120-6fc5009f-84e8-4489-a444-7f934bcf9166";
 
-int showSwitches(void) {
-	QString msg =	"Usage:	lmc [switches]\n" \
-					"	All switches are optional.\n" \
-					"\n" \
-					"/loopback - Allows loopback communication with local machine.\n" \
-					"/nohistory - Deletes existing history.\n" \
-					"/nofilehistory - Deletes existing file transfer history.\n" \
-					"/noconfig - Resets preferences to default values.\n" \
-					"/sync - Synchronizes application settings and their external dependencies.\n" \
-					"/unsync - Removes all external application dependencies.\n" \
-					"/term - Closes an instance which is already running.\n" \
-					"/inst - Returns a value indicating whether an instance is already running.\n" \
-					"/quit - Closes once the command line parameters are processed.\n" \
-					"/? - Display this help.\n" \
-					"\n" \
-					"Example:\n" \
-					"Start in loopback mode with default settings: lmc /loopback /noconfig\n" \
-					"\n" \
-					"Some command line switches are mutually exclusive. If multiple switches\n" \
-					"are specified, they will take precedence in the order given above.\n" \
-					"Copyright (C) 2010-2012 Qualia Digital Solutions.\n";
-	QMessageBox::information(NULL, IDA_TITLE, msg, QMessageBox::Ok);
-	return 0;
-}
+int showSwitches(void);
 
 int main(int argc, char *argv[])
 {
@@ -104,8 +77,9 @@ int main(int argc, char *argv[])
 	messageList += "/trace\n";
 #endif
 
-    // note: lmccore is factory of appliation.
+    // note: lmccore is factory/delegator of appliation.
 	lmcCore core;
+    g_core = &core;
 
 	//	handle command line args if this is first instance
 	//	some args are handled when the application is initializing
@@ -129,3 +103,31 @@ int main(int argc, char *argv[])
 
     return ret;
 }
+
+int showSwitches(void)
+{
+    QString msg =	"Usage:	lmc [switches]\n" \
+                    "	All switches are optional.\n" \
+                    "\n" \
+                    "/loopback - Allows loopback communication with local machine.\n" \
+                    "/nohistory - Deletes existing history.\n" \
+                    "/nofilehistory - Deletes existing file transfer history.\n" \
+                    "/noconfig - Resets preferences to default values.\n" \
+                    "/sync - Synchronizes application settings and their external dependencies.\n" \
+                    "/unsync - Removes all external application dependencies.\n" \
+                    "/term - Closes an instance which is already running.\n" \
+                    "/inst - Returns a value indicating whether an instance is already running.\n" \
+                    "/quit - Closes once the command line parameters are processed.\n" \
+                    "/? - Display this help.\n" \
+                    "\n" \
+                    "Example:\n" \
+                    "Start in loopback mode with default settings: lmc /loopback /noconfig\n" \
+                    "\n" \
+                    "Some command line switches are mutually exclusive. If multiple switches\n" \
+                    "are specified, they will take precedence in the order given above.\n" \
+                    "Copyright (C) 2010-2012 Qualia Digital Solutions.\n";
+    QMessageBox::information(NULL, IDA_TITLE, msg, QMessageBox::Ok);
+    return 0;
+}
+
+

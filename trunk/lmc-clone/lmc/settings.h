@@ -26,6 +26,7 @@
 #define SETTINGS_H
 
 #include <QtGlobal>
+#include <QString>
 #include <QSettings>
 #include <QApplication>
 #include <QDir>

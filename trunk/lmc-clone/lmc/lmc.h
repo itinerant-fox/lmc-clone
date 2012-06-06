@@ -25,10 +25,37 @@
 #ifndef LMC_H
 #define LMC_H
 
+#include <cstddef>
+#include <cstdio>
+#include <cstdlib>
+
+#include <QtGlobal>
 #include <QObject>
+#include <QString>
 #include <QTimer>
 #include <QSysInfo>
 #include <QPointer>
+#include <QMessageBox>
+#include <QTranslator>
+#include <QtGlobal>
+#include <QString>
+#include <QDir>
+#include <QFileInfo>
+#include <QDesktopServices>
+#include <QDateTime>
+
+#define SL_TRANSFERHISTORY		"transfers.lst"
+#define SL_FILESTORAGEDIR		"Received Files"
+#define SL_CACHEDIR				"cache"
+///// #define SL_RESOURCE				"lmc.rcc"
+#define SL_LANGDIR				"lang"
+#define SL_THEMEDIR				"themes"
+#define SL_GROUPFILE			"group.cfg"
+#define SL_AVATARFILE			"avt_local.png"
+#define SL_LOGDIR				"logs"
+#define SL_TEMPCONFIG			"lmctmpconf.ini"
+
+#include "trace.h"
 #include "shared.h"
 #include "settings.h"
 #include "messaging.h"
@@ -47,14 +74,36 @@
 #include "aboutdialog.h"
 #include "broadcastwindow.h"
 
-class lmcCore : public QObject {
+/**
+ * @brief The lmcCore class
+ */
+class lmcCore : public QObject
+{
 	Q_OBJECT
 
 public:
 	lmcCore(void);
 	~lmcCore(void);
+
+public:
 	void init(const QString& szCommandArgs);
 	bool start(void);
+
+public:
+    QString transferHistory(void);
+    QString cacheDir(void);
+    QString libDir(void);
+    QString resLangDir(void);
+    QString sysLangDir(void);
+    QString userLangDir(void);
+    QString resThemeDir(void);
+    QString sysThemeDir(void);
+    QString userThemeDir(void);
+    QString groupFile(void);
+    QString avatarFile(void);
+    QString logDir(void);
+    QString freeLogFile(void);
+    QString tempConfigFile(void);
 
 public slots:
 	bool receiveAppMessage(const QString& szMessage);
@@ -105,6 +154,7 @@ private:
 	QStringList showSelectContacts(QWidget* parent, QString* minVersion, QStringList* excludeList);
 	void showPortConflictMessage(void);
 
+private:
 	lmcSettings*					pSettings;
 	QTimer*							pTimer;
 	lmcMessaging*					pMessaging;
@@ -127,6 +177,7 @@ private:
 	bool							adaptiveRefresh;
 	int								refreshTime;
 	XmlMessage*						pInitParams;
+
 };
 
 #endif // LMC_H

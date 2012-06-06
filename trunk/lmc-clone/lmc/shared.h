@@ -48,8 +48,6 @@
 
 #include "datagram.h"
 
-
-
 struct MessageHeader
 {
 	MessageType type;

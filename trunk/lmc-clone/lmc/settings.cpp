@@ -31,8 +31,10 @@ lmcSettingsBase::lmcSettingsBase(void)
 {
 }
 
-lmcSettingsBase::lmcSettingsBase(const QString& fileName, Format format) :
-    QSettings(fileName, format)
+lmcSettingsBase::lmcSettingsBase(
+        const QString& fileName,
+        Format format )
+    : QSettings( fileName, format )
 {
 }
 
@@ -41,7 +43,7 @@ lmcSettingsBase::lmcSettingsBase(
         Scope scope,
         const QString& organization,
         const QString& application )
-    : QSettings(format, scope, organization, application)
+    : QSettings( format, scope, organization, application )
 {
 }
 
@@ -52,12 +54,12 @@ lmcSettingsBase::~lmcSettingsBase(void)
 void lmcSettingsBase::setValue(
         const QString& key,
         const QVariant& value,
-        const QVariant& defaultValue)
+        const QVariant& defaultValue )
 {
     if ( value != defaultValue )
-        QSettings::setValue(key, value);
+        QSettings::setValue( key, value );
     else
-        remove(key);
+        remove( key );
 }
 
 //----------------------------------------------------------------------------
@@ -122,6 +124,7 @@ void setAutoStart( bool on )
 
 }
 
+//----------------------------------------------------------------------------
 
 //	migrate settings from older versions to new format
 //	Returns false if existing settings cannot be migrated, else true
@@ -130,8 +133,9 @@ bool lmcSettings::migrateSettings(void)
 
 	//	Make sure any pending write operation is completed
 	sync();
+
 	//	If settings file does not exist, return true indicating no error
-	if(!QFile::exists(fileName()))
+    if( ! QFile::exists( fileName() ) )
 		return true;
 
 	//	Migrate the settings
@@ -147,17 +151,17 @@ bool lmcSettings::migrateSettings(void)
 //	application settings
 bool lmcSettings::loadFromConfig(const QString& configFile)
 {
-	if(!QFile::exists(configFile))
+    if ( ! QFile::exists( configFile ) )
 		return false;
 
-	if(!Helper::copyFile(configFile, StdLocation::tempConfigFile()))
+    if( ! Helper::copyFile( configFile, StdLocation::tempConfigFile() ) )
 		return false;
 
-	if(!migrateSettings(StdLocation::tempConfigFile()))
+    if( ! migrateSettings(StdLocation::tempConfigFile()) )
 		return false;
 
 	QVariant value;
-	QSettings extSettings(StdLocation::tempConfigFile(), QSettings::IniFormat);
+    QSettings extSettings( StdLocation::tempConfigFile(), QSettings::IniFormat );
 
 	value = extSettings.value(IDS_AUTOSTART);
 	if(value.isValid())	setValue(IDS_AUTOSTART, value);
@@ -283,12 +287,10 @@ bool lmcSettings::loadFromConfig(const QString& configFile)
 }
 
 
-
-
-
 //	The function expects the config file to exist. Validation must be done
 //	prior to calling the function.
-bool lmcSettings::migrateSettings(const QString& configFile) {
+bool lmcSettings::migrateSettings(const QString& configFile)
+{
 	lmcSettingsBase settings(configFile, QSettings::IniFormat);
 
 	QString version = settings.value(IDS_VERSION, IDS_VERSION_VAL).toString();
