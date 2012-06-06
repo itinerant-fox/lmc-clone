@@ -27,6 +27,7 @@
 
 #include "stdlocation.h"
 
+
 struct Theme {
 	QString name;
 	QString path;
@@ -37,6 +38,7 @@ struct Theme {
 		path = szPath;
 	}
 };
+
 
 typedef QList<Theme> Themes;
 

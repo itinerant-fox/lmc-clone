@@ -21,11 +21,6 @@
 **
 ****************************************************************************/
 
-
-#include <QMessageBox>
-#include <QTranslator>
-
-#include "trace.h"
 #include "lmc.h"
 
 lmcCore::lmcCore(void)
@@ -164,6 +159,79 @@ bool lmcCore::start(void)
 
 	return true;
 }
+
+
+QString lmcCore::transferHistory(void)
+{
+    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_TRANSFERHISTORY );
+}
+
+QString lmcCore::cacheDir(void)
+{
+    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_CACHEDIR );
+}
+
+QString lmcCore::libDir(void)
+{
+    return QDir::toNativeSeparators(QDir::currentPath());
+}
+
+QString lmcCore::resLangDir(void)
+{
+    return ":/"SL_LANGDIR;
+}
+
+QString lmcCore::sysLangDir(void)
+{
+    return QDir::toNativeSeparators( QDir::currentPath() + "/"SL_LANGDIR );
+}
+
+QString lmcCore::userLangDir(void)
+{
+    return QDir::toNativeSeparators( QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_LANGDIR );
+}
+
+QString lmcCore::resThemeDir(void)
+{
+    return ":/"SL_THEMEDIR;
+}
+
+QString lmcCore::sysThemeDir(void)
+{
+    return QDir::toNativeSeparators(QDir::currentPath() + "/"SL_THEMEDIR);
+}
+
+QString lmcCore::userThemeDir(void)
+{
+    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_THEMEDIR );
+}
+
+QString lmcCore::groupFile(void)
+{
+    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_GROUPFILE );
+}
+
+QString lmcCore::avatarFile(void)
+{
+    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_AVATARFILE );
+}
+
+QString lmcCore::logDir(void)
+{
+    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_LOGDIR );
+}
+
+QString lmcCore::freeLogFile(void)
+{
+    QString fileName = "lmc_" + QString::number(QDateTime::currentDateTimeUtc().toMSecsSinceEpoch()) + ".log";
+    return QDir::toNativeSeparators(logDir() + "/" + fileName);
+}
+
+QString lmcCore::tempConfigFile(void)
+{
+    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::TempLocation ) + "/"SL_TEMPCONFIG);
+}
+
 
 //	This is the initial point where settings are used in the application
 void lmcCore::loadSettings(void)

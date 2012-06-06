@@ -174,7 +174,8 @@ void lmcChatRoomWindow::stop(void) {
 	}
 }
 
-void lmcChatRoomWindow::addUser(User* pUser) {
+void lmcChatRoomWindow::addUser(User* pUser)
+{
 	if(!pUser)
 		return;
 
