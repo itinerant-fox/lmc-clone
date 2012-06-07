@@ -25,6 +25,7 @@
 #ifndef UIDEFINITIONS_H
 #define UIDEFINITIONS_H
 
+#include <QtGlobal>
 #include <QString>
 
 #include "definitions.h"
@@ -80,7 +81,8 @@
 #define IDR_LANG			":/lang"
 
 //	item data role definitions
-enum ItemDataRole {
+enum ItemDataRole
+{
 	IdRole = Qt::UserRole + 1,	// Unique Id of the item
 	TypeRole,	//	Whether item represents a Group or a User
 	DataRole,	//	Custom data associated with the item

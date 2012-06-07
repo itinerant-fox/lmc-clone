@@ -22,11 +22,12 @@
 ****************************************************************************/
 
 
-#include "trace.h"
+
 #include "messaging.h"
 
 //	A broadcast is to be sent
-void lmcMessaging::sendBroadcast(MessageType type, XmlMessage* pMessage) {
+void lmcMessaging::sendBroadcast(MessageType type, XmlMessage* pMessage)
+{
 	prepareBroadcast(type, pMessage);
 }
 
@@ -61,12 +62,12 @@ void lmcMessaging::sendMessage(MessageType type, QString* lpszUserId, XmlMessage
 		//	if user id is specified send to that user alone, else send to all
 		if(lpszUserId) {
 			if(pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
-				pMessage->addData(XN_FILEID, Helper::getUuid());
+                pMessage->addData(XN_FILEID, getUuid() );
 			prepareMessage(type, msgId, false, lpszUserId, pMessage);
 		} else {
 			for(int index = 0; index < userList.count(); index++) {
 				message = pMessage->clone();
-				message.addData(XN_FILEID, Helper::getUuid());
+                message.addData( XN_FILEID, getUuid() );
 				prepareMessage(type, msgId, false, &userList[index].id, &message);
 			}
 		}
@@ -82,7 +83,8 @@ void lmcMessaging::sendMessage(MessageType type, QString* lpszUserId, XmlMessage
 	}
 }
 
-void lmcMessaging::sendWebMessage(MessageType type, XmlMessage *pMessage) {
+void lmcMessaging::sendWebMessage(MessageType type, XmlMessage *pMessage)
+{
 	Q_UNUSED(pMessage);
 
 	QString szUrl;
@@ -100,10 +102,12 @@ void lmcMessaging::sendWebMessage(MessageType type, XmlMessage *pMessage) {
 }
 
 //	A broadcast has been received
-void lmcMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData) {
+void lmcMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData)
+{
 	MessageHeader* pMsgHeader = NULL;
 	XmlMessage* pMessage = NULL;
-	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
+    if( ! getHeader(lpszData, &pMsgHeader, &pMessage) )
+    {
         lmctrace("Warning: Broadcast header parse failed");
 		return;
 	}
@@ -112,10 +116,12 @@ void lmcMessaging::receiveBroadcast(DatagramHeader* pHeader, QString* lpszData) 
 }
 
 //	A message has been received
-void lmcMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
+void lmcMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData)
+{
 	MessageHeader* pMsgHeader = NULL;
 	XmlMessage* pMessage = NULL;
-	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
+    if ( ! getHeader(lpszData, &pMsgHeader, &pMessage) )
+    {
         lmctrace("Warning: Message header parse failed");
 		return;
 	}
@@ -124,10 +130,12 @@ void lmcMessaging::receiveMessage(DatagramHeader* pHeader, QString* lpszData) {
 }
 
 //	A web message has been received
-void lmcMessaging::receiveWebMessage(QString *lpszData) {
+void lmcMessaging::receiveWebMessage(QString *lpszData)
+{
 	MessageHeader* pMsgHeader = NULL;
 	XmlMessage* pMessage = NULL;
-	if(!Message::getHeader(lpszData, &pMsgHeader, &pMessage)) {
+    if ( ! getHeader(lpszData, &pMsgHeader, &pMessage) )
+    {
         lmctrace("Warning: Web message header parse failed");
 		return;
 	}
@@ -146,16 +154,18 @@ void lmcMessaging::connectionLost(QString* lpszUserId) {
 	removeUser(*lpszUserId);
 }
 
-void lmcMessaging::receiveProgress(QString* lpszUserId, QString* lpszData) {
+void lmcMessaging::receiveProgress(QString* lpszUserId, QString* lpszData)
+{
 	XmlMessage xmlMessage(*lpszData);
-    int fileMode =  Helper::indexOf(FileModeNames, FM_Max, xmlMessage.data(XN_MODE));
-    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP));
-    int fileType =  Helper::indexOf(FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE));
+    int fileMode = indexOf( FileModeNames, FM_Max, xmlMessage.data(XN_MODE) );
+    int fileOp   = indexOf( FileOpNames, FO_Max, xmlMessage.data(XN_FILEOP) );
+    int fileType = indexOf( FileTypeNames, FT_Max, xmlMessage.data(XN_FILETYPE) );
 	QString fileId = xmlMessage.data(XN_FILEID);
 
 	//	determine type of message to be sent to app layer based on file type
 	MessageType type;
-	switch(fileType) {
+    switch(fileType)
+    {
 	case FT_Normal:
 		type = MT_File;
 		break;
@@ -196,13 +206,13 @@ void lmcMessaging::sendUserData(MessageType type, QueryOp op, QString* lpszUserI
 	xmlMessage.addData(XN_STATUS, localUser->status);
 	xmlMessage.addData(XN_NOTE, localUser->note);
 	xmlMessage.addData(XN_QUERYOP, QueryOpNames[op]);
-	QString szMessage = Message::addHeader(type, msgId, &localUser->id, lpszUserId, &xmlMessage);
+    QString szMessage = addHeader(type, msgId, &localUser->id, lpszUserId, &xmlMessage);
 	pNetwork->sendMessage(lpszUserId, lpszAddress, &szMessage);
 }
 
 void lmcMessaging::prepareBroadcast(MessageType type, XmlMessage* pMessage) {
     lmctrace("Sending broadcast type " + QString::number(type));
-	QString szMessage = Message::addHeader(type, msgId, &localUser->id, NULL, pMessage);
+    QString szMessage = addHeader(type, msgId, &localUser->id, NULL, pMessage);
 	pNetwork->sendBroadcast(&szMessage);
     lmctrace("Broadcast sending done");
 }
@@ -272,7 +282,7 @@ void lmcMessaging::prepareMessage(MessageType type, qint64 msgId, bool retry, QS
 
     lmctrace("Sending message type " + QString::number(type) + " to user " + receiver->id
 		+ " at " + receiver->address);
-	QString szMessage = Message::addHeader(type, msgId, &localUser->id, lpszUserId, pMessage);
+    QString szMessage = addHeader(type, msgId, &localUser->id, lpszUserId, pMessage);
 	pNetwork->sendMessage(&receiver->id, &receiver->address, &szMessage);
     lmctrace("Message sending done");
 }
@@ -282,8 +292,8 @@ void lmcMessaging::prepareFile(MessageType type, qint64 msgId, bool retry, QStri
     Q_UNUSED(msgId);
     Q_UNUSED(retry);
 
-    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
-    int fileMode =  Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
+    int fileOp   = indexOf( FileOpNames, FO_Max, pMessage->data(XN_FILEOP) );
+    int fileMode = indexOf( FileModeNames, FM_Max, pMessage->data(XN_MODE) );
 
 	User* user = getUser(lpszUserId);
 	QString szMessage = pMessage->toString();
@@ -415,9 +425,10 @@ void lmcMessaging::processMessage(MessageHeader* pHeader, XmlMessage* pMessage) 
     lmctrace("Message processing done");
 }
 
-void lmcMessaging::processFile(MessageHeader* pHeader, XmlMessage* pMessage) {
-    int fileMode =  Helper::indexOf(FileModeNames, FM_Max, pMessage->data(XN_MODE));
-    int fileOp =  Helper::indexOf(FileOpNames, FO_Max, pMessage->data(XN_FILEOP));
+void lmcMessaging::processFile(MessageHeader* pHeader, XmlMessage* pMessage)
+{
+    int fileMode = indexOf( FileModeNames, FM_Max, pMessage->data(XN_MODE) );
+    int fileOp   = indexOf( FileOpNames, FO_Max, pMessage->data(XN_FILEOP) );
 	QString szMessage = pMessage->toString();
 
     lmctrace("Processing file message type " + QString::number(fileOp) + " from user " +
@@ -458,7 +469,8 @@ void lmcMessaging::processFile(MessageHeader* pHeader, XmlMessage* pMessage) {
 	}
 }
 
-void lmcMessaging::processWebMessage(MessageHeader* pHeader, XmlMessage *pMessage) {
+void lmcMessaging::processWebMessage(MessageHeader* pHeader, XmlMessage *pMessage)
+{
     lmctrace("Processing web message type " + QString::number(pHeader->type));
 
 	switch(pHeader->type) {

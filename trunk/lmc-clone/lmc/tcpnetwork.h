@@ -29,13 +29,14 @@
 #include <QTcpSocket>
 #include <QTcpServer>
 
-#include "shared.h"
-#include "datagram.h"
-#include "settings.h"
-#include "netstreamer.h"
+#include "trace.h"
 #include "crypto.h"
 #include "xmlmessage.h"
-#include "stdlocation.h"
+#include "settings.h"
+
+#include "datagram.h"
+// #include "shared.h"
+#include "netstreamer.h"
 
 class lmcTcpNetwork : public QObject
 {
@@ -43,8 +44,9 @@ class lmcTcpNetwork : public QObject
 
 public:
 	lmcTcpNetwork(void);
-	~lmcTcpNetwork(void) {}
+    ~lmcTcpNetwork(void);
 
+public:
 	void init(int nPort = 0);
 	void start(void);
 	void stop(void);
@@ -64,20 +66,25 @@ signals:
 	void messageReceived(DatagramHeader* pHeader, QString* lpszData);
 	void progressReceived(QString* lpszUserId, QString* lpszData);
 
-private slots:
+protected slots:
 	void server_newConnection(void);
 	void socket_readyRead(void);
 	void msgStream_connectionLost(QString* lpszUserId);
 	void update(FileMode mode, FileOp op, FileType type, QString* lpszId, QString* lpszUserId, QString* lpszData);
 	void receiveMessage(QString* lpszUserId, QString* lpszAddress, QByteArray& data);
 
-private:
+protected:
 	void addFileSocket(QString* lpszId, QTcpSocket* pSocket);
 	void addMsgSocket(QString* lpszUserId, QTcpSocket* pSocket);
 	void sendPublicKey(QString* lpszUserId);
 	void sendSessionKey(QString* lpszUserId, QByteArray& publicKey);
 	FileSender* getSender(QString id);
 	FileReceiver* getReceiver(QString id);
+
+    void addHeader( DatagramType type, QByteArray& baData );
+    bool getHeader( QByteArray& baDatagram, DatagramHeader** ppHeader );
+    QByteArray getData( QByteArray& baDatagram );
+    int indexOf(const QString array[], int size, const QString& value);
 
 	QTcpServer*				  server;
 	QList<FileSender*>		  sendList;
@@ -90,6 +97,7 @@ private:
 	QString					  localId;
 	lmcCrypto*				  crypto;
 	QHostAddress			  ipAddress;
+
 };
 
 #endif // TCPNETWORK_H

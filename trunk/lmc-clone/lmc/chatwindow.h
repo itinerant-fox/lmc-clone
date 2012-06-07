@@ -36,7 +36,8 @@
 #include <QTextStream>
 #include <QWebFrame>
 #include <QWebElement>
-#include <qevent.h>
+#include <QEvent.h>
+
 #include "ui_chatwindow.h"
 #include "shared.h"
 #include "settings.h"
@@ -51,7 +52,8 @@
 #include "xmlmessage.h"
 #include "theme.h"
 
-class lmcChatWindow : public QWidget {
+class lmcChatWindow : public QWidget
+{
 	Q_OBJECT
 
 public:
@@ -139,6 +141,7 @@ private:
 	qint64 keyStroke;
 	qint64 snapKeyStroke;
 	bool dataSaved;
+
 };
 
 #endif // CHATWINDOW_H

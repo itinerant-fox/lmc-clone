@@ -28,8 +28,10 @@
 #include <QtGlobal>
 #include <QWidget>
 
-#include "definitions.h"
 #include "xmlmessage.h"
+
+#include "definitions.h"
+#include "MessageType.h"
 #include "strings.h"
 
 namespace Ui {

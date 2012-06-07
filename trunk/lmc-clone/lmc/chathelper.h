@@ -25,11 +25,14 @@
 #ifndef CHATHELPER_H
 #define CHATHELPER_H
 
-#include "uidefinitions.h"
-#include "chatdefinitions.h"
 #include "xmlmessage.h"
 
-struct SingleMessage {
+#include "MessageType.h"
+#include "uidefinitions.h"
+#include "chatdefinitions.h"
+
+struct SingleMessage
+{
 	MessageType type;
 	QString userId;
 	QString userName;
@@ -46,7 +49,8 @@ struct SingleMessage {
 	}
 };
 
-class ChatHelper {
+class ChatHelper
+{
 public:
 	static void makeHtmlSafe(QString* lpszMessage);
 	static QString replaceSmiley(QString* lpszHtml);

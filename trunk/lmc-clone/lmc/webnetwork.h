@@ -25,14 +25,18 @@
 #ifndef WEBNETWORK_H
 #define WEBNETWORK_H
 
+#include <QtGlobal>
 #include <QObject>
+#include <QtNetwork>
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrl>
 
-#include "definitions.h"
 #include "xmlmessage.h"
+
+#include "definitions.h"
+#include "MessageType.h"
 
 class lmcWebNetwork : public QObject
 {

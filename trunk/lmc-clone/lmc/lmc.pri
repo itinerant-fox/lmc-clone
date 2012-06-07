@@ -91,7 +91,16 @@ HEADERS  += \
     lmc/User.h \
     lmc/Group.h \
     lmc/Helper.h \
-    lmc/main.h
+    lmc/main.h \
+    lmc/MessageHeader.h \
+    lmc/MessageType.h \
+    lmc/FileOp.h \
+    lmc/FileType.h \
+    lmc/FileMode.h \
+    lmc/QueryOp.h \
+    lmc/GroupMsgOp.h \
+    lmc/TrayMessageType.h \
+    lmc/StatusType.h
 
 #------------------------------------------------------------------------------
 

@@ -30,7 +30,14 @@
 #include <QTcpServer>
 #include <QTimer>
 #include <QFile>
-#include "shared.h"
+#include <QDir>
+#include <QFileInfo>
+
+#include "trace.h"
+
+#include "FileType.h"
+#include "FileMode.h"
+#include "FileOp.h"
 
 /****************************************************************************
 ** Class: FileSender
@@ -59,7 +66,12 @@ public:
 	FileType type;
 
 signals:
-	void progressUpdated(FileMode mode, FileOp fileOp, FileType type, QString* lpszId, QString* lpszUserId, QString* lpszData);
+    void progressUpdated( FileMode mode,
+                          FileOp fileOp,
+                          FileType type,
+                          QString* lpszId,
+                          QString* lpszUserId,
+                          QString* lpszData );
 
 private slots:
 	void connected(void);
@@ -69,6 +81,7 @@ private slots:
 	void timer_timeout(void);
 
 private:
+
 	void sendFile(void);
 
 	QString peerId;
@@ -85,19 +98,27 @@ private:
 	qint64 milestone;
 	qint64 mile;
 	QTimer* timer;
+
 };
 
 /****************************************************************************
 ** Class: FileReceiver
 ** Description: Handles receiving files.
 ****************************************************************************/
-class FileReceiver : public QObject {
+class FileReceiver : public QObject
+{
 	Q_OBJECT
 
 public:
 	FileReceiver(void);
-	FileReceiver(QString szId, QString szPeerId, QString szFilePath, QString szFileName, qint64 nFileSize, 
-		QString szAddress, int nPort, FileType nType);
+    FileReceiver( QString szId,
+                  QString szPeerId,
+                  QString szFilePath,
+                  QString szFileName,
+                  qint64 nFileSize,
+                  QString szAddress,
+                  quint16 nPort,
+                  FileType nType );
 	~FileReceiver(void);
 
 	void init(QTcpSocket* socket);
@@ -107,14 +128,19 @@ public:
 	FileType type;
 
 signals:
-	void progressUpdated(FileMode mode, FileOp fileOp, FileType type, QString* lpszId, QString* lpszUserId, QString* lpszData);
+    void progressUpdated(FileMode mode,
+                         FileOp fileOp,
+                         FileType type,
+                         QString* lpszId,
+                         QString* lpszUserId,
+                         QString* lpszData );
 
-private slots:
+protected slots:
 	void disconnected(void);
 	void readyRead(void);
 	void timer_timeout(void);
 
-private:
+protected:
 	void receiveFile(void);
 
 	QString peerId;
@@ -122,7 +148,7 @@ private:
 	QString fileName;
 	qint64 fileSize;
 	QString address;
-	int port;
+    quint16 port;
 	qint64 sentBytes;
 	QTcpSocket* socket;
 	QFile* file;
@@ -131,13 +157,15 @@ private:
 	qint64 milestone;
 	qint64 mile;
 	QTimer* timer;
+
 };
 
 /****************************************************************************
 ** Class: MsgStream
 ** Description: Handles transmission and reception of TCP streaming messages.
 ****************************************************************************/
-class MsgStream : public QObject {
+class MsgStream : public QObject
+{
 	Q_OBJECT
 
 public:
@@ -145,6 +173,7 @@ public:
 	MsgStream(QString szLocalId, QString szPeerId, QString szPeerAddress, int nPort);
 	~MsgStream(void);
 
+public:
 	void init(void);
 	void init(QTcpSocket* socket);
 	void stop(void);
@@ -154,13 +183,13 @@ signals:
 	void connectionLost(QString* lpszUserId);
 	void messageReceived(QString* lpszUserId, QString* lpszAddress, QByteArray& data);
 
-private slots:
+protected slots:
 	void connected(void);
 	void disconnected(void);
 	void readyRead(void);
 	void bytesWritten(qint64 bytes);
 
-private:
+protected:
 	QTcpSocket* socket;
 	int port;
 	QString localId;
@@ -171,6 +200,7 @@ private:
 	quint32 outDataLen;
 	quint32 inDataLen;
 	bool reading;
+
 };
 
 #endif // NETSTREAMER_H

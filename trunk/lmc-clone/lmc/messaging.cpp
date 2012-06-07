@@ -23,8 +23,7 @@
 
 
 #include "messaging.h"
-#include "stdlocation.h"
-#include "trace.h"
+
 
 lmcMessaging::lmcMessaging(void)
 {
@@ -69,7 +68,7 @@ void lmcMessaging::init(XmlMessage *pInitParams)
 
 	pNetwork->init(pInitParams);
 
-	QString logonName = Helper::getLogonName();
+    QString logonName = getLogonName();
 	QString szAddress = pNetwork->physicalAddress();
 	QString userId = createUserId(&szAddress, &logonName);
 
@@ -77,7 +76,7 @@ void lmcMessaging::init(XmlMessage *pInitParams)
 	
 	pSettings = new lmcSettings();
 	QString userStatus = pSettings->value(IDS_STATUS, IDS_STATUS_VAL).toString();
-	int sIndex = Helper::statusIndexFromCode(userStatus);
+    int sIndex = statusIndexFromCode(userStatus);
 	//	if status not recognized, default to available
 	if(sIndex < 0)
 		userStatus = statusCode[0];
@@ -269,7 +268,7 @@ QString lmcMessaging::createUserId(QString* lpszAddress, QString* lpszUserName) 
 QString lmcMessaging::getUserName(void) {
 	QString userName = pSettings->value(IDS_USERNAME, IDS_USERNAME_VAL).toString();
 	if(userName.isEmpty())
-		userName = Helper::getLogonName();
+        userName = getLogonName();
 	return userName;
 }
 
@@ -318,9 +317,9 @@ void lmcMessaging::getUserInfo(XmlMessage* pMessage) {
 	pMessage->addData(XN_VERSION, localUser->version);
 	pMessage->addData(XN_STATUS, localUser->status);
 	pMessage->addData(XN_NOTE, localUser->note);
-	pMessage->addData(XN_LOGON, Helper::getLogonName());
-	pMessage->addData(XN_HOST, Helper::getHostName());
-	pMessage->addData(XN_OS, Helper::getOSName());
+    pMessage->addData(XN_LOGON, getLogonName());
+    pMessage->addData(XN_HOST, getHostName());
+    pMessage->addData(XN_OS, getOSName());
 	pMessage->addData(XN_FIRSTNAME, firstName);
 	pMessage->addData(XN_LASTNAME, lastName);
 	pMessage->addData(XN_ABOUT, about);
@@ -346,7 +345,7 @@ bool lmcMessaging::addUser(QString szUserId, QString szVersion, QString szAddres
 		xmlMessage.addData(XN_STATUS, szStatus);
 		//	send a status message to app layer, this is different from announce message
 		emit messageReceived(MT_Status, &szUserId, &xmlMessage);
-		int statusIndex = Helper::statusIndexFromCode(szStatus);
+        int statusIndex = statusIndexFromCode(szStatus);
 		if(statusType[statusIndex] == StatusTypeOffline) // offline status
 			return false;	//	no need to send a new user message to app layer
 	}
@@ -367,14 +366,14 @@ void lmcMessaging::updateUser(MessageType type, QString szUserId, QString szUser
 			QString oldStatus = pUser->status;
 			pUser->status = szUserData;
 
-			int statusIndex = Helper::statusIndexFromCode(oldStatus);
+            int statusIndex = statusIndexFromCode(oldStatus);
 			if(statusType[statusIndex] == StatusTypeOffline) // old status is offline
 				emit messageReceived(MT_Announce, &szUserId, NULL);
 				
 			updateMsg.addData(XN_STATUS, pUser->status);
 			emit messageReceived(MT_Status, &szUserId, &updateMsg);
 
-			statusIndex = Helper::statusIndexFromCode(pUser->status);
+            statusIndex = statusIndexFromCode(pUser->status);
 			if(statusType[statusIndex] == StatusTypeOffline) { // new status is offline
 				// Send a dummy xml message. A non null xml message implies that the
 				// user is only in offline status, and not actually offline.
@@ -495,3 +494,232 @@ void lmcMessaging::resendMessage(MessageType type, qint64 msgId, QString* lpszUs
 
 	prepareMessage(type, msgId, true, lpszUserId, pMessage);
 }
+
+
+QString lmcMessaging::addHeader(MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, XmlMessage* pMessage)
+{
+    if(!pMessage)
+        pMessage = new XmlMessage();
+
+    // remove time stamp from message
+    pMessage->removeHeader(XN_TIME);
+
+    pMessage->addHeader(XN_FROM, *lpszLocalId);
+    if(lpszPeerId)
+        pMessage->addHeader(XN_TO, *lpszPeerId);
+    pMessage->addHeader(XN_MESSAGEID, QString::number(id));
+    pMessage->addHeader(XN_TYPE, MessageTypeNames[type]);
+
+    return pMessage->toString();
+}
+
+bool lmcMessaging::getHeader(QString* lpszMessage, MessageHeader** ppHeader, XmlMessage** ppMessage) {
+    *ppMessage = new XmlMessage(*lpszMessage);
+    if(!((*ppMessage)->isValid()))
+        return false;
+
+    // add time stamp to message
+    (*ppMessage)->addHeader(XN_TIME, QString::number(QDateTime::currentDateTimeUtc().toMSecsSinceEpoch()));
+
+    int type =  indexOf(MessageTypeNames, MT_Max, (*ppMessage)->header(XN_TYPE));
+    if(type < 0)
+        return false;
+
+    *ppHeader = new MessageHeader(
+                    (MessageType)type,
+                    (*ppMessage)->header(XN_MESSAGEID).toLongLong(),
+                    (*ppMessage)->header(XN_FROM));
+    return true;
+}
+
+
+int  lmcMessaging::indexOf(const QString array[], int size, const QString& value)
+{
+    for(int index = 0; index < size; index++)
+    {
+        if(value == array[index])
+            return index;
+    }
+
+    return (-1);
+}
+
+int lmcMessaging::statusIndexFromCode(QString status)
+{
+    for(int index = 0; index < ST_COUNT; index++)
+        if(statusCode[index].compare(status) == 0)
+            return index;
+    return -1;
+}
+
+QString  lmcMessaging::formatSize(qint64 size)
+{
+    qint64 gb = 1073741824;
+    qint64 mb = 1048576;
+    qint64 kb = 1024;
+
+    if(size > gb)
+        return QString("%1 GB").arg((double)size / gb, 0, 'f', 2);
+    else if(size > mb)
+        return QString("%1 MB").arg((double)size / mb, 0, 'f', 2);
+    else if(size > kb)
+        return QString("%1 KB").arg((double)size / kb, 0, 'f', 2);
+    else
+        return QString("%1 bytes").arg(size);
+}
+
+QString  lmcMessaging::getUuid(void)
+{
+    QString Uuid = QUuid::createUuid().toString();
+    Uuid = Uuid.remove("{").remove("}").remove("-");
+    return Uuid;
+}
+
+QString  lmcMessaging::getLogonName(void)
+{
+#if defined Q_WS_WIN	//	if platform is Windows
+    TCHAR szUserName[UNLEN + 1];
+    DWORD nSize = sizeof(szUserName);
+    GetUserName(szUserName, &nSize);
+    return QString::fromStdWString(szUserName);
+#else	// this code should work for MAC and Linux
+    char* szUserName;
+    szUserName = getenv("USER");
+    if(szUserName)
+        return QString::fromAscii(szUserName);
+#endif
+
+    return QString::null;
+}
+
+QString  lmcMessaging::getHostName(void)
+{
+    return QHostInfo::localHostName();
+}
+
+QString  lmcMessaging::getOSName(void)
+{
+    QString osName = "Unknown";
+
+#if defined Q_WS_WIN
+    switch(QSysInfo::WindowsVersion) {
+    case QSysInfo::WV_NT:
+        osName = "Windows NT";
+        break;
+    case QSysInfo::WV_2000:
+        osName = "Windows 2000";
+        break;
+    case QSysInfo::WV_XP:
+        osName = "Windows XP";
+        break;
+    case QSysInfo::WV_2003:
+        osName = "Windows Server 2003";
+        break;
+    case QSysInfo::WV_VISTA:
+        osName = "Windows Vista";
+        break;
+    case QSysInfo::WV_WINDOWS7:
+        osName = "Windows 7";
+        break;
+    default:
+        osName = "Windows";
+        break;
+    }
+#elif defined Q_WS_MAC
+    switch(QSysInfo::MacintoshVersion) {
+    case QSysInfo::MV_CHEETAH:
+        osName = "Mac OS X 10.0";
+        break;
+    case QSysInfo::MV_PUMA:
+        osName = "Mac OS X 10.1";
+        break;
+    case QSysInfo::MV_JAGUAR:
+        osName = "Mac OS X 10.2";
+        break;
+    case QSysInfo::MV_PANTHER:
+        osName = "Mac OS X 10.3";
+        break;
+    case QSysInfo::MV_TIGER:
+        osName = "Mac OS X 10.4";
+        break;
+    case QSysInfo::MV_LEOPARD:
+        osName = "Mac OS X 10.5";
+        break;
+    case QSysInfo::MV_SNOWLEOPARD:
+        osName = "Mac OS X 10.6";
+        break;
+    case QSysInfo::MV_LION:
+        osName = "Mac OS X 10.7";
+        break;
+    default:
+        osName = "Mac OS X";
+        break;
+    }
+#elif defined Q_WS_X11
+    osName = "Linux/X11";
+#endif
+
+    return osName;
+}
+
+QString  lmcMessaging::escapeDelimiter(QString *lpszData)
+{
+    return lpszData->replace(DELIMITER, DELIMITER_ESC, Qt::CaseSensitive);
+}
+
+QString  lmcMessaging::unescapeDelimiter(QString* lpszData)
+{
+    return lpszData->replace(DELIMITER_ESC, DELIMITER, Qt::CaseSensitive);
+}
+
+//	Returns:
+//	<0 if version 1 is older
+//	>0 if version 1 is newer
+//	0 if both versions are same
+int  lmcMessaging::compareVersions(const QString& version1, const QString& version2)
+{
+    QStringList v1 = version1.split(".", QString::SkipEmptyParts);
+    QStringList v2 = version2.split(".", QString::SkipEmptyParts);
+
+    //	Assuming that the version is in x.x.x format, we only need to iterate 3 times
+    for(int index = 0; index < 3; index++) {
+        int comp = v1[index].toInt() - v2[index].toInt();
+        if(comp != 0)
+            return comp;
+    }
+
+    return 0;
+}
+
+QString  lmcMessaging::boolToString(bool value)
+{
+    return value ? LMC_TRUE : LMC_FALSE;
+}
+
+bool  lmcMessaging::stringToBool(const QString& value)
+{
+    return value.compare(LMC_TRUE) == 0 ? true : false;
+}
+
+//	Function that copies content of source to destination
+//	Destination file will be overwritten
+//	Supports only small files
+bool  lmcMessaging::copyFile(const QString& source, const QString& destination)
+{
+    QFile srcFile(source);
+    if(!srcFile.open(QIODevice::ReadOnly))
+        return false;
+
+    QByteArray data = srcFile.readAll();
+    srcFile.close();
+
+    QFile destFile(destination);
+    if(!destFile.open(QIODevice::WriteOnly))
+        return false;
+
+    destFile.write(data);
+    destFile.close();
+
+    return true;
+}
+

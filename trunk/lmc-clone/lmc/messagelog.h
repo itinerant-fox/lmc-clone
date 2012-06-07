@@ -26,6 +26,7 @@
 #define MESSAGELOG_H
 
 #include <QtGlobal>
+#include <QObject>
 #include <QString>
 #include <QEvent>
 #include <QUrl>
@@ -39,11 +40,13 @@
 #include <QWebFrame>
 #include <QWebElement>
 
+#include "xmlmessage.h"
+
 #include "shared.h"
 #include "chatdefinitions.h"
 #include "chathelper.h"
-#include "xmlmessage.h"
 #include "theme.h"
+#include "netstreamer.h"
 
 enum OutputFormat{ HtmlFormat, TextFormat };
 

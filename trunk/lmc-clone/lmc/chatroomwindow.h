@@ -36,7 +36,8 @@
 #include <QTextStream>
 #include <QWebFrame>
 #include <QWebElement>
-#include <qevent.h>
+#include <QEvent.h>
+
 #include "ui_chatroomwindow.h"
 #include "shared.h"
 #include "settings.h"

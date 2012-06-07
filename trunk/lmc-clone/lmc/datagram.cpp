@@ -23,34 +23,3 @@
 
 #include "datagram.h"
 
-namespace Datagram
-{
-
-void addHeader(DatagramType type, QByteArray& baData)
-{
-	QByteArray datagramType = DatagramTypeNames[type].toLocal8Bit();
-
-	baData.insert(0, datagramType);
-}
-
-bool getHeader(QByteArray& baDatagram, DatagramHeader** ppHeader)
-{
-	QString datagramType(baDatagram.mid(0, 6));	// first 6 bytes represent datagram type
-
-    int type =  Helper::indexOf(DatagramTypeNames, DT_Max, datagramType);
-	if(type < 0)
-		return false;
-
-    *ppHeader = new DatagramHeader( (DatagramType)type, QString(), QString()) ;
-	return true;
-}
-
-QByteArray getData( QByteArray& baDatagram )
-{
-    if ( baDatagram.length() > 6 )
-		return baDatagram.mid(6);
-
-	return QByteArray();
-}
-
-}; // namespace Datagram
