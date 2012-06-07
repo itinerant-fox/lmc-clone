@@ -27,9 +27,11 @@
 
 #include <QListView>
 #include <QPushButton>
+
 #include "filemodelview.h"
 
-class lmcTransferListView : public QListView {
+class lmcTransferListView : public QListView
+{
 	Q_OBJECT
 
 public:

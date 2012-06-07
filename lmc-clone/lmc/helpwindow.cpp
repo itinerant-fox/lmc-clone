@@ -22,7 +22,8 @@
 ****************************************************************************/
 
 
-#include <QDesktopWidget>
+
+
 #include "helpwindow.h"
 
 lmcHelpWindow::lmcHelpWindow(QRect* pRect, QWidget *parent) : QWidget(parent) {

@@ -87,15 +87,15 @@ CONFIG(debug, debug|release) {
 #       http://slproweb.com/products/Win32OpenSSL.html
 #-----------------------------------------------------------------------------
 
-INCLUDEPATH += ./openssl/include
-DEPENDPATH  += ./openssl/include
+win32:INCLUDEPATH += ./openssl/include
+win32:DEPENDPATH  += ./openssl/include
 
 # MinGW (MSYS)
 win32:win32-g++: LIBS += -leay32
 win32:win32-g++: LIBS += -L./openssl/lib/MinGW
 win32:win32-g++: LIBS += -L../lmc-clone/openssl/lib/MinGW
 
-# Visual C++
+# Visual C++ (2008,2010)
 win32:win32-msvc2008: LIBS += -leay32
 win32:win32-msvc2008: LIBS += -L./openssl/lib/VC
 
@@ -103,6 +103,8 @@ win32:win32-msvc2010: LIBS += -leay32
 win32:win32-msvc2010: LIBS += -L./openssl/lib/VC
 
 win32:LIBS += -liphlpapi
+
+# TODO: check mac & linux
 
 unix:!symbian: LIBS += -L./openssl/lib/ -lcrypto
 
@@ -124,6 +126,8 @@ include( crypto/crypto.pri )
 include( xmlmessage/xmlmessage.pri )
 
 include( settings/settings.pri )
+
+include( messaging/messaging.pri )
 
 include( lmc/lmc.pri )
 

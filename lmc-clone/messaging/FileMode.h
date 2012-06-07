@@ -19,5 +19,4 @@ const QString FileModeNames[] =
     "receive",
 };
 
-
 #endif // FILEMODE_H

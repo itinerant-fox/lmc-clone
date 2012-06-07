@@ -8,6 +8,7 @@
 #include <QTime>
 
 #include "xmlmessage.h"
+
 #include "MessageType.h"
 
 struct PendingMsg

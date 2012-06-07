@@ -32,6 +32,7 @@
 #include <QString>
 #include <QStringList>
 #include <QFile>
+#include <QMap>
 #include <QUuid>
 #include <QHostInfo>
 
@@ -56,14 +57,19 @@
 
 #include "User.h"
 #include "Group.h"
-#include "network.h"
-#include "MessageHeader.h"
-#include "MessagHeaderMember.h"
-#include "PendingMsg.h"
-#include "ReceivedMsg.h"
-#include "GroupMsgOp.h"
-#include "QueryOp.h"
 #include "StatusType.h"
+#include "QueryOp.h"
+#include "GroupMsgOp.h"
+#include "ReceivedMsg.h"
+#include "MessagHeaderMember.h"
+#include "MessageType.h"
+
+//////////////////////////////////////
+
+#include "MessageHeader.h"
+#include "PendingMsg.h"
+
+#include "network.h"
 
 class lmcMessaging : public QObject
 {

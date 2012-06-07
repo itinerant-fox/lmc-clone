@@ -38,9 +38,9 @@
 #include <QWebElement>
 #include <QEvent.h>
 
-#include "ui_chatwindow.h"
-// #include "shared.h"
 #include "settings.h"
+#include "xmlmessage.h"
+
 #include "history.h"
 #include "messagelog.h"
 #include "subcontrols.h"
@@ -49,11 +49,11 @@
 #include "chatdefinitions.h"
 #include "chathelper.h"
 #include "stdlocation.h"
-#include "xmlmessage.h"
 #include "theme.h"
 #include "User.h"
 #include "Group.h"
 #include "Helper.h"
+#include "ui_chatwindow.h"
 
 class lmcChatWindow : public QWidget
 {

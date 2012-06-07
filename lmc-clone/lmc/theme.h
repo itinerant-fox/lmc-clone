@@ -27,7 +27,6 @@
 
 #include "stdlocation.h"
 
-
 struct Theme {
 	QString name;
 	QString path;
