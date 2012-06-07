@@ -10,3 +10,10 @@ lmc-clone is derived from lmc project. Our goal is to create a simple messenger.
   * windows-based platform
   * gpl license
   * we are still working, now...
+
+
+<wiki:comment>
+This text will be removed from the rendered page.
+</wiki:comment>
+
+
