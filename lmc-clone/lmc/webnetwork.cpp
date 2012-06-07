@@ -26,21 +26,34 @@
 
 const QString ErrorTypeNames[] = {"busy", "error"};
 
-lmcWebNetwork::lmcWebNetwork(void) {
+lmcWebNetwork::lmcWebNetwork(void)
+{
 	active = false;
 	manager = new QNetworkAccessManager(this);
-	connect(manager, SIGNAL(finished(QNetworkReply*)), this, SLOT(replyFinished(QNetworkReply*)));
+
+    connect( manager, SIGNAL(finished(QNetworkReply*)),
+             this, SLOT(replyFinished(QNetworkReply*)) );
+
 }
 
-lmcWebNetwork::~lmcWebNetwork(void) {}
+lmcWebNetwork::~lmcWebNetwork(void)
+{
+}
 
-void lmcWebNetwork::init(void) {}
+void lmcWebNetwork::init(void)
+{
+}
 
-void lmcWebNetwork::start(void) {}
+void lmcWebNetwork::start(void)
+{
+}
 
-void lmcWebNetwork::stop(void) {}
+void lmcWebNetwork::stop(void)
+{
+}
 
-void lmcWebNetwork::sendMessage(QString *lpszUrl, QString *lpszData) {
+void lmcWebNetwork::sendMessage(QString *lpszUrl, QString *lpszData)
+{
 	Q_UNUSED(lpszData);
 
 	if(!active)
@@ -51,14 +64,16 @@ void lmcWebNetwork::sendMessage(QString *lpszUrl, QString *lpszData) {
 
 void lmcWebNetwork::settingsChanged(void) {}
 
-void lmcWebNetwork::slotError(QNetworkReply::NetworkError code) {
+void lmcWebNetwork::slotError(QNetworkReply::NetworkError code)
+{
 	if(code != QNetworkReply::NoError) {
 		raiseError(ET_Error);
 		active = false;
 	}
 }
 
-void lmcWebNetwork::replyFinished(QNetworkReply *reply) {
+void lmcWebNetwork::replyFinished(QNetworkReply *reply)
+{
 	if(reply->error() != QNetworkReply::NoError)
 		return;
 
@@ -79,7 +94,8 @@ void lmcWebNetwork::replyFinished(QNetworkReply *reply) {
 	active = false;
 }
 
-void lmcWebNetwork::sendMessage(const QUrl &url) {
+void lmcWebNetwork::sendMessage(const QUrl &url)
+{
 	if(url.isEmpty()) {
 		raiseError(ET_Error);
 		return;
@@ -95,7 +111,8 @@ void lmcWebNetwork::sendMessage(const QUrl &url) {
 			this, SLOT(slotError(QNetworkReply::NetworkError)));
 }
 
-void lmcWebNetwork::raiseError(ErrorType type) {
+void lmcWebNetwork::raiseError(ErrorType type)
+{
 	XmlMessage xmlMessage;
 	xmlMessage.addHeader(XN_TYPE, MessageTypeNames[MT_WebFailed]);
 	xmlMessage.addData(XN_ERROR, ErrorTypeNames[type]);

@@ -4,6 +4,7 @@
 #include <cstddef>
 
 #include <QtGlobal>
+#include <QObject>
 #include <QString>
 #include <QStringList>
 #include <QFile>
@@ -17,7 +18,7 @@
   #include <stdlib.h>
 #endif
 
-#include "definitions.h"
+#include "StatusType.h"
 
 namespace Helper
 {

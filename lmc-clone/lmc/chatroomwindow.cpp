@@ -498,7 +498,8 @@ void lmcChatRoomWindow::smileyAction_triggered(void) {
 		ui.txtMessage->insertPlainText(smileyCode[nSmiley]);
 }
 
-void lmcChatRoomWindow::addContactAction_triggered(void) {
+void lmcChatRoomWindow::addContactAction_triggered(void)
+{
 	QStringList excludeList;
 	QString minVersion = GROUPMSGVERSION;
 

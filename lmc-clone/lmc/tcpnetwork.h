@@ -25,9 +25,12 @@
 #ifndef TCPNETWORK_H
 #define TCPNETWORK_H
 
+#include <QtGlobal>
 #include <QObject>
 #include <QTcpSocket>
 #include <QTcpServer>
+#include <QMap>
+#include <QList>
 
 #include "trace.h"
 #include "crypto.h"
@@ -35,7 +38,6 @@
 #include "settings.h"
 
 #include "datagram.h"
-// #include "shared.h"
 #include "netstreamer.h"
 
 class lmcTcpNetwork : public QObject

@@ -23,9 +23,10 @@
 
 
 #include <QDesktopWidget>
+
 #include "updatewindow.h"
-#include "ui_updatewindow.h"
-#include "shared.h"
+
+// #include "shared.h"
 
 lmcUpdateWindow::lmcUpdateWindow(QRect* pRect, QWidget *parent) : QWidget(parent), ui(new Ui::UpdateWindow) {
 	ui->setupUi(this);

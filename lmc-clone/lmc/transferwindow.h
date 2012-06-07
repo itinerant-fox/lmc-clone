@@ -40,11 +40,13 @@
 #include "xmlmessage.h"
 
 #include "ui_transferwindow.h"
-#include "shared.h"
+// #include "shared.h"
 #include "stdlocation.h"
 #include "soundplayer.h"
 #include "settingsdialog.h"
 #include "netstreamer.h"
+#include "TrayMessageType.h"
+#include "Helper.h"
 
 class lmcTransferWindow : public QWidget
 {

@@ -17,9 +17,12 @@ int indexOf(const QString array[], int size, const QString& value)
 
 int statusIndexFromCode(QString status)
 {
-    for(int index = 0; index < ST_COUNT; index++)
-        if(statusCode[index].compare(status) == 0)
+    for( int index = 0; index < ST_COUNT; index++ )
+    {
+        if( statusCode[index].compare(status) == 0 )
             return index;
+    }
+
     return -1;
 }
 
@@ -133,14 +136,18 @@ QString  getOSName(void)
     return osName;
 }
 
+// #define DELIMITER		"||"
+// #define DELIMITER_ESC	"\\|\\|"
+
+
 QString  escapeDelimiter(QString *lpszData)
 {
-    return lpszData->replace(DELIMITER, DELIMITER_ESC, Qt::CaseSensitive);
+    return lpszData->replace( "||", "\\|\\|", Qt::CaseSensitive);
 }
 
 QString  unescapeDelimiter(QString* lpszData)
 {
-    return lpszData->replace(DELIMITER_ESC, DELIMITER, Qt::CaseSensitive);
+    return lpszData->replace( "\\|\\|", "||", Qt::CaseSensitive);
 }
 
 //	Returns:
@@ -164,12 +171,12 @@ int  compareVersions(const QString& version1, const QString& version2)
 
 QString  boolToString(bool value)
 {
-    return value ? LMC_TRUE : LMC_FALSE;
+    return value ? "true" : "false";
 }
 
 bool  stringToBool(const QString& value)
 {
-    return value.compare(LMC_TRUE) == 0 ? true : false;
+    return value.compare( "true" ) == 0 ? true : false;
 }
 
 //	Function that copies content of source to destination

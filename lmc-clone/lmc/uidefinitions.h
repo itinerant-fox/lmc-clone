@@ -21,14 +21,12 @@
 **
 ****************************************************************************/
 
-
 #ifndef UIDEFINITIONS_H
 #define UIDEFINITIONS_H
 
 #include <QtGlobal>
+#include <QObject>
 #include <QString>
-
-#include "definitions.h"
 
 //	Resource name definitions
 #define IDR_APPICON			":/icons/application"
@@ -240,7 +238,8 @@ const QString avtPic[] = {AVT_0, AVT_1, AVT_2, AVT_3, AVT_4, AVT_5, AVT_6, AVT_7
 #define AVT_HEIGHT		48
 
 //	Sound events definitions
-enum SoundEvent {
+enum SoundEvent
+{
 	SE_NewMessage = 0,
 	SE_UserOnline,
 	SE_UserOffline,

@@ -50,7 +50,8 @@ lmcHelpWindow::lmcHelpWindow(QRect* pRect, QWidget *parent) : QWidget(parent) {
 lmcHelpWindow::~lmcHelpWindow() {
 }
 
-void lmcHelpWindow::init(void) {
+void lmcHelpWindow::init(void)
+{
 	setWindowIcon(QIcon(IDR_APPICON));
 
 	pSettings = new lmcSettings();

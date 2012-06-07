@@ -42,7 +42,8 @@ lmcAboutDialog::lmcAboutDialog(QWidget *parent, Qt::WFlags flags) : QDialog(pare
 lmcAboutDialog::~lmcAboutDialog(void) {
 }
 
-void lmcAboutDialog::init(void) {
+void lmcAboutDialog::init(void)
+{
 	setWindowIcon(QIcon(IDR_APPICON));
 
 	pSettings = new lmcSettings();

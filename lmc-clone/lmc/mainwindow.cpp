@@ -21,14 +21,11 @@
 **
 ****************************************************************************/
 
-
-#include <QDesktopServices>
-#include <QTimer>
-#include <QUrl>
-
 #include "mainwindow.h"
 
-lmcMainWindow::lmcMainWindow(QWidget *parent, Qt::WFlags flags) : QWidget(parent, flags) {
+lmcMainWindow::lmcMainWindow(QWidget *parent, Qt::WFlags flags)
+    : QWidget(parent, flags)
+{
 	ui.setupUi(this);
 
 	connect(ui.tvUserList, SIGNAL(itemActivated(QTreeWidgetItem*, int)), 
@@ -521,7 +518,8 @@ void lmcMainWindow::tvUserList_itemActivated(QTreeWidgetItem* pItem, int column)
     }
 }
 
-void lmcMainWindow::tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos) {
+void lmcMainWindow::tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos)
+{
     if(!pItem)
         return;
 

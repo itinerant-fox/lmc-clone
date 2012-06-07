@@ -26,9 +26,11 @@
 #define HISTORYTREEWIDGET_H
 
 #include <QTreeWidget>
+
 #include "uidefinitions.h"
 
-class lmcHistoryTreeWidgetItem : public QTreeWidgetItem {
+class lmcHistoryTreeWidgetItem : public QTreeWidgetItem
+{
 public:
 	lmcHistoryTreeWidgetItem(QTreeWidget* parent = 0) : QTreeWidgetItem(parent) {}
 	~lmcHistoryTreeWidgetItem() {}

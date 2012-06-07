@@ -1,23 +1,63 @@
 #-----------------------------------------------------------------------------
 #
 # lmc-clone
+#   http://code.google.com/p/lmc-clone
 #
-# lmc : LAN Messenger, instant messaging client.
-#   http://lanmsngr.sourceforge.net/
-#   http://sourceforge.net/projects/lanmsngr/
+# lmc is a lan messenger, instant messaging client.
+#  http://lanmsngr.sourceforge.net/
+#  http://sourceforge.net/projects/lanmsngr/
 #
 #-----------------------------------------------------------------------------
 
 TARGET = lmc-clone
 
-VERSION = 2.0.0
-
 TEMPLATE = app
 
 QT += core gui network xml webkit
 
+#-----------------------------------------------------------------------------
+#  preprocessor of product name, detailed properties
+
+DEFINES += IDA_TITLE=\"\\\"lmc-clone\\\"\"
+
+win32 {
+    DEFINES += IDA_COMPANY=\"\\\"lmc-clone\\\"\"
+    DEFINES += IDA_PRODUCT=\"\\\"lmc-clone\\\"\"
+}
+
+unix {
+    DEFINES += IDA_COMPANY=\"\\\"lmc-clone\\\"\"
+    DEFINES += IDA_PRODUCT=\"\\\"lmc-clone\\\"\"
+}
+
+macx {
+    DEFINES += IDA_COMPANY=\"\\\"lmc-clone\\\"\"
+    DEFINES += IDA_PRODUCT=\"\\\"lmc-clone\\\"\"
+}
+
+DEFINES += IDA_DESCRIPTION=\"\\\"lmc-clone is is a lan messaging application. current project is derived from lmc project.\\\"\"
+DEFINES += IDA_COPYRIGHT=\"\\\"GPL License, copyright: j2doll, Qualia Digital Solutions\\\"\"
+DEFINES += IDA_CONTACT=\"\\\"j2doll@gmail.com\\\"\"
+DEFINES += IDA_DOMAIN=\"\\\"http://code.project.com/p/lmc-clone\\\"\"
+
+#-----------------------------------------------------------------------------
+# version
+
+VERSION = 2.0.0
+
+DEFINES += IDA_VERSION=\"\\\"2.0.0\\\"\"
+
+DEFINES += IDS_VERSION_VAL=\"\\\"1.2.10\\\"\"
+
+DEFINES += GROUPMSGVERSION=\"\\\"1.2.16\\\"\"
+
+#-----------------------------------------------------------------------------
+
 ### Qt version should be 4.8.2, or over.
 ### greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+
+#-----------------------------------------------------------------------------
+# debug / release mode
 
 CONFIG(debug, debug|release) {
     ### DEBUG MODE CONFIG ###
@@ -69,20 +109,23 @@ unix:!symbian: LIBS += -L./openssl/lib/ -lcrypto
 #-----------------------------------------------------------------------------
 # main source code 
 
-include( ./lmc/resources/lang/translations.pri )
+DEFINES += GRP_DEFAULT=\"\\\"General\\\"\"
+DEFINES += GRP_DEFAULT_ID=\"\\\"1CD75C10048C4E65F6082539A32DC111\\\"\"
 
-include( ./trace/trace.pri )
+include( lmc/resources/lang/translations.pri )
+
+include( trace/trace.pri )
 DEFINES += USE_LMC_TRACE
 
-include( ./lmcapp/lmcapp.pri )
+include( lmcapp/lmcapp.pri )
 
-include( ./crypto/crypto.pri )
+include( crypto/crypto.pri )
 
-include( ./xmlmessage/xmlmessage.pri )
+include( xmlmessage/xmlmessage.pri )
 
-include( ./settings/settings.pri )
+include( settings/settings.pri )
 
-include( ./lmc/lmc.pri )
+include( lmc/lmc.pri )
 
 #-----------------------------------------------------------------------------
 

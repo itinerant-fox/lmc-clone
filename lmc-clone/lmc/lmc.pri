@@ -100,7 +100,10 @@ HEADERS  += \
     lmc/QueryOp.h \
     lmc/GroupMsgOp.h \
     lmc/TrayMessageType.h \
-    lmc/StatusType.h
+    lmc/StatusType.h \
+    lmc/MessagHeaderMember.h \
+    lmc/PendingMsg.h \
+    lmc/ReceivedMsg.h
 
 #------------------------------------------------------------------------------
 

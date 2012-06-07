@@ -25,21 +25,6 @@
 #ifndef SHARED_H
 #define SHARED_H
 
-#include <QtGlobal>
-#include <QString>
-#include <QDateTime>
-#include <QUuid>
-#include <QHostInfo>
 
-#include "definitions.h"
-
-#ifdef QWIDGET_H
-#include "uidefinitions.h"
-#endif
-
-#include "User.h"
-#include "Group.h"
-
-#include "Helper.h"
 
 #endif // SHARED_H

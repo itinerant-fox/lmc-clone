@@ -35,7 +35,7 @@
 #include <QSound>
 
 #include "ui_settingsdialog.h"
-#include "shared.h"
+// #include "shared.h"
 #include "settings.h"
 #include "history.h"
 #include "stdlocation.h"
