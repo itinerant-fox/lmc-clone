@@ -26,21 +26,31 @@
 #include "stdlocation.h"
 #include "trace.h"
 
-lmcMessaging::lmcMessaging(void) {
+lmcMessaging::lmcMessaging(void)
+{
 	pNetwork = new lmcNetwork();
+
 	connect(pNetwork, SIGNAL(broadcastReceived(DatagramHeader*, QString*)), 
 		this, SLOT(receiveBroadcast(DatagramHeader*, QString*)));
+
 	connect(pNetwork, SIGNAL(messageReceived(DatagramHeader*, QString*)), 
 		this, SLOT(receiveMessage(DatagramHeader*, QString*)));
+
 	connect(pNetwork, SIGNAL(webMessageReceived(QString*)),
 		this, SLOT(receiveWebMessage(QString*)));
+
 	connect(pNetwork, SIGNAL(newConnection(QString*, QString*)), 
 		this, SLOT(newConnection(QString*, QString*)));
+
 	connect(pNetwork, SIGNAL(connectionLost(QString*)),
 		this, SLOT(connectionLost(QString*)));
+
 	connect(pNetwork, SIGNAL(progressReceived(QString*, QString*)),
 		this, SLOT(receiveProgress(QString*, QString*)));
-	connect(pNetwork, SIGNAL(connectionStateChanged()), this, SLOT(network_connectionStateChanged()));
+
+    connect(pNetwork, SIGNAL(connectionStateChanged()),
+            this, SLOT(network_connectionStateChanged()));
+
 	userList.clear();
 	groupList.clear();
 	userGroupMap.clear();
@@ -49,10 +59,12 @@ lmcMessaging::lmcMessaging(void) {
 	loopback = false;
 }
 
-lmcMessaging::~lmcMessaging(void) {
+lmcMessaging::~lmcMessaging(void)
+{
 }
 
-void lmcMessaging::init(XmlMessage *pInitParams) {
+void lmcMessaging::init(XmlMessage *pInitParams)
+{
     lmctrace("Messaging initialized");
 
 	pNetwork->init(pInitParams);
@@ -195,8 +207,9 @@ void lmcMessaging::updateGroupMap(QString oldGroup, QString newGroup) {
 }
 
 //	save groups and group mapping
-void lmcMessaging::saveGroups(void) {
-	QSettings groupSettings(StdLocation::groupFile(), QSettings::IniFormat);
+void lmcMessaging::saveGroups(void)
+{
+    QSettings groupSettings( groupFile(), QSettings::IniFormat );
 	groupSettings.beginWriteArray(IDS_GROUPHDR);
 	for(int index = 0; index < groupList.count(); index++) {
 		groupSettings.setArrayIndex(index);
@@ -229,6 +242,11 @@ int lmcMessaging::userCount(void) {
 	return userList.count();
 }
 
+QString lmcMessaging::groupFile(void)
+{
+    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_GROUPFILE );
+}
+
 void lmcMessaging::network_connectionStateChanged(void) {
 	if(isConnected())
 		localUser->address = pNetwork->ipAddress;
@@ -255,10 +273,11 @@ QString lmcMessaging::getUserName(void) {
 	return userName;
 }
 
-void lmcMessaging::loadGroups(void) {
+void lmcMessaging::loadGroups(void)
+{
 	bool defaultFound = false;
 
-	QSettings groupSettings(StdLocation::groupFile(), QSettings::IniFormat);
+    QSettings groupSettings( groupFile(), QSettings::IniFormat );
 	int size = groupSettings.beginReadArray(IDS_GROUPHDR);
 	for(int index = 0; index < size; index++) {
 		groupSettings.setArrayIndex(index);

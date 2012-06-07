@@ -24,107 +24,25 @@
 
 #include "settings.h"
 
-//----------------------------------------------------------------------------
-
-lmcSettingsBase::lmcSettingsBase(void)
-    : QSettings()
-{
-}
-
-lmcSettingsBase::lmcSettingsBase(
-        const QString& fileName,
-        Format format )
-    : QSettings( fileName, format )
-{
-}
-
-lmcSettingsBase::lmcSettingsBase(
-        Format format,
-        Scope scope,
-        const QString& organization,
-        const QString& application )
-    : QSettings( format, scope, organization, application )
-{
-}
-
-lmcSettingsBase::~lmcSettingsBase(void)
-{
-}
-
-void lmcSettingsBase::setValue(
-        const QString& key,
-        const QVariant& value,
-        const QVariant& defaultValue )
-{
-    if ( value != defaultValue )
-        QSettings::setValue( key, value );
-    else
-        remove( key );
-}
 
 //----------------------------------------------------------------------------
 
-void setAutoStart( bool on )
+lmcSettings::lmcSettings(void)
+    : lmcSettingsBase(
+                        QSettings::IniFormat,
+                        QSettings::UserScope,
+                        IDA_COMPANY,
+                        IDA_PRODUCT
+                        )
 {
-
-    // windows
-#ifdef Q_WS_WIN
-    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
-        QSettings::NativeFormat);
-    if(on)
-        settings.setValue(IDA_TITLE, QDir::toNativeSeparators(QApplication::applicationFilePath()));
-    else
-        settings.remove(IDA_TITLE);
-#endif
-
-    // mac os x
-#ifdef Q_WS_MAC
-    Q_UNUSED(on);
-#endif
-
-    // x-windows (gtk? kde? ...)
-#ifdef Q_WS_X11
-    //  get the path of .desktop file
-    QString autoStartDir;
-    char* buffer = getenv("XDG_CONFIG_HOME");
-    if(buffer) {
-        autoStartDir = QString(buffer);
-        autoStartDir.append("/autostart");
-    } else {
-        buffer = getenv("HOME");
-        autoStartDir = QString(buffer);
-        autoStartDir.append("/.config/autostart");
-    }
-    QDir dir(autoStartDir);
-    QString fileName = dir.absoluteFilePath("lmc.desktop");
-    //	delete the file if autostart is set to false
-    if(!on) {
-        QFile::remove(fileName);
-        return;
-    }
-
-    if(!dir.exists())
-        dir.mkpath(dir.absolutePath());
-    QFile file(fileName);
-    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
-        return;
-    QTextStream stream(&file);
-    stream.setCodec("UTF-8");
-    stream.setGenerateByteOrderMark(false);
-    stream << "[Desktop Entry]\n";
-    stream << "Encoding=UTF-8\n";
-    stream << "Type=Application\n";
-    stream << "Name=" << IDA_TITLE << "\n";
-    stream << "Comment=Send and receive instant messages\n";
-    stream << "Icon=lmc\n";
-    stream << "Exec=sh " << qApp->applicationDirPath() << "/lmc.sh\n";
-    stream << "Terminal=false\n";
-    file.close();
-#endif
-
+    tempConfigFile = getTempConfigFile();
+    groupFile      = getGroupFile();
 }
 
-//----------------------------------------------------------------------------
+lmcSettings::~lmcSettings(void)
+{
+}
+
 
 //	migrate settings from older versions to new format
 //	Returns false if existing settings cannot be migrated, else true
@@ -154,14 +72,14 @@ bool lmcSettings::loadFromConfig(const QString& configFile)
     if ( ! QFile::exists( configFile ) )
 		return false;
 
-    if( ! Helper::copyFile( configFile, StdLocation::tempConfigFile() ) )
+    if( ! copyFile( configFile, tempConfigFile ) )
 		return false;
 
-    if( ! migrateSettings(StdLocation::tempConfigFile()) )
+    if( ! migrateSettings( tempConfigFile ) )
 		return false;
 
 	QVariant value;
-    QSettings extSettings( StdLocation::tempConfigFile(), QSettings::IniFormat );
+    QSettings extSettings( tempConfigFile, QSettings::IniFormat );
 
 	value = extSettings.value(IDS_AUTOSTART);
 	if(value.isValid())	setValue(IDS_AUTOSTART, value);
@@ -278,10 +196,10 @@ bool lmcSettings::loadFromConfig(const QString& configFile)
 	value = extSettings.value(IDS_SENDKEYMOD);
 	if(value.isValid())	setValue(IDS_SENDKEYMOD, value);
 
-	setValue(IDS_VERSION, IDA_VERSION);
+    setValue(IDS_VERSION, IDA_VERSION);
 	sync();
 
-	QFile::remove(StdLocation::tempConfigFile());
+    QFile::remove( tempConfigFile );
 
 	return true;
 }
@@ -289,7 +207,7 @@ bool lmcSettings::loadFromConfig(const QString& configFile)
 
 //	The function expects the config file to exist. Validation must be done
 //	prior to calling the function.
-bool lmcSettings::migrateSettings(const QString& configFile)
+bool lmcSettings::migrateSettings( const QString& configFile )
 {
 	lmcSettingsBase settings(configFile, QSettings::IniFormat);
 
@@ -297,15 +215,17 @@ bool lmcSettings::migrateSettings(const QString& configFile)
 
 	//	Check if settings can be migrated, else reset settings and return false
 	//	If the settings are from a later version, its deemed non migratable
-	if(Helper::compareVersions(IDA_VERSION, version) < 0) {
+    if( compareVersions(IDA_VERSION, version) < 0 )
+    {
 		QFile::remove(configFile);
 		return false;
 	}
 
+    /*
 	//	Migrate settings from version 1.2.10 and older
 	//	Any version before 1.2.10 will also return 1.2.10 as the version since its the
 	//	default value
-	if(Helper::compareVersions(version, "1.2.10") == 0) {
+    if( compareVersions(version, "1.2.10") == 0) {
 		//	The group settings were changed in v1.2.16
 		//	Groups now have both an id and a name. All the existing groups in the
 		//	settings are assigned a unique id. The general group is assigned a special
@@ -319,7 +239,7 @@ bool lmcSettings::migrateSettings(const QString& configFile)
 		for(int index = 0; index < size; index++) {
 			settings.setArrayIndex(index);
 			QString groupName = settings.value(IDS_GROUP).toString();
-			QString groupId = (groupName == GRP_DEFAULT) ? GRP_DEFAULT_ID : Helper::getUuid();
+            QString groupId = (groupName == GRP_DEFAULT) ? GRP_DEFAULT_ID : getUuid();
 			groupList.append(Group(groupId, groupName));
 			groupIdHash.insert(groupName, groupId);
 		}
@@ -361,9 +281,11 @@ bool lmcSettings::migrateSettings(const QString& configFile)
 		settings.endArray();
 	}
 	//	End of migration from 1.2.10
+    //*/
 
 	//	Migrate settings if version less than 1.2.25
-	if(Helper::compareVersions(version, "1.2.25") < 0) {
+    if( compareVersions(version, "1.2.25") < 0 )
+    {
 		//	Theme is now saved under the "Appearance" section
 		//	Prior to 1.2.25, it was under "Themes" section which is no longer used
 		QString theme = settings.value(IDS_THEME_OLD).toString();
@@ -397,7 +319,7 @@ bool lmcSettings::migrateSettings(const QString& configFile)
 		}
 		settings.endArray();
 
-		QSettings groupSettings(StdLocation::groupFile(), QSettings::IniFormat);
+        QSettings groupSettings( groupFile, QSettings::IniFormat );
 		groupSettings.beginWriteArray(IDS_GROUPHDR);
 		QHashIterator<QString, QString> it(groupIdHash);
 		int count = 0;
@@ -425,7 +347,8 @@ bool lmcSettings::migrateSettings(const QString& configFile)
 	//	End of migration to 1.2.25
 
 	//	Migrate settings if version less than 1.2.28
-	if(Helper::compareVersions(version, "1.2.28") < 0) {
+    if( compareVersions(version, "1.2.28") < 0 )
+    {
 		//	Broadcast list used instead of single broadcast address
 		//	Remove old entry from settings
 		settings.remove(IDS_BROADCAST_OLD);
@@ -433,7 +356,8 @@ bool lmcSettings::migrateSettings(const QString& configFile)
 	//	End of migration to 1.2.28
 
 	// Migrate settings if version less than 1.2.30
-	if(Helper::compareVersions(version, "1.2.30") < 0) {
+    if( compareVersions(version, "1.2.30") < 0 )
+    {
 		//	The old group settings were still present in the settings file though
 		//	group settings are now saved to a different file.
 		//	Remove group settings from application settings file
@@ -448,5 +372,61 @@ bool lmcSettings::migrateSettings(const QString& configFile)
 
 	settings.setValue(IDS_VERSION, IDA_VERSION);
 	settings.sync();
+
 	return true;
+}
+
+bool lmcSettings::copyFile(const QString& source, const QString& destination)
+{
+    QFile srcFile(source);
+    if(!srcFile.open(QIODevice::ReadOnly))
+        return false;
+
+    QByteArray data = srcFile.readAll();
+    srcFile.close();
+
+    QFile destFile(destination);
+    if(!destFile.open(QIODevice::WriteOnly))
+        return false;
+
+    destFile.write(data);
+    destFile.close();
+
+    return true;
+}
+
+//	Returns:
+//	<0 if version 1 is older
+//	>0 if version 1 is newer
+//	0 if both versions are same
+int  lmcSettings::compareVersions(const QString& version1, const QString& version2)
+{
+    QStringList v1 = version1.split(".", QString::SkipEmptyParts);
+    QStringList v2 = version2.split(".", QString::SkipEmptyParts);
+
+    //	Assuming that the version is in x.x.x format, we only need to iterate 3 times
+    for(int index = 0; index < 3; index++) {
+        int comp = v1[index].toInt() - v2[index].toInt();
+        if(comp != 0)
+            return comp;
+    }
+
+    return 0;
+}
+
+QString lmcSettings::getUuid(void)
+{
+    QString Uuid = QUuid::createUuid().toString();
+    Uuid = Uuid.remove("{").remove("}").remove("-");
+    return Uuid;
+}
+
+QString lmcSettings::getGroupFile(void)
+{
+    return QDir::toNativeSeparators( QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_GROUPFILE );
+}
+
+QString lmcSettings::getTempConfigFile(void)
+{
+    return QDir::toNativeSeparators( QDesktopServices::storageLocation( QDesktopServices::TempLocation) + "/"SL_TEMPCONFIG );
 }

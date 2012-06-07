@@ -37,7 +37,7 @@ lmcTcpNetwork::lmcTcpNetwork(void) {
 }
 
 void lmcTcpNetwork::init(int nPort) {
-	pSettings = new lmcSettings();
+    pSettings = new lmcSettings( );
 	tcpPort = nPort > 0 ? nPort : pSettings->value(IDS_TCPPORT, IDS_TCPPORT_VAL).toInt();
 }
 

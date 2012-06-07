@@ -80,6 +80,8 @@ include( ./crypto/crypto.pri )
 
 include( ./xmlmessage/xmlmessage.pri )
 
+include( ./settings/settings.pri )
+
 include( ./lmc/lmc.pri )
 
 #-----------------------------------------------------------------------------

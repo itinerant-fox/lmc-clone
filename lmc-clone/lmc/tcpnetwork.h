@@ -35,6 +35,7 @@
 #include "netstreamer.h"
 #include "crypto.h"
 #include "xmlmessage.h"
+#include "stdlocation.h"
 
 class lmcTcpNetwork : public QObject
 {

@@ -26,10 +26,14 @@
 #define SETTINGS_H
 
 #include <QtGlobal>
+#include <QObject>
 #include <QString>
 #include <QSettings>
 #include <QApplication>
 #include <QDir>
+#include <QUuid>
+#include <QDir>
+#include <QDesktopServices>
 
 //	Application settings definitions and default values
 #define IDS_VERSION				"Application/Version"
@@ -174,34 +178,22 @@
 #define IDS_BROADCASTHDR		"BroadcastList"
 #define IDS_BROADCAST			"Broadcast"
 
-#include "shared.h"
-#include "stdlocation.h"
+#ifndef IDA_VERSION
+#define IDA_VERSION "2.0.0"
+#endif
 
-/**
- * @brief The lmcSettingsBase class
- */
-class lmcSettingsBase : public QSettings
-{
+#ifndef IDA_COMPANY
+#define IDA_COMPANY "LAN Messenger"
+#endif
 
-public:
-	lmcSettingsBase(void);
-	lmcSettingsBase(const QString& fileName, Format format);
-    lmcSettingsBase(Format format,
-                    Scope scope,
-                    const QString& organization,
-                    const QString& application);
-	~lmcSettingsBase(void);
+#ifndef IDA_PRODUCT
+#define IDA_PRODUCT "lmc"
+#endif
 
-public:
-	using QSettings::setValue;
-	void setValue(const QString& key, const QVariant& value, const QVariant& defaultValue);
-};
+#define SL_GROUPFILE    "group.cfg"
+#define SL_TEMPCONFIG   "lmctmpconf.ini"
 
-/**
- * @brief setAutoStart
- * @param on
- */
-void setAutoStart( bool on );
+#include "SettingsBase.h"
 
 /**
  * @brief The lmcSettings class
@@ -210,28 +202,24 @@ class lmcSettings : public lmcSettingsBase
 {
 
 public:
-
-    lmcSettings(void) : lmcSettingsBase(
-                            QSettings::IniFormat,
-                            QSettings::UserScope,
-                            IDA_COMPANY,
-                            IDA_PRODUCT )
-    {
-    }
-
-    ~lmcSettings(void)
-    {
-    }
+    lmcSettings(void);
+    ~lmcSettings(void);
 
 public:
-
 	bool migrateSettings(void);
-
 	bool loadFromConfig(const QString& configFile);
 
-private:
-
+protected:
 	bool migrateSettings(const QString& configFile);
+    bool copyFile(const QString& source, const QString& destination);
+    int compareVersions(const QString& version1, const QString& version2);
+    QString getUuid(void);
+    QString getGroupFile(void);
+    QString getTempConfigFile(void);
+
+protected:
+    QString tempConfigFile;
+    QString groupFile;
 
 };
 

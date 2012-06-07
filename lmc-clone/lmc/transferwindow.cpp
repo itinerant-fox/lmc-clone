@@ -48,7 +48,7 @@ void lmcTransferWindow::init(void) {
 	createToolBar();
 	setButtonState(FileView::TS_Max);
 
-	pSettings = new lmcSettings();
+    pSettings = new lmcSettings( );
 	restoreGeometry(pSettings->value(IDS_WINDOWTRANSFERS).toByteArray());
 	setUIText();
 

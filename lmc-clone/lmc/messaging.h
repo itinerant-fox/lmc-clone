@@ -110,7 +110,8 @@ private slots:
 	void network_connectionStateChanged(void);
 	void timer_timeout(void);
 
-private:
+protected:
+    QString groupFile(void);
 	QString createUserId(QString* lpszAddress, QString* lpszUserName);
 	QString getUserName(void);
 	void loadGroups(void);
@@ -143,6 +144,7 @@ private:
 	int					nMaxRetry;
 	bool				loopback;
 	QMap<QString, QString> userGroupMap;
+
 };
 
 #endif // MESSAGING_H
