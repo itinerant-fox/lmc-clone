@@ -3,7 +3,7 @@
 IDI_MAIN_ICON   ICON    DISCARDABLE "\\icons\\lmc.ico"
 
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION		2,0,0,0
+FILEVERSION	2,0,0,0
 PRODUCTVERSION	2,0,0,0
 FILEFLAGSMASK	VS_FFI_FILEFLAGSMASK
 #ifdef DEBUG
@@ -20,14 +20,14 @@ FILESUBTYPE     0x0L
         BLOCK "040904b0"
         {
             VALUE "Comments",         "\0"
-			VALUE "CompanyName",      "LAN Messenger (clone)\0"
-            VALUE "FileDescription",  "LAN Messenger (clone)\0"
-			VALUE "FileVersion",      "2.0.0\0"
+            VALUE "CompanyName",      "lmc-clone\0"
+            VALUE "FileDescription",  "lmc-clone\0"
+            VALUE "FileVersion",      "2.0.0\0"
             VALUE "InternalName",     "lmc-clone\0"
-			VALUE "LegalCopyright",   "Copyright (c) 2010-2012 Qualia Digital Solutions.\0"
+            VALUE "LegalCopyright",   "GNU License, 2012 j2doll, Qualia Digital Solutions.\0"
             VALUE "OriginalFilename", "lmc-clone.exe\0"
-            VALUE "ProductName",      "LAN Messenger (clone)\0"
-			VALUE "ProductVersion",   "2.0.0\0"
+            VALUE "ProductName",      "lmc-clone\0"
+            VALUE "ProductVersion",   "2.0.0\0"
         }
     }
     BLOCK "VarFileInfo"

@@ -90,9 +90,9 @@ void lmcCore::init(const QString& szCommandArgs)
 
 	pInitParams = new XmlMessage();
 	if(arguments.contains("/silent", Qt::CaseInsensitive))
-		pInitParams->addData(XN_SILENTMODE, LMC_TRUE);
+        pInitParams->addData(XN_SILENTMODE, "true" );
 	if(arguments.contains("/trace", Qt::CaseInsensitive)) {
-		pInitParams->addData(XN_TRACEMODE, LMC_TRUE);
+        pInitParams->addData(XN_TRACEMODE, "true" );
 		pInitParams->addData(XN_LOGFILE, StdLocation::freeLogFile());
 	}
 	for(int index = 0; index < arguments.count(); index++) {
@@ -949,7 +949,8 @@ void lmcCore::showChatRoomWindow(lmcChatRoomWindow* chatRoomWindow, bool show, b
 
 	// if add is specified, show Add Contact dialog
 	// add should be specified only when the local user is creating a new chat room
-	if(add) {
+    if ( add )
+    {
 		QString minVersion = GROUPMSGVERSION;
 		QStringList excludeList(pMessaging->localUser->id);
 		QStringList selectedContacts = showSelectContacts(chatRoomWindow, &minVersion, &excludeList);

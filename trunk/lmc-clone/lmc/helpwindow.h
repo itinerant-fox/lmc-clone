@@ -25,10 +25,16 @@
 #ifndef HELPWINDOW_H
 #define HELPWINDOW_H
 
+#include <QtGlobal>
+#include <QObject>
 #include <QWidget>
-#include "ui_helpwindow.h"
-#include "shared.h"
+
 #include "settings.h"
+
+#ifdef QWIDGET_H
+ #include "uidefinitions.h"
+#endif
+#include "ui_helpwindow.h"
 
 class lmcHelpWindow : public QWidget
 {

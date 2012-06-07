@@ -37,7 +37,6 @@
 
 //	Application settings definitions and default values
 #define IDS_VERSION				"Application/Version"
-#define IDS_VERSION_VAL			"1.2.10"
 #define IDS_OPENPATH			"Application/OpenPath"
 #define IDS_OPENPATH_VAL		QDesktopServices::storageLocation(QDesktopServices::DocumentsLocation)
 #define IDS_SAVEPATH			"Application/SavePath"
@@ -122,9 +121,9 @@
 #define IDS_SOUNDEVENT			"Event"
 #define IDS_SOUNDEVENT_VAL		Qt::Checked
 #define IDS_SOUNDFILEHDR		"SoundFiles"
-#define IDS_SOUNDFILE				"File"
+#define IDS_SOUNDFILE			"File"
 #define IDS_CONNECTION			"Connection/Connection"
-#define IDS_CONNECTION_VAL		AUTO_CONNECTION
+#define IDS_CONNECTION_VAL		"Auto"
 #define IDS_TIMEOUT				"Connection/Timeout"
 #define IDS_TIMEOUT_VAL			10
 #define IDS_MAXRETRIES			"Connection/MaxRetries"
@@ -177,18 +176,6 @@
 #define IDS_USER				"User"
 #define IDS_BROADCASTHDR		"BroadcastList"
 #define IDS_BROADCAST			"Broadcast"
-
-#ifndef IDA_VERSION
-#define IDA_VERSION "2.0.0"
-#endif
-
-#ifndef IDA_COMPANY
-#define IDA_COMPANY "LAN Messenger"
-#endif
-
-#ifndef IDA_PRODUCT
-#define IDA_PRODUCT "lmc"
-#endif
 
 #define SL_GROUPFILE    "group.cfg"
 #define SL_TEMPCONFIG   "lmctmpconf.ini"

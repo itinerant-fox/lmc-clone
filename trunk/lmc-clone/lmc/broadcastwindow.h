@@ -30,15 +30,16 @@
 #include <QMenu>
 #include <QEvent.h>
 
-#include "ui_broadcastwindow.h"
-#include "shared.h"
+#include "xmlmessage.h"
 #include "settings.h"
+
+// #include "shared.h"
+#include "strings.h"
 #include "imagepickeraction.h"
 #include "subcontrols.h"
 #include "chatdefinitions.h"
 #include "chathelper.h"
-#include "xmlmessage.h"
-#include "strings.h"
+#include "ui_broadcastwindow.h"
 
 class lmcBroadcastWindow : public QWidget
 {

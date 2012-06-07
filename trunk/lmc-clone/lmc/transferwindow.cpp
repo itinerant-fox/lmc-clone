@@ -25,10 +25,11 @@
 
 #include "transferwindow.h"
 
-lmcTransferWindow::lmcTransferWindow(QWidget *parent) : QWidget(parent) {
+lmcTransferWindow::lmcTransferWindow(QWidget *parent) : QWidget(parent)
+{
 	ui.setupUi(this);
 	QRect scr = QApplication::desktop()->screenGeometry();
-	move(scr.center() - rect().center());
+    move( scr.center() - rect().center() );
 
 	connect(ui.lvTransferList, SIGNAL(currentRowChanged(int)), 
 		this, SLOT(lvTransferList_currentRowChanged(int)));

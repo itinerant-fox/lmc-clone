@@ -25,12 +25,15 @@
 #ifndef SOUNDPLAYER_H
 #define SOUNDPLAYER_H
 
+#include <QtGlobal>
 #include <QSound>
 
 #include "uidefinitions.h"
 #include "settings.h"
+#include "StatusType.h"
 
-class lmcSoundPlayer {
+class lmcSoundPlayer
+{
 public:
 	lmcSoundPlayer(void);
 

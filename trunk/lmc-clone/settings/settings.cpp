@@ -209,79 +209,17 @@ bool lmcSettings::loadFromConfig(const QString& configFile)
 //	prior to calling the function.
 bool lmcSettings::migrateSettings( const QString& configFile )
 {
-	lmcSettingsBase settings(configFile, QSettings::IniFormat);
+    lmcSettingsBase settings( configFile, QSettings::IniFormat );
 
-	QString version = settings.value(IDS_VERSION, IDS_VERSION_VAL).toString();
+    QString version = settings.value( IDS_VERSION, IDS_VERSION_VAL ).toString();
 
 	//	Check if settings can be migrated, else reset settings and return false
 	//	If the settings are from a later version, its deemed non migratable
-    if( compareVersions(IDA_VERSION, version) < 0 )
+    if( compareVersions( IDA_VERSION, version ) < 0 )
     {
 		QFile::remove(configFile);
 		return false;
 	}
-
-    /*
-	//	Migrate settings from version 1.2.10 and older
-	//	Any version before 1.2.10 will also return 1.2.10 as the version since its the
-	//	default value
-    if( compareVersions(version, "1.2.10") == 0) {
-		//	The group settings were changed in v1.2.16
-		//	Groups now have both an id and a name. All the existing groups in the
-		//	settings are assigned a unique id. The general group is assigned a special
-		//	unique id that is predefined. The user group mapping is done with user id
-		//	and group id.
-		QList<Group> groupList;
-		QHash<QString, QString> groupIdHash;
-		QMap<QString, QString> userGroupMap;
-
-		int size = settings.beginReadArray(IDS_GROUPHDR);
-		for(int index = 0; index < size; index++) {
-			settings.setArrayIndex(index);
-			QString groupName = settings.value(IDS_GROUP).toString();
-            QString groupId = (groupName == GRP_DEFAULT) ? GRP_DEFAULT_ID : getUuid();
-			groupList.append(Group(groupId, groupName));
-			groupIdHash.insert(groupName, groupId);
-		}
-		settings.endArray();
-
-		if(groupList.count() == 0)
-			groupList.append(Group(GRP_DEFAULT_ID, GRP_DEFAULT));
-
-		size = settings.beginReadArray(IDS_GROUPMAPHDR);
-		for(int index = 0; index < size; index++)
-		{
-			settings.setArrayIndex(index);
-			QString userId = settings.value(IDS_USER).toString();
-			QString groupName = settings.value(IDS_GROUP).toString();
-			QString groupId = groupIdHash.value(groupName);
-			userGroupMap.insert(userId, groupId);
-		}
-		settings.endArray();
-
-		// now save settings in the new format
-		settings.beginWriteArray(IDS_GROUPHDR);
-		for(int index = 0; index < groupList.count(); index++) {
-			settings.setArrayIndex(index);
-			settings.setValue(IDS_GROUP, groupList[index].id);
-			settings.setValue(IDS_GROUPNAME, groupList[index].name);
-		}
-		settings.endArray();
-
-		settings.beginWriteArray(IDS_GROUPMAPHDR);
-		QMapIterator<QString, QString> i(userGroupMap);
-		int count = 0;
-		while(i.hasNext()) {
-			settings.setArrayIndex(count);
-			i.next();
-			settings.setValue(IDS_USER, i.key());
-			settings.setValue(IDS_GROUP, i.value());
-			count++;
-		}
-		settings.endArray();
-	}
-	//	End of migration from 1.2.10
-    //*/
 
 	//	Migrate settings if version less than 1.2.25
     if( compareVersions(version, "1.2.25") < 0 )

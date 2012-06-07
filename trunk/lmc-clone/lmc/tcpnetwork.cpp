@@ -42,12 +42,14 @@ lmcTcpNetwork::~lmcTcpNetwork(void)
 }
 
 
-void lmcTcpNetwork::init(int nPort) {
-    pSettings = new lmcSettings( );
+void lmcTcpNetwork::init(int nPort)
+{
+    pSettings = new lmcSettings();
 	tcpPort = nPort > 0 ? nPort : pSettings->value(IDS_TCPPORT, IDS_TCPPORT_VAL).toInt();
 }
 
-void lmcTcpNetwork::start(void) {
+void lmcTcpNetwork::start(void)
+{
     lmctrace("Starting TCP server");
 	isRunning = server->listen(QHostAddress::Any, tcpPort);
     lmctrace((isRunning ? "Success" : "Failed"));

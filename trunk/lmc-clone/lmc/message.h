@@ -25,11 +25,11 @@
 #ifndef MESSAGE_H
 #define MESSAGE_H
 
-#include <QString>
-#include <QStringList>
+// #include <QString>
+// #include <QStringList>
 
-#include "shared.h"
-#include "xmlmessage.h"
-#include "trace.h"
+// #include "shared.h"
+// #include "xmlmessage.h"
+// #include "trace.h"
 
 #endif // MESSAGE_H

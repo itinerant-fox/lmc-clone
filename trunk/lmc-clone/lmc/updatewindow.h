@@ -21,18 +21,23 @@
 **
 ****************************************************************************/
 
-
 #ifndef UPDATEWINDOW_H
 #define UPDATEWINDOW_H
 
 #include <QtGlobal>
+#include <QString>
+#include <QRect>
 #include <QWidget>
 
 #include "xmlmessage.h"
 
-#include "definitions.h"
-#include "MessageType.h"
 #include "strings.h"
+#include "Helper.h"
+#include "MessageType.h"
+#ifdef QWIDGET_H
+ #include "uidefinitions.h"
+#endif
+#include "ui_updatewindow.h"
 
 namespace Ui {
     class UpdateWindow;
@@ -70,6 +75,7 @@ private:
     Ui::UpdateWindow *ui;
 	QString webVersion;
 	UpdateStatus status;
+
 };
 
 #endif // UPDATEWINDOW_H

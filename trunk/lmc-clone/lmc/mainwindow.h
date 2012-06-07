@@ -25,6 +25,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QtGlobal>
 #include <QtGui/QWidget>
 #include <QSystemTrayIcon>
 #include <QMenuBar>
@@ -39,28 +40,36 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QDesktopServices>
+#include <QTimer>
+#include <QUrl>
 
 #include "settings.h"
 #include "xmlmessage.h"
 
 #include "stdlocation.h"
-#include "shared.h"
+// #include "shared.h"
 #include "MessageType.h"
-#include "FileOp.h"
-#include "FileMode.h"
-#include "FileType.h"
+#include "netstreamer.h"
 #include "ui_mainwindow.h"
 #include "imagepickeraction.h"
 #include "soundplayer.h"
 #include "strings.h"
+#include "TrayMessageType.h"
+#include "GroupMsgOp.h"
+#include "QueryOp.h"
+#include "messaging.h"
+#include "Helper.h"
 
-class lmcMainWindow : public QWidget {
+class lmcMainWindow : public QWidget
+{
 	Q_OBJECT
 
 public:
 	lmcMainWindow(QWidget *parent = 0, Qt::WFlags flags = 0);
 	~lmcMainWindow(void);
 
+public:
 	void init(User* pLocalUser, QList<Group>* pGroupList, bool connected);
     void start(void);
 	void show(void);

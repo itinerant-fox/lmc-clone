@@ -24,9 +24,9 @@
 
 #include "messaging.h"
 
-
 lmcMessaging::lmcMessaging(void)
 {
+
 	pNetwork = new lmcNetwork();
 
 	connect(pNetwork, SIGNAL(broadcastReceived(DatagramHeader*, QString*)), 
@@ -64,6 +64,7 @@ lmcMessaging::~lmcMessaging(void)
 
 void lmcMessaging::init(XmlMessage *pInitParams)
 {
+
     lmctrace("Messaging initialized");
 
 	pNetwork->init(pInitParams);
@@ -662,14 +663,14 @@ QString  lmcMessaging::getOSName(void)
     return osName;
 }
 
-QString  lmcMessaging::escapeDelimiter(QString *lpszData)
+QString  lmcMessaging::escapeDelimiter( QString *lpszData )
 {
-    return lpszData->replace(DELIMITER, DELIMITER_ESC, Qt::CaseSensitive);
+    return lpszData->replace( "||", "\\|\\|", Qt::CaseSensitive );
 }
 
-QString  lmcMessaging::unescapeDelimiter(QString* lpszData)
+QString  lmcMessaging::unescapeDelimiter( QString* lpszData )
 {
-    return lpszData->replace(DELIMITER_ESC, DELIMITER, Qt::CaseSensitive);
+    return lpszData->replace( "\\|\\|", "||", Qt::CaseSensitive );
 }
 
 //	Returns:
@@ -693,12 +694,12 @@ int  lmcMessaging::compareVersions(const QString& version1, const QString& versi
 
 QString  lmcMessaging::boolToString(bool value)
 {
-    return value ? LMC_TRUE : LMC_FALSE;
+    return value ? "true" : "false";
 }
 
 bool  lmcMessaging::stringToBool(const QString& value)
 {
-    return value.compare(LMC_TRUE) == 0 ? true : false;
+    return value.compare( "true" ) == 0 ? true : false;
 }
 
 //	Function that copies content of source to destination

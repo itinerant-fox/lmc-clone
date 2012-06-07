@@ -42,11 +42,13 @@
 
 #include "xmlmessage.h"
 
-#include "shared.h"
+// #include "shared.h"
 #include "chatdefinitions.h"
 #include "chathelper.h"
 #include "theme.h"
 #include "netstreamer.h"
+#include "GroupMsgOp.h"
+#include "Helper.h"
 
 enum OutputFormat{ HtmlFormat, TextFormat };
 
@@ -58,6 +60,7 @@ public:
 	lmcMessageLog(QWidget *parent = 0);
 	~lmcMessageLog(void);
 
+public:
 	void initMessageLog(QString themePath, bool clearLog = true);
 	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage,
 		bool bReload = false);

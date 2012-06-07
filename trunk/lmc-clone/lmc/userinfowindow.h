@@ -28,12 +28,17 @@
 #include <QtGlobal>
 #include <QDialog>
 
-#include "ui_userinfowindow.h"
-#include "shared.h"
-#include "settings.h"
-#include "stdlocation.h"
 #include "xmlmessage.h"
+#include "settings.h"
+
+// #include "shared.h"
+#include "stdlocation.h"
 #include "strings.h"
+#include "Helper.h"
+#ifdef QWIDGET_H
+ #include "uidefinitions.h"
+#endif
+#include "ui_userinfowindow.h"
 
 class lmcUserInfoWindow : public QDialog
 {

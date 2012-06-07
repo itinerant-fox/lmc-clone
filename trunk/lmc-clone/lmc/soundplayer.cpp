@@ -24,7 +24,8 @@
 
 #include "soundplayer.h"
 
-lmcSoundPlayer::lmcSoundPlayer(void) {
+lmcSoundPlayer::lmcSoundPlayer(void)
+{
 	pSettings = new lmcSettings();
 	for(int index = 0; index < SE_Max; index++) {
 		eventState[index] = Qt::Checked;

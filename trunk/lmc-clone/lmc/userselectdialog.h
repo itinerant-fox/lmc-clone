@@ -25,10 +25,12 @@
 #ifndef USERSELECTDIALOG_H
 #define USERSELECTDIALOG_H
 
+#include <QtGlobal>
 #include <QDialog>
-#include "ui_userselectdialog.h"
-#include "shared.h"
+
+//  #include "shared.h"
 #include "settings.h"
+#include "ui_userselectdialog.h"
 
 class lmcUserSelectDialog : public QDialog
 {

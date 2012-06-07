@@ -42,6 +42,14 @@
   #include <stdlib.h>
 #endif
 
+#if defined Q_WS_WIN
+#define IDA_PLATFORM	"Windows"
+#elif defined Q_WS_MAC
+#define IDA_PLATFORM	"Macintosh"
+#elif defined Q_WS_X11
+#define IDA_PLATFORM	"Linux"
+#endif
+
 #include "trace.h"
 #include "xmlmessage.h"
 #include "settings.h"
@@ -50,51 +58,12 @@
 #include "Group.h"
 #include "network.h"
 #include "MessageHeader.h"
-
-
-enum MessagHeaderMember
-{
-    MH_AppId = 0,
-    MH_Type,
-    MH_Id,
-    MH_UserId,
-    MH_Max
-};
-
-struct PendingMsg
-{
-	qint64 msgId;
-	bool active;
-	QDateTime timeStamp;
-	MessageType type;
-	QString userId;
-	XmlMessage xmlMessage;
-	int retry;
-
-	PendingMsg(void) {}
-	PendingMsg(qint64 nMsgId, bool bActive, QDateTime timeStamp, MessageType mtType, QString szUserId, XmlMessage xmlMessage, int nRetry) {
-		this->msgId = nMsgId;
-		this->active = bActive;
-		this->timeStamp = timeStamp;
-		this->type = mtType;
-		this->userId = szUserId;
-		this->xmlMessage = xmlMessage;
-		this->retry = nRetry;
-	}
-};
-
-struct ReceivedMsg {
-	qint64 msgId;
-	QString userId;
-
-	ReceivedMsg(void) {}
-	ReceivedMsg(qint64 nMsgId, QString szUserId) {
-		this->msgId = nMsgId;
-		this->userId = szUserId;
-	}
-
-	bool operator == (const ReceivedMsg& v) const { return ((this->msgId == v.msgId) && (this->userId.compare(v.userId) == 0)); }
-};
+#include "MessagHeaderMember.h"
+#include "PendingMsg.h"
+#include "ReceivedMsg.h"
+#include "GroupMsgOp.h"
+#include "QueryOp.h"
+#include "StatusType.h"
 
 class lmcMessaging : public QObject
 {
@@ -102,8 +71,9 @@ class lmcMessaging : public QObject
 
 public:
 	lmcMessaging(void);
-	~lmcMessaging(void);
+    ~lmcMessaging(void);
 
+public:
 	void init(XmlMessage* pInitParams);
 	void start(void);
 	void update(void);

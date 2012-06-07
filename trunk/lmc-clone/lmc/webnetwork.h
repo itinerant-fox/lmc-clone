@@ -35,7 +35,6 @@
 
 #include "xmlmessage.h"
 
-#include "definitions.h"
 #include "MessageType.h"
 
 class lmcWebNetwork : public QObject
@@ -46,6 +45,7 @@ public:
 	lmcWebNetwork(void);
 	~lmcWebNetwork(void);
 
+public:
 	void init(void);
 	void start(void);
 	void stop(void);
@@ -67,6 +67,7 @@ private:
 
 	QNetworkAccessManager* manager;
 	bool active;
+
 };
 
 #endif // WEBNETWORK_H
