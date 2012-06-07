@@ -42,7 +42,6 @@
 
 #include "xmlmessage.h"
 
-// #include "shared.h"
 #include "chatdefinitions.h"
 #include "chathelper.h"
 #include "theme.h"

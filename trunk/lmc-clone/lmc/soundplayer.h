@@ -28,8 +28,9 @@
 #include <QtGlobal>
 #include <QSound>
 
-#include "uidefinitions.h"
 #include "settings.h"
+
+#include "uidefinitions.h"
 #include "StatusType.h"
 
 class lmcSoundPlayer

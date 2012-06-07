@@ -34,16 +34,16 @@
 #include <QDesktopServices>
 #include <QSound>
 
-#include "ui_settingsdialog.h"
-// #include "shared.h"
 #include "settings.h"
-#include "history.h"
+
 #include "stdlocation.h"
+#include "history.h"
 #include "application.h"
 #include "messagelog.h"
 #include "theme.h"
 #include "soundplayer.h"
 #include "strings.h"
+#include "ui_settingsdialog.h"
 
 QString fileStorageDir(void);
 

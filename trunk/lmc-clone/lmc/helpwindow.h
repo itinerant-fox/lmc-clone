@@ -28,6 +28,7 @@
 #include <QtGlobal>
 #include <QObject>
 #include <QWidget>
+#include <QDesktopWidget>
 
 #include "settings.h"
 

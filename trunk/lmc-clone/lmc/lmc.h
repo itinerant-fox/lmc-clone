@@ -56,7 +56,6 @@
 #define SL_TEMPCONFIG			"lmctmpconf.ini"
 
 #include "trace.h"
-// #include "shared.h"
 #include "settings.h"
 
 #include "messaging.h"

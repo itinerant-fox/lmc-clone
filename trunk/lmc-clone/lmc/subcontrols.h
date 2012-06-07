@@ -27,6 +27,9 @@
 #ifndef SUBCONTROLS_H
 #define SUBCONTROLS_H
 
+#include <QtGlobal>
+#include <QApplication>
+#include <QWidget>
 #include <QStylePainter>
 #include <QStyleOption>
 #include <QToolButton>
@@ -34,6 +37,7 @@
 #include <QLineEdit>
 
 #include "uidefinitions.h"
+#include "strings.h"
 
 class lmcToolButton : public QToolButton
 {

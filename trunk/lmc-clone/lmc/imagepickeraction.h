@@ -25,11 +25,15 @@
 #ifndef IMAGEPICKERACTION_H
 #define IMAGEPICKERACTION_H
 
+#include <QtGlobal>
+#include <QList>
 #include <QWidget>
 #include <QWidgetAction>
+
 #include "imagepicker.h"
 
-class lmcImagePickerAction : public QWidgetAction {
+class lmcImagePickerAction : public QWidgetAction
+{
 public:
 	lmcImagePickerAction(QObject* parent, const QString source[], int sourceCount, int picSize, int columns, int* selected);
 	~lmcImagePickerAction(void);

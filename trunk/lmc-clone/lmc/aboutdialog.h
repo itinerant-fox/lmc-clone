@@ -30,13 +30,11 @@
 
 #include "settings.h"
 
-// #include "shared.h"
 #include "strings.h"
-#include "ui_aboutdialog.h"
-
 #ifdef QWIDGET_H
  #include "uidefinitions.h"
 #endif
+#include "ui_aboutdialog.h"
 
 class lmcAboutDialog : public QDialog
 {
