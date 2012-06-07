@@ -90,20 +90,6 @@ public:
 	bool start(void);
 
 public:
-    QString transferHistory(void);
-    QString cacheDir(void);
-    QString libDir(void);
-    QString resLangDir(void);
-    QString sysLangDir(void);
-    QString userLangDir(void);
-    QString resThemeDir(void);
-    QString sysThemeDir(void);
-    QString userThemeDir(void);
-    QString groupFile(void);
-    QString avatarFile(void);
-    QString logDir(void);
-    QString freeLogFile(void);
-    QString tempConfigFile(void);
 
 public slots:
 	bool receiveAppMessage(const QString& szMessage);
@@ -153,6 +139,8 @@ private:
 	void showPublicChatWindow(bool show, bool alert = false, bool open = false);
 	QStringList showSelectContacts(QWidget* parent, QString* minVersion, QStringList* excludeList);
 	void showPortConflictMessage(void);
+    void setAutoStart( bool on );
+
 
 private:
 	lmcSettings*					pSettings;

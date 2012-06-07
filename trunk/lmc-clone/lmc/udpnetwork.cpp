@@ -44,7 +44,7 @@ lmcUdpNetwork::~lmcUdpNetwork(void) {
 
 void lmcUdpNetwork::init(int nPort)
 {
-	pSettings = new lmcSettings();
+    pSettings = new lmcSettings();
 	nUdpPort = nPort > 0 ? nPort : pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt();
 	multicastAddress = QHostAddress(pSettings->value(IDS_MULTICAST, IDS_MULTICAST_VAL).toString());
 	int size = pSettings->beginReadArray(IDS_BROADCASTHDR);

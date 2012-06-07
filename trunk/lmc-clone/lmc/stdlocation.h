@@ -38,10 +38,10 @@
 ///// #define SL_RESOURCE				"lmc.rcc"
 #define SL_LANGDIR				"lang"
 #define SL_THEMEDIR				"themes"
-#define SL_GROUPFILE			"group.cfg"
+// #define SL_GROUPFILE			"group.cfg"
 #define SL_AVATARFILE			"avt_local.png"
 #define SL_LOGDIR				"logs"
-#define SL_TEMPCONFIG			"lmctmpconf.ini"
+// #define SL_TEMPCONFIG			"lmctmpconf.ini"
 
 ///// #include "settings.h"
 
@@ -119,10 +119,10 @@ public:
 			QDesktopServices::DataLocation) + "/"SL_THEMEDIR);
 	}
 
-	static QString groupFile(void) {
-		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::DataLocation) + "/"SL_GROUPFILE);
-	}
+    // static QString groupFile(void) {
+    //	return QDir::toNativeSeparators(QDesktopServices::storageLocation(
+    //		QDesktopServices::DataLocation) + "/"SL_GROUPFILE);
+    // }
 
 	static QString avatarFile(void) {
 		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
@@ -140,10 +140,10 @@ public:
 		return QDir::toNativeSeparators(logDir() + "/" + fileName);
 	}
 
-	static QString tempConfigFile(void) {
-		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::TempLocation) + "/"SL_TEMPCONFIG);
-	}
+    // static QString tempConfigFile(void) {
+    //     return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::TempLocation) + "/"SL_TEMPCONFIG );
+    // }
+
 };
 
 #endif // STDLOCATION_H

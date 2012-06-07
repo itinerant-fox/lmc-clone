@@ -58,7 +58,6 @@ HEADERS  += \
     lmc/soundplayer.h \
     lmc/shared.h \
     lmc/settingsdialog.h \
-    lmc/settings.h \
     lmc/resource.h \
     lmc/network.h \
     lmc/netstreamer.h \
@@ -106,7 +105,6 @@ SOURCES += \
     lmc/soundplayer.cpp \
     lmc/shared.cpp \
     lmc/settingsdialog.cpp \
-    lmc/settings.cpp \
     lmc/network.cpp \
     lmc/netstreamer.cpp \
     lmc/messagingproc.cpp \

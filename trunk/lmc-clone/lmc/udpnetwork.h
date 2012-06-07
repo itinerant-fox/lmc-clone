@@ -37,6 +37,7 @@
 #include "crypto.h"
 #include "settings.h"
 #include "datagram.h"
+#include "stdlocation.h"
 
 class lmcUdpNetwork : public QObject
 {

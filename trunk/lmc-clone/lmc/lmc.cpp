@@ -23,6 +23,10 @@
 
 #include "lmc.h"
 
+//----------------------------------------------------------------------------
+
+
+
 lmcCore::lmcCore(void)
 {
 
@@ -161,82 +165,10 @@ bool lmcCore::start(void)
 }
 
 
-QString lmcCore::transferHistory(void)
-{
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_TRANSFERHISTORY );
-}
-
-QString lmcCore::cacheDir(void)
-{
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_CACHEDIR );
-}
-
-QString lmcCore::libDir(void)
-{
-    return QDir::toNativeSeparators(QDir::currentPath());
-}
-
-QString lmcCore::resLangDir(void)
-{
-    return ":/"SL_LANGDIR;
-}
-
-QString lmcCore::sysLangDir(void)
-{
-    return QDir::toNativeSeparators( QDir::currentPath() + "/"SL_LANGDIR );
-}
-
-QString lmcCore::userLangDir(void)
-{
-    return QDir::toNativeSeparators( QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_LANGDIR );
-}
-
-QString lmcCore::resThemeDir(void)
-{
-    return ":/"SL_THEMEDIR;
-}
-
-QString lmcCore::sysThemeDir(void)
-{
-    return QDir::toNativeSeparators(QDir::currentPath() + "/"SL_THEMEDIR);
-}
-
-QString lmcCore::userThemeDir(void)
-{
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_THEMEDIR );
-}
-
-QString lmcCore::groupFile(void)
-{
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_GROUPFILE );
-}
-
-QString lmcCore::avatarFile(void)
-{
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_AVATARFILE );
-}
-
-QString lmcCore::logDir(void)
-{
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_LOGDIR );
-}
-
-QString lmcCore::freeLogFile(void)
-{
-    QString fileName = "lmc_" + QString::number(QDateTime::currentDateTimeUtc().toMSecsSinceEpoch()) + ".log";
-    return QDir::toNativeSeparators(logDir() + "/" + fileName);
-}
-
-QString lmcCore::tempConfigFile(void)
-{
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::TempLocation ) + "/"SL_TEMPCONFIG);
-}
-
-
 //	This is the initial point where settings are used in the application
 void lmcCore::loadSettings(void)
 {
-	pSettings = new lmcSettings();
+    pSettings = new lmcSettings( );
 	bool silent = Helper::stringToBool(pInitParams->data(XN_SILENTMODE));
 	if(!pSettings->migrateSettings() && !silent) {
 		// settings were reset. Show an alert if not in silent mode
@@ -1080,7 +1012,8 @@ QStringList lmcCore::showSelectContacts(QWidget* parent, QString* minVersion, QS
 	return selectedContacts;
 }
 
-void lmcCore::showPortConflictMessage(void) {
+void lmcCore::showPortConflictMessage(void)
+{
 	//	show message box
 	QMessageBox msgBox;
 	msgBox.setWindowTitle(lmcStrings::appName());
@@ -1093,3 +1026,64 @@ void lmcCore::showPortConflictMessage(void) {
 	msgBox.setDetailedText(detail.arg(lmcStrings::appName(), lmcStrings::appName()));
 	msgBox.exec();
 }
+
+void lmcCore::setAutoStart( bool on )
+{
+
+    // windows
+#ifdef Q_WS_WIN
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+        QSettings::NativeFormat);
+    if(on)
+        settings.setValue(IDA_TITLE, QDir::toNativeSeparators(QApplication::applicationFilePath()));
+    else
+        settings.remove(IDA_TITLE);
+#endif
+
+    // mac os x
+#ifdef Q_WS_MAC
+    Q_UNUSED(on);
+#endif
+
+    // x-windows (gtk? kde? ...)
+#ifdef Q_WS_X11
+    //  get the path of .desktop file
+    QString autoStartDir;
+    char* buffer = getenv("XDG_CONFIG_HOME");
+    if(buffer) {
+        autoStartDir = QString(buffer);
+        autoStartDir.append("/autostart");
+    } else {
+        buffer = getenv("HOME");
+        autoStartDir = QString(buffer);
+        autoStartDir.append("/.config/autostart");
+    }
+    QDir dir(autoStartDir);
+    QString fileName = dir.absoluteFilePath("lmc.desktop");
+    //	delete the file if autostart is set to false
+    if(!on) {
+        QFile::remove(fileName);
+        return;
+    }
+
+    if(!dir.exists())
+        dir.mkpath(dir.absolutePath());
+    QFile file(fileName);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        return;
+    QTextStream stream(&file);
+    stream.setCodec("UTF-8");
+    stream.setGenerateByteOrderMark(false);
+    stream << "[Desktop Entry]\n";
+    stream << "Encoding=UTF-8\n";
+    stream << "Type=Application\n";
+    stream << "Name=" << IDA_TITLE << "\n";
+    stream << "Comment=Send and receive instant messages\n";
+    stream << "Icon=lmc\n";
+    stream << "Exec=sh " << qApp->applicationDirPath() << "/lmc.sh\n";
+    stream << "Terminal=false\n";
+    file.close();
+#endif
+
+}
+
