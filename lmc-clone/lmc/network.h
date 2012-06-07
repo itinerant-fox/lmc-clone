@@ -32,8 +32,9 @@
 
 #include "trace.h"
 #include "crypto.h"
-#include "xmlmessage.h"
 #include "settings.h"
+#include "xmlmessage.h"
+
 #include "udpnetwork.h"
 #include "tcpnetwork.h"
 #include "webnetwork.h"

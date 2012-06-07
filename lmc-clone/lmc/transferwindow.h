@@ -36,13 +36,15 @@
 #include <QDesktopWidget>
 #include <QUrl>
 
+#include "settings.h"
+#include "xmlmessage.h"
+
 #include "ui_transferwindow.h"
 #include "shared.h"
-#include "settings.h"
 #include "stdlocation.h"
 #include "soundplayer.h"
-#include "xmlmessage.h"
 #include "settingsdialog.h"
+#include "netstreamer.h"
 
 class lmcTransferWindow : public QWidget
 {

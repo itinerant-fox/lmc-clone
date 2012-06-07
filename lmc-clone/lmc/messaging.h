@@ -25,16 +25,44 @@
 #ifndef MESSAGING_H
 #define MESSAGING_H
 
+#include <QtGlobal>
 #include <QObject>
 #include <QTimer>
-#include "shared.h"
-#include "message.h"
-#include "network.h"
-#include "settings.h"
+#include <QtGlobal>
+#include <QString>
+#include <QStringList>
+#include <QFile>
+#include <QUuid>
+#include <QHostInfo>
+
+#ifdef Q_WS_WIN
+  #include <windows.h>
+  #include <LMCons.h>
+#else
+  #include <stdlib.h>
+#endif
+
+#include "trace.h"
 #include "xmlmessage.h"
+#include "settings.h"
+
+#include "User.h"
+#include "Group.h"
+#include "network.h"
+#include "MessageHeader.h"
 
 
-struct PendingMsg {
+enum MessagHeaderMember
+{
+    MH_AppId = 0,
+    MH_Type,
+    MH_Id,
+    MH_UserId,
+    MH_Max
+};
+
+struct PendingMsg
+{
 	qint64 msgId;
 	bool active;
 	QDateTime timeStamp;
@@ -68,7 +96,8 @@ struct ReceivedMsg {
 	bool operator == (const ReceivedMsg& v) const { return ((this->msgId == v.msgId) && (this->userId.compare(v.userId) == 0)); }
 };
 
-class lmcMessaging : public QObject {
+class lmcMessaging : public QObject
+{
 	Q_OBJECT
 
 public:
@@ -100,7 +129,7 @@ signals:
 	void messageReceived(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
 	void connectionStateChanged(void);
 
-private slots:
+protected slots:
 	void receiveBroadcast(DatagramHeader* pHeader, QString* lpszData);
 	void receiveMessage(DatagramHeader* pHeader, QString* lpszData);
 	void receiveWebMessage(QString* lpszData);
@@ -133,6 +162,23 @@ protected:
 	void removeAllPendingMsg(QString* lpszUserId);
 	void checkPendingMsg(void);
 	void resendMessage(MessageType type, qint64 msgId, QString* lpszUserId, XmlMessage* pMessage);
+
+    QString addHeader( MessageType type, qint64 id, QString* lpszLocalId, QString* lpszPeerId, XmlMessage* pMessage);
+    bool getHeader( QString* lpszMessage, MessageHeader** ppHeader, XmlMessage** ppMessage );
+
+    int indexOf(const QString array[], int size, const QString& value);
+    int statusIndexFromCode(QString status);
+    QString formatSize(qint64 size);
+    QString getUuid(void);
+    QString getLogonName(void);
+    QString getHostName(void);
+    QString getOSName(void);
+    QString escapeDelimiter(QString* lpszData);
+    QString unescapeDelimiter(QString* lpszData);
+    int compareVersions(const QString& version1, const QString& version2);
+    QString boolToString(bool value);
+    bool stringToBool(const QString& value);
+    bool copyFile(const QString& source, const QString& destination);
 
 	lmcNetwork*			pNetwork;
 	lmcSettings*		pSettings;

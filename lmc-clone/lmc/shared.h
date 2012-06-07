@@ -25,6 +25,7 @@
 #ifndef SHARED_H
 #define SHARED_H
 
+#include <QtGlobal>
 #include <QString>
 #include <QDateTime>
 #include <QUuid>
@@ -37,31 +38,7 @@
 #endif
 
 #include "User.h"
-
 #include "Group.h"
-
-
-/****************************************************************************
-**	Datagram type definitions
-**	The enum and the string array should always be synced
-****************************************************************************/
-
-#include "datagram.h"
-
-struct MessageHeader
-{
-	MessageType type;
-	qint64 id;
-	QString userId;
-	QString address;
-
-    MessageHeader(MessageType mtType, qint64 nId, QString szUserId)
-    {
-		type = mtType;
-		id = nId;
-		userId = szUserId;
-	}
-};
 
 #include "Helper.h"
 

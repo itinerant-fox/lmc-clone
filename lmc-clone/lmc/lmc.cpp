@@ -26,15 +26,15 @@
 //----------------------------------------------------------------------------
 
 
-
 lmcCore::lmcCore(void)
 {
 
-    // messaging
+    // messaging, network
 	pMessaging = new lmcMessaging();
 	connect(pMessaging, SIGNAL(messageReceived(MessageType, QString*, XmlMessage*)), 
-		this, SLOT(receiveMessage(MessageType, QString*, XmlMessage*)));
-	connect(pMessaging, SIGNAL(connectionStateChanged()), this, SLOT(connectionStateChanged()));
+            this, SLOT(receiveMessage(MessageType, QString*, XmlMessage*)));
+    connect(pMessaging, SIGNAL(connectionStateChanged()),
+            this, SLOT(connectionStateChanged()));
 
     // main window
 	pMainWindow = new lmcMainWindow();

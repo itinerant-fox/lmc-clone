@@ -30,32 +30,6 @@
 
 #include "shared.h"
 #include "xmlmessage.h"
-
-enum MessagHeaderMember
-{
-	MH_AppId = 0,
-	MH_Type,
-	MH_Id,
-	MH_UserId,
-	MH_Max
-};
-
-class Message
-{
-public:
-    static QString addHeader( MessageType type,
-                              qint64 id,
-                              QString* lpszLocalId,
-                              QString* lpszPeerId,
-                              XmlMessage* pMessage);
-
-    static bool getHeader( QString* lpszMessage,
-                           MessageHeader** ppHeader,
-                           XmlMessage** ppMessage );
-
-private:
-	static QString escapeDelimiter(QString *lpszData);
-	static QString unescapeDelimiter(QString* lpszData);
-};
+#include "trace.h"
 
 #endif // MESSAGE_H

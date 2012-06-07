@@ -25,14 +25,15 @@
 #ifndef DATAGRAM_H
 #define DATAGRAM_H
 
-#include <cstddef>
 #include <QtGlobal>
 #include <QString>
 #include <QStringList>
 #include <QByteArray>
+#include <QtNetwork>
 #include <QDataStream>
 
-enum DatagramType {
+enum DatagramType
+{
     DT_None = 0,
     DT_Broadcast,
     DT_PublicKey,
@@ -55,28 +56,21 @@ struct DatagramHeader
     QString userId;
     QString address;
 
-    DatagramHeader(DatagramType dtType, QString szUserId, QString szAddress) {
+    DatagramHeader(DatagramType dtType, QString szUserId, QString szAddress)
+    {
         type = dtType;
         userId = szUserId;
         address = szAddress;
     }
 };
 
-const QString DatagramTypeNames[] = {
+const QString DatagramTypeNames[] =
+{
     "",
     "BRDCST",
     "PUBKEY",
     "HNDSHK",
     "MESSAG"
-};
-
-#include "Helper.h"
-
-namespace Datagram
-{
-    void addHeader( DatagramType type, QByteArray& baData );
-    bool getHeader( QByteArray& baDatagram, DatagramHeader** ppHeader );
-    QByteArray getData( QByteArray& baDatagram );
 };
 
 #endif // DATAGRAM_H

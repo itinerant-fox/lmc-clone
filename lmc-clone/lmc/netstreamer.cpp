@@ -22,9 +22,8 @@
 ****************************************************************************/
 
 
-#include <QDir>
-#include <QFileInfo>
-#include "trace.h"
+
+
 #include "netstreamer.h"
 
 const qint64 bufferSize = 65535;
@@ -182,8 +181,16 @@ void FileSender::sendFile(void) {
 FileReceiver::FileReceiver(void) {
 }
 
-FileReceiver::FileReceiver(QString szId, QString szPeerId, QString szFilePath, QString szFileName, 
-	qint64 nFileSize, QString szAddress, int nPort, FileType nType) {
+FileReceiver::FileReceiver(
+        QString szId,
+        QString szPeerId,
+        QString szFilePath,
+        QString szFileName,
+        qint64 nFileSize,
+        QString szAddress,
+        quint16 nPort,
+        FileType nType )
+{
 
 		id = szId;
 		peerId = szPeerId;
