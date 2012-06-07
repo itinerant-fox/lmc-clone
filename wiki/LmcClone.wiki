@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#lmc-clone
 
 = Introduction =
 
@@ -7,9 +7,9 @@ lmc-clone is derived from lmc project. Our goal is to create a simple messenger.
 
 = Details =
 
-  * windows-based platform
-  * gpl license
-  * we are still working, now...
+ * windows-based platform
+ * gpl license
+ * still working, now... 
 
 
 <wiki:comment>
