@@ -13,3 +13,7 @@
 
 = Linux =
   * i did not test yet.
+
+<wiki:comment>
+This text will be removed from the rendered page.
+</wiki:comment>
