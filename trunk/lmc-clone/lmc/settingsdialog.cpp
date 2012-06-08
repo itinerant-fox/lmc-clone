@@ -406,7 +406,8 @@ void lmcSettingsDialog::setPageHeaderStyle(QLabel* pLabel) {
     pLabel->setFont(font);
 }
 
-void lmcSettingsDialog::setUIText(void) {
+void lmcSettingsDialog::setUIText(void)
+{
 	ui.retranslateUi(this);
 
 	setWindowTitle(tr("Preferences"));
@@ -415,11 +416,13 @@ void lmcSettingsDialog::setUIText(void) {
 	ui.chkAutoShow->setText(ui.chkAutoShow->text().arg(lmcStrings::appName()));
 	ui.lblFinePrint->setText(ui.lblFinePrint->text().arg(lmcStrings::appName()));
 
-	if(!QSystemTrayIcon::isSystemTrayAvailable()) {
+    if(!QSystemTrayIcon::isSystemTrayAvailable())
+    {
 		ui.grpSysTray->setEnabled(false);
 		ui.grpSysTray->setTitle(tr("System Tray (Not Available)"));
 	}
-	if(!QSystemTrayIcon::supportsMessages()) {
+    if(!QSystemTrayIcon::supportsMessages())
+    {
 		ui.grpAlerts->setEnabled(false);
 		ui.grpAlerts->setTitle(tr("Status Alerts (Not Available)"));
 	}

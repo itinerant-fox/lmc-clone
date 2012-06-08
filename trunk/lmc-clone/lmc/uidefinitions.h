@@ -99,11 +99,15 @@ enum ItemDataRole
 const QString fontStyle[] = {"font-size:8.25pt;", "font-size:9pt;", "font-size:10.5pt;"};
 
 //	status image definitions
+
+    // image, png format
 #define IDR_AVAILABLE		":/images/status/online"
 #define IDR_AWAY			":/images/status/away"
 #define IDR_BUSY			":/images/status/busy"
 #define IDR_NODISTURB		":/images/status/nodisturb"
 #define IDR_OFFLINE			":/images/status/offline"
+
+    // icon
 #define IDR_AVAILABLE_BBL	":/icons/bubbles/online"
 #define IDR_AWAY_BBL		":/icons/bubbles/away"
 #define IDR_BUSY_BBL		":/icons/bubbles/busy"

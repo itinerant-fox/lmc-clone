@@ -56,16 +56,16 @@ void lmcStrings::retranslate(void)
 const QString lmcStrings::appName(void)
 {
 	if(m_appName.isEmpty())
-		m_appName = tr("LAN Messenger");
+        m_appName = tr("lmc-clone");
+
 	return m_appName;
 }
 
 const QString lmcStrings::appDesc(void)
 {
-	if(m_appDesc.isEmpty())
-        m_appDesc = tr("LAN Messenger is a free peer-to-peer messaging application for\n"\
-                       "intra-network communication and does not require a server.\n"\
-                       "LAN Messenger works on essentially every popular desktop platform.");
+    if ( m_appDesc.isEmpty() )
+        m_appDesc = tr("lmc-clone is a lan messaging application.");
+
 	return m_appDesc;
 }
 
@@ -78,7 +78,8 @@ const QString lmcStrings::autoConn(void)
 
 const QStringList lmcStrings::fontSize(void)
 {
-	if(m_fontSize.isEmpty()) {
+    if(m_fontSize.isEmpty())
+    {
 		m_fontSize.append(tr("Small text"));
 		m_fontSize.append(tr("Medium text"));
 		m_fontSize.append(tr("Large text"));
@@ -87,7 +88,8 @@ const QStringList lmcStrings::fontSize(void)
 }
 
 const QStringList lmcStrings::statusDesc(void) {
-	if(m_statusDesc.isEmpty()) {
+    if(m_statusDesc.isEmpty())
+    {
 		m_statusDesc.append(tr("Available"));
 		m_statusDesc.append(tr("Busy"));
 		m_statusDesc.append(tr("Do Not Disturb"));

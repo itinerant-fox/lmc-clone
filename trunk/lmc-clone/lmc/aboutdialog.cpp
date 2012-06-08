@@ -67,7 +67,8 @@ void lmcAboutDialog::changeEvent(QEvent* pEvent) {
 	QDialog::changeEvent(pEvent);
 }
 
-void lmcAboutDialog::setUIText(void) {
+void lmcAboutDialog::setUIText(void)
+{
 	ui.retranslateUi(this);
 
 	QString title = tr("About %1");
@@ -77,18 +78,26 @@ void lmcAboutDialog::setUIText(void) {
 	ui.lblLogoSmall->setPixmap(QPixmap(IDR_LOGOSMALL));
 
 	QString description(lmcStrings::appDesc() + "\n\n");
-	description.append(IDA_COPYRIGHT "\n" IDA_DOMAIN);
-	ui.lblDescription->setText(description);
+    ui.lblDescription->setText(description);
+
+    // QString strCopyRight = IDA_COPYRIGHT;
+    // description.append(IDA_COPYRIGHT "\n" IDA_DOMAIN);
+    // description.append( strCopyRight + QString("\n") + QString( IDA_DOMAIN ) );
+    // ui.lblDescription->setText(description);
 
 	QFile thanks(IDR_THANKSTEXT);
-	if(thanks.open(QIODevice::ReadOnly)) {
+    if(thanks.open(QIODevice::ReadOnly))
+    {
 		ui.txtThanks->setPlainText(QString(thanks.readAll().constData()));
 		thanks.close();
 	}
 
 	QFile license(IDR_LICENSETEXT);
-	if(license.open(QIODevice::ReadOnly)) {
+    if(license.open(QIODevice::ReadOnly))
+    {
 		ui.txtLicense->setPlainText(QString(license.readAll().constData()));
 		license.close();
 	}
+
+
 }

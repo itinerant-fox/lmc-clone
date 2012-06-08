@@ -160,21 +160,28 @@ void lmcUdpNetwork::sendDatagram(QHostAddress remoteAddress, QByteArray& datagra
 	pUdpSender->writeDatagram(datagram.data(), datagram.size(), remoteAddress, nUdpPort);
 }
 
-bool lmcUdpNetwork::startReceiving(void) {
-    lmctrace("Binding UDP listener to port " + QString::number(nUdpPort));
+bool lmcUdpNetwork::startReceiving(void)
+{
+    lmctrace( "Binding UDP listener to port " + QString::number(nUdpPort) );
 
-    if(pUdpReceiver->bind(nUdpPort)) {
-        lmctrace("Success");
-        lmctrace("Joining multicast group " + multicastAddress.toString() +
-			" on interface " + multicastInterface.humanReadableName());
-		bool joined = pUdpReceiver->joinMulticastGroup(multicastAddress, multicastInterface);
-        lmctrace((joined ? "Success" : "Failed"));
-		connect(pUdpReceiver, SIGNAL(readyRead()), this, SLOT(processPendingDatagrams()));
-		return true;
-	}
+    if ( ! pUdpReceiver->bind( nUdpPort ) )
+    {
+        lmctrace("Failed");
+        return false;
+    }
 
-    lmctrace("Failed");
-	return false;
+    lmctrace("Success");
+    lmctrace("Joining multicast group " + multicastAddress.toString() +
+        " on interface " + multicastInterface.humanReadableName());
+
+    bool joined = pUdpReceiver->joinMulticastGroup(multicastAddress, multicastInterface);
+
+    lmctrace((joined ? "Success" : "Failed"));
+
+    connect( pUdpReceiver, SIGNAL(readyRead()),
+             this, SLOT(processPendingDatagrams()) );
+
+    return true;
 }
 
 void lmcUdpNetwork::parseDatagram(QString* lpszAddress, QByteArray& baDatagram) {

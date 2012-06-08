@@ -139,21 +139,26 @@ void lmcMessaging::setLoopback(bool on) {
 	loopback = on;
 }
 
-User* lmcMessaging::getUser(QString* id) {
+User* lmcMessaging::getUser(QString* id)
+{
 	for(int index = 0; index < userList.count(); index++)
-		if(userList[index].id.compare(*id) == 0)
+    {
+        if ( userList[index].id.compare(*id) == 0 )
 			return &userList[index];
+    }
 
 	return NULL;
 }
 
-void lmcMessaging::settingsChanged(void) {
+void lmcMessaging::settingsChanged(void)
+{
 	nTimeout = pSettings->value(IDS_TIMEOUT, IDS_TIMEOUT_VAL).toInt() * 1000;
 	nMaxRetry = pSettings->value(IDS_MAXRETRIES, IDS_MAXRETRIES_VAL).toInt();
 	pNetwork->settingsChanged();
 
 	QString userName = getUserName();
-	if(localUser->name.compare(userName) != 0) {
+    if ( localUser->name.compare(userName) != 0 )
+    {
 		localUser->name = userName;
 		XmlMessage xmlMessage;
 		xmlMessage.addData(XN_NAME, userName);

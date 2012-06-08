@@ -177,7 +177,7 @@ void lmcMainWindow::addUser(User* pUser) {
 		pItem->setToolTip(0, lmcStrings::statusDesc()[index]);
 	
 	if(index != -1)
-		pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
+        pItem->setIcon(0, QIcon(QPixmap( statusPic[index], "PNG" ) ));
 
 	lmcUserTreeWidgetGroupItem* pGroupItem = (lmcUserTreeWidgetGroupItem*)getGroupItem(&pUser->group);
 	pGroupItem->addChild(pItem);
@@ -665,38 +665,61 @@ void lmcMainWindow::txtNote_lostFocus(void) {
 	sendMessage(MT_Note, NULL, &note);
 }
 
-void lmcMainWindow::createMainMenu(void) {
+void lmcMainWindow::createMainMenu(void)
+{
 	pMainMenu = new QMenuBar(this);
+
 	pFileMenu = pMainMenu->addMenu("&Messenger");
+
 	chatRoomAction = pFileMenu->addAction("&New Chat Room", this,
 		SLOT(chatRoomAction_triggered()), QKeySequence::New);
+
 	publicChatAction = pFileMenu->addAction(QIcon(QPixmap(IDR_CHATROOM, "PNG")), "&Public Chat",
 		this, SLOT(publicChatAction_triggered()));
+
 	pFileMenu->addSeparator();
+
 	refreshAction = pFileMenu->addAction(QIcon(QPixmap(IDR_REFRESH, "PNG")), "&Refresh contacts list", 
 		this, SLOT(refreshAction_triggered()), QKeySequence::Refresh);
+
 	pFileMenu->addSeparator();
+
 	exitAction = pFileMenu->addAction(QIcon(QPixmap(IDR_CLOSE, "PNG")), "E&xit", 
 		this, SLOT(trayExitAction_triggered()));
+
 	pToolsMenu = pMainMenu->addMenu("&Tools");
+
 	historyAction = pToolsMenu->addAction(QIcon(QPixmap(IDR_HISTORY, "PNG")), "&History", 
 		this, SLOT(trayHistoryAction_triggered()), QKeySequence(Qt::CTRL + Qt::Key_H));
+
 	transferAction = pToolsMenu->addAction(QIcon(QPixmap(IDR_TRANSFER, "PNG")), "File &Transfers", 
 		this, SLOT(trayFileAction_triggered()), QKeySequence(Qt::CTRL + Qt::Key_J));
+
 	pToolsMenu->addSeparator();
+
 	settingsAction = pToolsMenu->addAction(QIcon(QPixmap(IDR_TOOLS, "PNG")), "&Preferences", 
 		this, SLOT(traySettingsAction_triggered()), QKeySequence::Preferences);
+
 	pHelpMenu = pMainMenu->addMenu("&Help");
+
 	helpAction = pHelpMenu->addAction(QIcon(QPixmap(IDR_QUESTION, "PNG")), "&Help",
 		this, SLOT(helpAction_triggered()), QKeySequence::HelpContents);
+
 	pHelpMenu->addSeparator();
-	QString text = "%1 &online";
-	onlineAction = pHelpMenu->addAction(QIcon(QPixmap(IDR_WEB, "PNG")), text.arg(lmcStrings::appName()), 
-		this, SLOT(homePageAction_triggered()));
-	updateAction = pHelpMenu->addAction("Check for &Updates", this, SLOT(updateAction_triggered()));
-	aboutAction = pHelpMenu->addAction(QIcon(QPixmap(IDR_INFO, "PNG")), "&About", this, SLOT(trayAboutAction_triggered()));
+
+    // QString text = "%1 &online";
+    // onlineAction = pHelpMenu->addAction(
+    //    QIcon(QPixmap(IDR_WEB, "PNG")), text.arg(lmcStrings::appName()),
+    //    this, SLOT(homePageAction_triggered()) );
+
+    // updateAction = pHelpMenu->addAction( "Check for &Updates",
+    //                                    this, SLOT(updateAction_triggered()));
+
+    aboutAction = pHelpMenu->addAction( QIcon(QPixmap(IDR_INFO, "PNG")), "&About",
+                                       this, SLOT(trayAboutAction_triggered()));
 
 	layout()->setMenuBar(pMainMenu);
+
 }
 
 void lmcMainWindow::createTrayMenu(void) {
@@ -839,11 +862,11 @@ void lmcMainWindow::setUIText(void) {
 	settingsAction->setText(tr("&Preferences"));
 	pHelpMenu->setTitle(tr("&Help"));
 	helpAction->setText(tr("&Help"));
-	QString text = tr("%1 &online");
-	onlineAction->setText(text.arg(lmcStrings::appName()));
-	updateAction->setText(tr("Check for &Updates..."));
+    // QString text = tr("%1 &online");
+    // onlineAction->setText(text.arg(lmcStrings::appName()));
+    // updateAction->setText(tr("Check for &Updates..."));
 	aboutAction->setText(tr("&About"));
-	text = tr("&Show %1");
+    QString text = tr("&Show %1");
 	trayShowAction->setText(text.arg(lmcStrings::appName()));
 	trayStatusAction->setText(tr("&Change Status"));
 	trayHistoryAction->setText(tr("&History"));
@@ -913,7 +936,8 @@ void lmcMainWindow::initGroups(QList<Group>* pGroupList) {
 	pSettings->endArray();
 }
 
-void lmcMainWindow::updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus) {
+void lmcMainWindow::updateStatusImage(QTreeWidgetItem* pItem, QString* lpszStatus)
+{
 	int index = Helper::statusIndexFromCode(*lpszStatus);
 	if(index != -1)
 		pItem->setIcon(0, QIcon(QPixmap(statusPic[index], "PNG")));
