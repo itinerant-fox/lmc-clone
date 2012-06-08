@@ -59,6 +59,7 @@ public:
                FileType nType);
 	~FileSender(void);
 
+public:
 	void init(void);
 	void stop(void);
 
@@ -73,15 +74,14 @@ signals:
                           QString* lpszUserId,
                           QString* lpszData );
 
-private slots:
+protected slots:
 	void connected(void);
 	void disconnected(void);
 	void readyRead(void);
 	void bytesWritten(qint64 bytes);
 	void timer_timeout(void);
 
-private:
-
+protected:
 	void sendFile(void);
 
 	QString peerId;

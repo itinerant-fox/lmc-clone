@@ -34,7 +34,6 @@
 #include <QUrl>
 
 #include "xmlmessage.h"
-
 #include "MessageType.h"
 
 class lmcWebNetwork : public QObject

@@ -123,8 +123,6 @@ include( lmcapp/lmcapp.pri )
 
 include( crypto/crypto.pri )
 
-include( xmlmessage/xmlmessage.pri )
-
 include( settings/settings.pri )
 
 include( messaging/messaging.pri )

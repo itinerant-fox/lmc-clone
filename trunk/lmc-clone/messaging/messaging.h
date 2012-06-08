@@ -33,6 +33,7 @@
 #include <QStringList>
 #include <QFile>
 #include <QMap>
+#include <QList>
 #include <QUuid>
 #include <QHostInfo>
 
@@ -52,9 +53,9 @@
 #endif
 
 #include "trace.h"
-#include "xmlmessage.h"
 #include "settings.h"
 
+#include "xmlmessage.h"
 #include "User.h"
 #include "Group.h"
 #include "StatusType.h"
@@ -63,12 +64,8 @@
 #include "ReceivedMsg.h"
 #include "MessagHeaderMember.h"
 #include "MessageType.h"
-
-//////////////////////////////////////
-
 #include "MessageHeader.h"
 #include "PendingMsg.h"
-
 #include "network.h"
 
 class lmcMessaging : public QObject

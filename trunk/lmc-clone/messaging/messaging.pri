@@ -1,7 +1,5 @@
 #-----------------------------------------------------------------------------
-#
-# messaging.pri
-#
+#   messaging.pri
 #-----------------------------------------------------------------------------
 
 INCLUDEPATH += \
@@ -27,7 +25,8 @@ HEADERS += \
     messaging/tcpnetwork.h \
     messaging/udpnetwork.h \
     messaging/User.h \
-    messaging/webnetwork.h
+    messaging/webnetwork.h \
+    messaging/xmlmessage.h
 
 SOURCES += \
     messaging/messaging.cpp \
@@ -37,6 +36,6 @@ SOURCES += \
     messaging/udpnetwork.cpp \
     messaging/webnetwork.cpp \
     messaging/User.cpp \
-    messaging/Group.cpp
-
+    messaging/Group.cpp \
+    messaging/xmlmessage.cpp
 

@@ -39,33 +39,45 @@ lmcUdpNetwork::lmcUdpNetwork(void)
 	broadcastList.clear();
 }
 
-lmcUdpNetwork::~lmcUdpNetwork(void) {
+lmcUdpNetwork::~lmcUdpNetwork(void)
+{
 }
 
 void lmcUdpNetwork::init(int nPort)
 {
+
     pSettings = new lmcSettings();
+
 	nUdpPort = nPort > 0 ? nPort : pSettings->value(IDS_UDPPORT, IDS_UDPPORT_VAL).toInt();
+
 	multicastAddress = QHostAddress(pSettings->value(IDS_MULTICAST, IDS_MULTICAST_VAL).toString());
+
 	int size = pSettings->beginReadArray(IDS_BROADCASTHDR);
-	for(int index = 0; index < size; index++) {
+    for(int index = 0; index < size; index++)
+    {
 		pSettings->setArrayIndex(index);
 		QHostAddress address = QHostAddress(pSettings->value(IDS_BROADCAST).toString());
 		if(!broadcastList.contains(address))
 			broadcastList.append(address);
 	}
 	pSettings->endArray();
+
 }
 
-void lmcUdpNetwork::start(void) {
+void lmcUdpNetwork::start(void)
+{
 	//	start receiving datagrams
 	canReceive = startReceiving();
 	isRunning = true;
 }
 
-void lmcUdpNetwork::stop(void) {
-	disconnect(pUdpReceiver, SIGNAL(readyRead()), this, SLOT(processPendingDatagrams()));
-	if(pUdpReceiver->state() == QAbstractSocket::BoundState) {
+void lmcUdpNetwork::stop(void)
+{
+    disconnect(pUdpReceiver, SIGNAL(readyRead()),
+               this, SLOT(processPendingDatagrams()));
+
+    if(pUdpReceiver->state() == QAbstractSocket::BoundState)
+    {
         lmctrace("Leaving multicast group " + multicastAddress.toString() + " on interface " +
 			multicastInterface.humanReadableName());
 		bool left = pUdpReceiver->leaveMulticastGroup(multicastAddress, multicastInterface);
