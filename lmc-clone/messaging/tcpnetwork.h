@@ -33,9 +33,9 @@
 
 #include "trace.h"
 #include "crypto.h"
-#include "xmlmessage.h"
 #include "settings.h"
 
+#include "xmlmessage.h"
 #include "datagram.h"
 #include "netstreamer.h"
 
