@@ -48,7 +48,6 @@
 #include "xmlmessage.h"
 
 #include "stdlocation.h"
-// #include "shared.h"
 #include "MessageType.h"
 #include "netstreamer.h"
 #include "ui_mainwindow.h"

@@ -101,8 +101,10 @@ void lmcChatWindow::init(User* pLocalUser, User* pRemoteUser, bool connected) {
 		showStatus(IT_Disconnected, true);
 
 	int index = Helper::statusIndexFromCode(pRemoteUser->status);
-	if(index != -1) {
-		setWindowIcon(QIcon(bubblePic[index]));
+    if(index != -1)
+    {
+        setWindowIcon( QIcon( bubblePic[index]  ) );
+
 		if(statusType[index] == StatusTypeOffline)
 			showStatus(IT_Offline, true);
 		else if(statusType[index] == StatusTypeAway)
@@ -151,7 +153,11 @@ void lmcChatWindow::stop(void) {
 	}
 }
 
-void lmcChatWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage) {
+void lmcChatWindow::receiveMessage(
+        MessageType type,
+        QString* lpszUserId,
+        XmlMessage* pMessage)
+{
 	QString title;
 	int statusIndex;
 
@@ -160,7 +166,9 @@ void lmcChatWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMes
 	QString senderName = lpszUserId ? peerNames.value(senderId) : localName;
 	QString data;
 
-	switch(type) {
+    switch(type)
+    {
+
 	case MT_Message:
 		appendMessageLog(type, lpszUserId, &senderName, pMessage);
 		if(isHidden() || !isActiveWindow()) {
@@ -169,6 +177,7 @@ void lmcChatWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMes
 			setWindowTitle(title.arg(senderName));
 		}
 		break;
+
 	case MT_Broadcast:
 		appendMessageLog(type, lpszUserId, &senderName, pMessage);
 		if(isHidden() || !isActiveWindow()) {
@@ -177,37 +186,47 @@ void lmcChatWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMes
 			setWindowTitle(title.arg(senderName));
 		}
 		break;
+
 	case MT_ChatState:
 		appendMessageLog(type, lpszUserId, &senderName, pMessage);
 		break;
+
 	case MT_Status:
 		data = pMessage->data(XN_STATUS);
 		statusIndex = Helper::statusIndexFromCode(data);
-		if(statusIndex != -1) {
-			setWindowIcon(QIcon(bubblePic[statusIndex]));
+        if(statusIndex != -1)
+        {
+            setWindowIcon( QIcon(bubblePic[statusIndex]) );
+
 			statusType[statusIndex] == StatusTypeOffline ? showStatus(IT_Offline, true) : showStatus(IT_Offline, false);
 			statusType[statusIndex] == StatusTypeBusy ? showStatus(IT_Busy, true) : showStatus(IT_Busy, false);
 			statusType[statusIndex] == StatusTypeAway ? showStatus(IT_Away, true) : showStatus(IT_Away, false);
-			peerStatuses.insert(senderId, data);
-		}
+
+            peerStatuses.insert(senderId, data);
+        }
 		break;
+
 	case MT_LocalAvatar:
 		data = pMessage->data(XN_FILEPATH);
 		// this message may come with or without user id. NULL user id means avatar change
 		// by local user, while non NULL user id means avatar change by a peer.
 		pMessageLog->updateAvatar(&senderId, &data);
 		break;
+
 	case MT_UserName:
 		data = pMessage->data(XN_NAME);
 		if(peerNames.contains(senderId))
 			peerNames.insert(senderId, data);
-		pMessageLog->updateUserName(&senderId, &data);
+        pMessageLog->updateUserName(&senderId, &data);
 		break;
+
 	case MT_Failed:
-		appendMessageLog(type, lpszUserId, &senderName, pMessage);
+        appendMessageLog( type, lpszUserId, &senderName, pMessage );
 		break;
+
 	case MT_File:
-		if(pMessage->data(XN_FILEOP) == FileOpNames[FO_Request]) {
+        if ( pMessage->data(XN_FILEOP) == FileOpNames[FO_Request] )
+        {
 			//	a file request has been received
 			appendMessageLog(type, lpszUserId, &senderName, pMessage);
 			if(isHidden() || !isActiveWindow()) {
@@ -220,8 +239,10 @@ void lmcChatWindow::receiveMessage(MessageType type, QString* lpszUserId, XmlMes
 			processFileOp(pMessage);
 		}
 		break;
+
 	case MT_LocalFile:
-		if(pMessage->data(XN_FILEOP) == FileOpNames[FO_Request]) {
+        if(pMessage->data(XN_FILEOP) == FileOpNames[FO_Request])
+        {
 			data = pMessage->data(XN_FILEPATH);
 			sendFile(&data);
 		}

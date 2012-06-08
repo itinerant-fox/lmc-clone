@@ -25,7 +25,6 @@
 
 //----------------------------------------------------------------------------
 
-
 lmcCore::lmcCore(void)
 {
 
@@ -89,19 +88,27 @@ void lmcCore::init(const QString& szCommandArgs)
 	arguments = arguments.toSet().toList();
 
 	pInitParams = new XmlMessage();
-	if(arguments.contains("/silent", Qt::CaseInsensitive))
+
+    if ( arguments.contains("/silent", Qt::CaseInsensitive) )
         pInitParams->addData(XN_SILENTMODE, "true" );
-	if(arguments.contains("/trace", Qt::CaseInsensitive)) {
-        pInitParams->addData(XN_TRACEMODE, "true" );
-		pInitParams->addData(XN_LOGFILE, StdLocation::freeLogFile());
+
+    if ( arguments.contains("/trace", Qt::CaseInsensitive) )
+    {
+        pInitParams->addData( XN_TRACEMODE, "true" );
+        pInitParams->addData( XN_LOGFILE, StdLocation::freeLogFile() );
 	}
-	for(int index = 0; index < arguments.count(); index++) {
-		if(arguments.at(index).startsWith("/port=", Qt::CaseInsensitive)) {
+
+    for ( int index = 0; index < arguments.count(); index++ )
+    {
+        if ( arguments.at(index).startsWith("/port=", Qt::CaseInsensitive) )
+        {
 			QString port = arguments.at(index).mid(QString("/port=").length());
 			pInitParams->addData(XN_PORT, port);
 			continue;
 		}
-		if(arguments.at(index).startsWith("/config=", Qt::CaseInsensitive)) {
+
+        if(arguments.at(index).startsWith("/config=", Qt::CaseInsensitive))
+        {
 			QString configFile = arguments.at(index).mid(QString("/config=").length());
 			pInitParams->addData(XN_CONFIG, configFile);
 			continue;
@@ -143,7 +150,8 @@ bool lmcCore::start(void)
 
 	pMessaging->start();
 
-	if(pMessaging->isConnected() && !pMessaging->canReceive()) {
+    if ( pMessaging->isConnected() && !pMessaging->canReceive() )
+    {
 		showPortConflictMessage();
 		//	stop the application
 		stop();
@@ -392,7 +400,8 @@ void lmcCore::sendMessage(MessageType type, QString* lpszUserId, XmlMessage* pMe
 	}
 }
 
-void lmcCore::receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage) {
+void lmcCore::receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage)
+{
 	processMessage(type, lpszUserId, pMessage);
 }
 
@@ -602,17 +611,24 @@ void lmcCore::chatRoomWindow_closed(QString* lpszThreadId) {
 	}
 }
 
-void lmcCore::processMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage) {
-	switch(type) {
+// process message that is receive from a peer node.
+void lmcCore::processMessage( MessageType type, QString* lpszUserId, XmlMessage* pMessage )
+{
+
+    switch( type ) // it depends on the type of messages.
+    {
+
 	case MT_Announce:
 		pMainWindow->addUser(pMessaging->getUser(lpszUserId));
 		processPublicMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_Depart:
 		pMainWindow->removeUser(lpszUserId);
 		processPublicMessage(type, lpszUserId, pMessage);
 		routeGroupMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_Status:
 	case MT_UserName:
 	case MT_Note:
@@ -621,35 +637,46 @@ void lmcCore::processMessage(MessageType type, QString* lpszUserId, XmlMessage* 
 		routeMessage(type, lpszUserId, pMessage);
 		routeGroupMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_Avatar:
 		pMainWindow->receiveMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_Message:
 		routeMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_GroupMessage:
 		routeGroupMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_PublicMessage:
 		processPublicMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_Broadcast:
 		routeMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_Failed:
 		routeMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_Error:
 		break;
+
 	case MT_Query:
 		showUserInfo(pMessage);
 		break;
+
 	case MT_ChatState:
 		routeMessage(type, lpszUserId, pMessage);
 		break;
+
 	case MT_File:
         processFile(type, lpszUserId, pMessage);
 		break;
+
 	case MT_Version:
 	case MT_WebFailed:
 		pUpdateWindow->receiveMessage(type, lpszUserId, pMessage);
@@ -657,6 +684,7 @@ void lmcCore::processMessage(MessageType type, QString* lpszUserId, XmlMessage* 
     default:
         break;
 	}
+
 }
 
 void lmcCore::processFile(MessageType type, QString *lpszUserId, XmlMessage* pMessage) {
@@ -1019,7 +1047,7 @@ void lmcCore::showPortConflictMessage(void)
 	QMessageBox msgBox;
 	msgBox.setWindowTitle(lmcStrings::appName());
 	msgBox.setWindowIcon(QIcon(IDR_APPICON));
-	msgBox.setIcon(QMessageBox::Critical);
+    msgBox.setIcon( QMessageBox::Critical );
 	QString msg = tr("A port address conflict has been detected. %1 will close now.");
 	msgBox.setText(msg.arg(lmcStrings::appName()));
 	QString detail = tr("%1 cannot start because another application is using the port "\

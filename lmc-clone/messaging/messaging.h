@@ -81,18 +81,21 @@ public:
 	void start(void);
 	void update(void);
 	void stop(void);
-	bool isConnected(void);
+
+    bool isConnected(void);
 	bool canReceive(void);
 	void setLoopback(bool on);
+    void settingsChanged(void);
+
 	User* getUser(QString* lpszUserId);
+    int userCount(void);
+    void updateGroup(GroupOp op, QVariant value1, QVariant value2);
+    void updateGroupMap(QString oldGroup, QString newGroup);
+    void saveGroups(void);
+
 	void sendBroadcast(MessageType type, XmlMessage* pMessage);
 	void sendMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
 	void sendWebMessage(MessageType type, XmlMessage* pMessage);
-	void settingsChanged(void);
-	void updateGroup(GroupOp op, QVariant value1, QVariant value2);
-	void updateGroupMap(QString oldGroup, QString newGroup);
-	void saveGroups(void);
-	int userCount(void);
 
 	User* localUser;
 	QList<User> userList;

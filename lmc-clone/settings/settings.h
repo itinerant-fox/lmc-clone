@@ -133,9 +133,9 @@
 #define IDS_MULTICAST			"Connection/Multicast"
 #define IDS_MULTICAST_VAL		"239.255.100.100"
 #define IDS_UDPPORT				"Connection/UDPPort"
-#define IDS_UDPPORT_VAL			50000
+#define IDS_UDPPORT_VAL			60000 // note: 50000 is a default port of lmc
 #define IDS_TCPPORT				"Connection/TCPPort"
-#define IDS_TCPPORT_VAL			50000
+#define IDS_TCPPORT_VAL			60000 // note: 50000 is a default port of lmc
 #define IDS_AUTOFILE			"FileTransfer/AutoFile"
 #define IDS_AUTOFILE_VAL		false
 #define	IDS_AUTOSHOWFILE		"FileTransfer/AutoShow"
