@@ -34,8 +34,6 @@
 #include <QColorDialog>
 #include <QFile>
 #include <QTextStream>
-#include <QWebFrame>
-#include <QWebElement>
 #include <QEvent.h>
 
 #include "settings.h"

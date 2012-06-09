@@ -36,6 +36,8 @@
 #include <QFont>
 #include <QColor>
 #include <QAction>
+
+// webkit
 #include <QWebView>
 #include <QWebFrame>
 #include <QWebElement>
@@ -61,8 +63,11 @@ public:
 
 public:
 	void initMessageLog(QString themePath, bool clearLog = true);
-	void appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage,
-		bool bReload = false);
+    void appendMessageLog(MessageType type,
+                          QString* lpszUserId,
+                          QString* lpszUserName,
+                          XmlMessage* pMessage,
+                          bool bReload = false);
 	void updateFileMessage(FileMode mode, FileOp op, QString fileId);
 	void updateUserName(QString* lpszUserId, QString* lpszUserName);
 	void updateAvatar(QString* lpszUserId, QString* lpszFilePath);
