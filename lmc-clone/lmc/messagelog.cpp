@@ -26,7 +26,10 @@
 #include <QAction>
 #include "messagelog.h"
 
-lmcMessageLog::lmcMessageLog(QWidget *parent) : QWebView(parent) {
+lmcMessageLog::lmcMessageLog(QWidget *parent)
+    : QWebView(parent)
+{
+
 	connect(this, SIGNAL(linkClicked(QUrl)), this, SLOT(log_linkClicked(QUrl)));
 	connect(this->page()->mainFrame(), SIGNAL(contentsSizeChanged(QSize)),
 			this, SLOT(log_contentsSizeChanged(QSize)));
@@ -56,10 +59,13 @@ lmcMessageLog::lmcMessageLog(QWidget *parent) : QWebView(parent) {
 	autoScroll = true;
 }
 
-lmcMessageLog::~lmcMessageLog() {
+lmcMessageLog::~lmcMessageLog()
+{
 }
 
-void lmcMessageLog::initMessageLog(QString themePath, bool clearLog) {
+void lmcMessageLog::initMessageLog( QString themePath,
+                                    bool clearLog )
+{
 	if(clearLog)
 		messageLog.clear();
 	lastId = QString::null;
@@ -88,8 +94,13 @@ void lmcMessageLog::createContextMenu(void) {
 	setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
-void lmcMessageLog::appendMessageLog(MessageType type, QString* lpszUserId, QString* lpszUserName, XmlMessage* pMessage,
-		bool bReload) {
+void lmcMessageLog::appendMessageLog(
+        MessageType type,
+        QString* lpszUserId,
+        QString* lpszUserName,
+        XmlMessage* pMessage,
+        bool bReload)
+{
 
 	if(!pMessage && type != MT_Error)
 		return;
@@ -248,7 +259,8 @@ void lmcMessageLog::reloadMessageLog(void) {
 	}
 }
 
-QString lmcMessageLog::prepareMessageLogForSave(OutputFormat format) {
+QString lmcMessageLog::prepareMessageLogForSave(OutputFormat format)
+{
 	QDateTime time;
 
 	if(format == HtmlFormat) {
