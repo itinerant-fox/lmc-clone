@@ -201,3 +201,10 @@ QByteArray lmcCrypto::decrypt(QString* lpszUserId, QByteArray& cipherData)
 }
 
 //-----------------------------------------------------------------------------
+
+QByteArray lmcCrypto::getPublicKey()
+{
+    return publicKey;
+}
+
+//-----------------------------------------------------------------------------

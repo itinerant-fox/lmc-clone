@@ -27,12 +27,14 @@
 
 #include "stdlocation.h"
 
-struct Theme {
+struct Theme
+{
 	QString name;
 	QString path;
 
 	Theme() {}
-	Theme(QString szName, QString szPath) {
+    Theme(QString szName, QString szPath)
+    {
 		name = szName;
 		path = szPath;
 	}
@@ -41,7 +43,8 @@ struct Theme {
 
 typedef QList<Theme> Themes;
 
-struct ThemeData {
+struct ThemeData
+{
 	QString themePath;
 	QString document;
 	QString inMsg;

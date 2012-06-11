@@ -253,30 +253,34 @@ void lmcTcpNetwork::receiveMessage( QString* lpszUserId,
     QByteArray clearData;
 	QString szMessage;
 
-    lmctrace("TCP stream type " + QString::number(pHeader->type) +
-					" received from user " + *lpszUserId + " at " + *lpszAddress);
+    lmctrace( "TCP stream type " + QString::number(pHeader->type) + " received from user " + *lpszUserId + " at " + *lpszAddress );
 
     switch( pHeader->type )
     {
+
 	case DT_PublicKey:
 		//	send a session key back
 		sendSessionKey(lpszUserId, cipherData);
 		break;
+
 	case DT_Handshake:
 		// decrypt aes key and iv with private key
 		crypto->retreiveAES(&pHeader->userId, cipherData);
 		emit newConnection(&pHeader->userId, &pHeader->address);
 		break;
+
 	case DT_Message:
 		// decrypt message with aes
         clearData = crypto->decrypt(&pHeader->userId, cipherData);
-		if(clearData.isEmpty()) {
+        if(clearData.isEmpty())
+        {
             lmctrace("Warning: Message could not be retrieved");
 			break;
 		}
 		szMessage = QString::fromUtf8(clearData.data(), clearData.length());
 		emit messageReceived(pHeader, &szMessage);
 		break;
+
     default:
         break;
 	}
@@ -307,8 +311,9 @@ void lmcTcpNetwork::sendPublicKey(QString* lpszUserId)
 {
     lmctrace("Sending public key to user " + *lpszUserId);
 	MsgStream* msgStream = messageMap.value(*lpszUserId);
-	if(msgStream) {
-		QByteArray publicKey = crypto->publicKey;
+    if(msgStream)
+    {
+        QByteArray publicKey = crypto->getPublicKey();
 		QString sh = DatagramTypeNames[DT_PublicKey];
           addHeader(DT_PublicKey, publicKey);
 		msgStream->sendMessage(publicKey);

@@ -64,10 +64,12 @@ public:
 	void init(User* pLocalUser, bool connected, QString thread = QString::null);
 	void show(void);
 	void stop(void);
+
 	void addUser(User* pUser);
 	void updateUser(User* pUser);
-	void removeUser(QString* lpszUserId);
-	void receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
+    void removeUser(QString* lpszUserId);
+
+    void receiveMessage(MessageType type, QString* lpszUserId, XmlMessage* pMessage);
 	void connectionStateChanged(bool connected);
 	void settingsChanged(void);
 	void selectContacts(QStringList* selectedContacts);
@@ -86,7 +88,7 @@ protected:
 	void changeEvent(QEvent* pEvent);
 	void closeEvent(QCloseEvent* pEvent);
 
-private slots:
+protected slots:
 	void userConversationAction_triggered(void);
 	void userFileAction_triggered(void);
 	void userInfoAction_triggered(void);
@@ -99,7 +101,7 @@ private slots:
 	void tvUserList_itemActivated(QTreeWidgetItem* pItem, int column);
 	void tvUserList_itemContextMenu(QTreeWidgetItem* pItem, QPoint& pos);
 
-private:
+protected:
 	void createUserMenu(void);
 	void createSmileyMenu(void);
 	void createToolBar(void);

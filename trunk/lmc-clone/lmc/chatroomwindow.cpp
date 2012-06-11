@@ -26,12 +26,16 @@
 
 QString GroupId = "PARTICIPANTS";
 
-lmcChatRoomWindow::lmcChatRoomWindow(QWidget *parent) : QWidget(parent) {
+lmcChatRoomWindow::lmcChatRoomWindow(QWidget *parent)
+    : QWidget(parent)
+{
 	ui.setupUi(this);
+
 	setAcceptDrops(true);
 
 	connect(ui.tvUserList, SIGNAL(itemActivated(QTreeWidgetItem*, int)),
 		this, SLOT(tvUserList_itemActivated(QTreeWidgetItem*, int)));
+
 	connect(ui.tvUserList, SIGNAL(itemContextMenu(QTreeWidgetItem*, QPoint&)),
 		this, SLOT(tvUserList_itemContextMenu(QTreeWidgetItem*, QPoint&)));
 
@@ -66,10 +70,12 @@ lmcChatRoomWindow::lmcChatRoomWindow(QWidget *parent) : QWidget(parent) {
 	localName = QString::null;
 }
 
-lmcChatRoomWindow::~lmcChatRoomWindow() {
+lmcChatRoomWindow::~lmcChatRoomWindow()
+{
 }
 
-void lmcChatRoomWindow::init(User* pLocalUser, bool connected, QString thread) {
+void lmcChatRoomWindow::init(User* pLocalUser, bool connected, QString thread)
+{
 	localId = pLocalUser->id;
 	localName = pLocalUser->name;
 
@@ -91,8 +97,8 @@ void lmcChatRoomWindow::init(User* pLocalUser, bool connected, QString thread) {
 	createToolBar();
 
 	bConnected = connected;
-	if(!bConnected)
-		showStatus(IT_Disconnected, true);
+    if ( !bConnected )
+        showStatus( IT_Disconnected, true );
 
 	pSoundPlayer = new lmcSoundPlayer();
 
@@ -125,7 +131,8 @@ void lmcChatRoomWindow::init(User* pLocalUser, bool connected, QString thread) {
 	messageColor.setNamedColor(pSettings->value(IDS_COLOR, IDS_COLOR_VAL).toString());
 	sendKeyMod = pSettings->value(IDS_SENDKEYMOD, IDS_SENDKEYMOD_VAL).toBool();
 
-	if(!groupMode) {
+    if ( !groupMode )
+    {
 		restoreGeometry(pSettings->value(IDS_WINDOWPUBLICCHAT).toByteArray());
 		ui.vSplitter->restoreState(pSettings->value(IDS_SPLITTERPUBLICCHATV).toByteArray());
 		ui.hSplitter->restoreState(pSettings->value(IDS_SPLITTERPUBLICCHATH).toByteArray());
@@ -133,8 +140,8 @@ void lmcChatRoomWindow::init(User* pLocalUser, bool connected, QString thread) {
 
 	setUIText();
 
-	setMessageFont(font);
-	ui.txtMessage->setStyleSheet("QTextEdit {color: " + messageColor.name() + ";}");
+    setMessageFont( font );
+    ui.txtMessage->setStyleSheet( "QTextEdit {color: " + messageColor.name() + ";}" );
 	ui.txtMessage->setFocus();
 
 	QString themePath = pSettings->value(IDS_THEME, IDS_THEME_VAL).toString();
@@ -150,18 +157,21 @@ void lmcChatRoomWindow::init(User* pLocalUser, bool connected, QString thread) {
 	addUser(pLocalUser);
 }
 
-void lmcChatRoomWindow::show(void) {
+void lmcChatRoomWindow::show(void)
+{
 	windowLoaded = true;
 	QWidget::show();
 }
 
-void lmcChatRoomWindow::stop(void) {
+void lmcChatRoomWindow::stop(void)
+{
 	bool saveHistory = pSettings->value(IDS_HISTORY, IDS_HISTORY_VAL).toBool();
 	// Save history if there is conversation to be saved, and option to save history
 	// is enabled, and the conversation was a group conversation.
 	// dataSaved flag is used to ensure that history is saved only once, when the
 	// window is closed by the user or by the application on exit
-	if(pMessageLog->hasData && saveHistory && groupMode && !dataSaved) {
+    if(pMessageLog->hasData && saveHistory && groupMode && !dataSaved)
+    {
 		QString szMessageLog = pMessageLog->prepareMessageLogForSave();
 		History::save(tr("Group Conversation"), QDateTime::currentDateTime(), &szMessageLog);
 		dataSaved = true;

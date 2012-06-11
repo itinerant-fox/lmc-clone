@@ -69,22 +69,27 @@ void lmcNetwork::init(XmlMessage *pInitParams) {
 	pTcpNetwork->init(port);
 }
 
-void lmcNetwork::start(void) {
+void lmcNetwork::start(void)
+{
     lmctrace("Network started");
-	pCrypto->generateRSA();
+
+    QByteArray publicKey = pCrypto->generateRSA();
+    Q_UNUSED( publicKey );
 
 	pTimer = new QTimer(this);
-	connect(pTimer, SIGNAL(timeout()), this, SLOT(timer_timeout()));
-	pTimer->start(2000);
+    connect( pTimer, SIGNAL(timeout()), this, SLOT(timer_timeout()) );
+    pTimer->start( 2000 );
 
 	pUdpNetwork->setCrypto(pCrypto);
 	pTcpNetwork->setCrypto(pCrypto);
-	if(isConnected) {
-		pUdpNetwork->setMulticastInterface(networkInterface);
-		pUdpNetwork->setIPAddress(ipAddress, subnetMask);
+
+    if ( isConnected )
+    {
+        pUdpNetwork->setMulticastInterface( networkInterface );
+        pUdpNetwork->setIPAddress( ipAddress, subnetMask );
 		pUdpNetwork->start();
-		pTcpNetwork->setIPAddress(ipAddress);
-		pTcpNetwork->start();
+        pTcpNetwork->setIPAddress( ipAddress );
+        pTcpNetwork->start();
 		canReceive = pUdpNetwork->canReceive;
 	}
 }

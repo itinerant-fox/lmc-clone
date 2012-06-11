@@ -46,15 +46,17 @@ public:
 
 public:
 	QByteArray generateRSA(void);
+
 	QByteArray generateAES(QString* lpszUserId, QByteArray& pubKey);
 	void retreiveAES(QString* lpszUserId, QByteArray& aesKeyIv);
+
 	QByteArray encrypt(QString* lpszUserId, QByteArray& clearData);
 	QByteArray decrypt(QString* lpszUserId, QByteArray& cipherData);
 
-public:
-	QByteArray publicKey;
+    QByteArray getPublicKey();
 
-private:
+protected:
+	QByteArray publicKey;
 	RSA* pRsa;
 	QMap<QString, EVP_CIPHER_CTX> encryptMap;
 	QMap<QString, EVP_CIPHER_CTX> decryptMap;
