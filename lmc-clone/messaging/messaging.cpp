@@ -99,20 +99,26 @@ void lmcMessaging::init(XmlMessage *pInitParams)
 	msgId = 1;
 }
 
-void lmcMessaging::start(void) {
+void lmcMessaging::start(void)
+{
     lmctrace("Messaging started");
+
 	pNetwork->start();
 
 	sendBroadcast(MT_Depart, NULL);
 	sendBroadcast(MT_Announce, NULL);
 }
 
-void lmcMessaging::update(void) {
+void lmcMessaging::update(void)
+{
     lmctrace("Refreshing contacts list...");
+
 	sendBroadcast(MT_Announce, NULL);
 
 	for(int index = 0; index < userList.count(); index++)
+    {
 		sendMessage(MT_Ping, &userList[index].id, NULL);
+    }
 }
 
 void lmcMessaging::stop(void) {

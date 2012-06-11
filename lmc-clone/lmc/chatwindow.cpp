@@ -28,7 +28,9 @@
 
 const qint64 pauseTime = 5000;
 
-lmcChatWindow::lmcChatWindow(QWidget *parent, Qt::WFlags flags) : QWidget(parent, flags) {
+lmcChatWindow::lmcChatWindow(QWidget *parent, Qt::WFlags flags)
+    : QWidget(parent, flags)
+{
 	ui.setupUi(this);
 	//	Destroy the window when it closes
 	setAttribute(Qt::WA_DeleteOnClose, true);
