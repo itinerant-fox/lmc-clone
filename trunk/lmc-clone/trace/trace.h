@@ -1,5 +1,10 @@
 /*
-    lmc-clone ( http://code.project.com/p/lmc-clone )
+    lmc-clone
+    http://code.google.com/p/lmc-clone
+
+    lmc is a lan messenger, instant messaging client.
+    http://lanmsngr.sourceforge.net/
+    http://sourceforge.net/projects/lanmsngr/
 
     GNU LESSER GENERAL PUBLIC LICENSE
     Version 3, 29 June 2007

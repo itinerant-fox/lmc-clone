@@ -182,6 +182,8 @@
 
 #include "SettingsBase.h"
 
+// noe: how about make use of xml? instead of ini format
+
 /**
  * @brief The lmcSettings class
  */

@@ -29,11 +29,11 @@ lmcCore::lmcCore(void)
 {
 
     // messaging, network
-	pMessaging = new lmcMessaging();
-	connect(pMessaging, SIGNAL(messageReceived(MessageType, QString*, XmlMessage*)), 
-            this, SLOT(receiveMessage(MessageType, QString*, XmlMessage*)));
-    connect(pMessaging, SIGNAL(connectionStateChanged()),
-            this, SLOT(connectionStateChanged()));
+    pMessaging = new lmcMessaging();
+    connect( pMessaging, SIGNAL(messageReceived(MessageType, QString*, XmlMessage*)),
+             this, SLOT(receiveMessage(MessageType, QString*, XmlMessage*)) );
+    connect( pMessaging, SIGNAL(connectionStateChanged()),
+             this, SLOT(connectionStateChanged()) );
 
     // main window
 	pMainWindow = new lmcMainWindow();
@@ -150,10 +150,11 @@ bool lmcCore::start(void)
 
 	pMessaging->start();
 
-    if ( pMessaging->isConnected() && !pMessaging->canReceive() )
+    if ( pMessaging->isConnected() &&
+         ! pMessaging->canReceive() )
     {
 		showPortConflictMessage();
-		//	stop the application
+        //	stop the application
 		stop();
 		return false;
 	}
@@ -199,7 +200,8 @@ void lmcCore::loadSettings(void)
 	refreshTime = pSettings->value(IDS_REFRESHTIME, IDS_REFRESHTIME_VAL).toInt() * 1000;
 }
 
-void lmcCore::settingsChanged(void) {
+void lmcCore::settingsChanged(void)
+{
 	pMessaging->settingsChanged();
 	pMainWindow->settingsChanged();
 	if(pPublicChatWindow)

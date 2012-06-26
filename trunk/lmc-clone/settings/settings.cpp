@@ -43,7 +43,6 @@ lmcSettings::~lmcSettings(void)
 {
 }
 
-
 //	migrate settings from older versions to new format
 //	Returns false if existing settings cannot be migrated, else true
 bool lmcSettings::migrateSettings(void)
@@ -164,9 +163,11 @@ bool lmcSettings::loadFromConfig(const QString& configFile)
 		broadcastList.append(extSettings.value(IDS_BROADCAST).toString());
 	}
 	extSettings.endArray();
-	if(size > 0) {
+    if(size > 0)
+    {
 		beginWriteArray(IDS_BROADCASTHDR);
-		for(int index = 0; index < size; index++) {
+        for(int index = 0; index < size; index++)
+        {
 			setArrayIndex(index);
 			setValue(IDS_BROADCAST, broadcastList.at(index));
 		}
@@ -221,6 +222,7 @@ bool lmcSettings::migrateSettings( const QString& configFile )
 		return false;
 	}
 
+    /*
 	//	Migrate settings if version less than 1.2.25
     if( compareVersions(version, "1.2.25") < 0 )
     {
@@ -283,7 +285,9 @@ bool lmcSettings::migrateSettings( const QString& configFile )
 		groupSettings.endArray();
 	}
 	//	End of migration to 1.2.25
+    //*/
 
+    /*
 	//	Migrate settings if version less than 1.2.28
     if( compareVersions(version, "1.2.28") < 0 )
     {
@@ -292,7 +296,9 @@ bool lmcSettings::migrateSettings( const QString& configFile )
 		settings.remove(IDS_BROADCAST_OLD);
 	}
 	//	End of migration to 1.2.28
+    //*/
 
+    /*
 	// Migrate settings if version less than 1.2.30
     if( compareVersions(version, "1.2.30") < 0 )
     {
@@ -307,6 +313,7 @@ bool lmcSettings::migrateSettings( const QString& configFile )
 		settings.remove("");
 		settings.endGroup();
 	}
+    //*/
 
 	settings.setValue(IDS_VERSION, IDA_VERSION);
 	settings.sync();
