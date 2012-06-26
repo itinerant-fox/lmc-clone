@@ -25,6 +25,7 @@
 #ifndef CHATWINDOW_H
 #define CHATWINDOW_H
 
+#include <QtGlobal>
 #include <QtGui/QWidget>
 #include <QToolBar>
 #include <QToolButton>
@@ -34,7 +35,10 @@
 #include <QColorDialog>
 #include <QFile>
 #include <QTextStream>
-#include <QEvent.h>
+#include <QEvent>
+#include <QDesktopServices>
+#include <QTimer>
+#include <QKeyEvent>
 
 #include "settings.h"
 #include "xmlmessage.h"

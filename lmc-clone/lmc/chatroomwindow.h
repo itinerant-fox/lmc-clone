@@ -25,6 +25,7 @@
 #ifndef CHATROOMWINDOW_H
 #define CHATROOMWINDOW_H
 
+#include <QtGlobal>
 #include <QWidget>
 #include <QToolBar>
 #include <QToolButton>
@@ -34,7 +35,7 @@
 #include <QColorDialog>
 #include <QFile>
 #include <QTextStream>
-#include <QEvent.h>
+#include <QEvent>
 
 #include "settings.h"
 #include "xmlmessage.h"
