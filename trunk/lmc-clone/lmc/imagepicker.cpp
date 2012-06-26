@@ -26,7 +26,8 @@
 #include <QHeaderView>
 #include <QPainter>
 #include <QMouseEvent>
-#include <QMath.h>
+// #include <QMath>
+#include <QtCore/qmath.h>
 
 #include "uidefinitions.h"
 #include "imagepicker.h"

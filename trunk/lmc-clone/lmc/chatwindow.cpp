@@ -22,8 +22,6 @@
 ****************************************************************************/
 
 
-#include <QDesktopServices>
-#include <QTimer>
 #include "chatwindow.h"
 
 const qint64 pauseTime = 5000;
@@ -290,10 +288,20 @@ void lmcChatWindow::settingsChanged(void) {
 	}
 }
 
-bool lmcChatWindow::eventFilter(QObject* pObject, QEvent* pEvent) {
-	if(pObject == ui.txtMessage && pEvent->type() == QEvent::KeyPress) {
-		QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
-		if(pKeyEvent->key() == Qt::Key_Return || pKeyEvent->key() == Qt::Key_Enter) {
+bool lmcChatWindow::eventFilter(QObject* pObject, QEvent* pEvent)
+{
+    if(pObject == ui.txtMessage && pEvent->type() == QEvent::KeyPress)
+    {
+        QKeyEvent* pKeyEvent = static_cast<QKeyEvent*>(pEvent);
+
+        // QKeyEvent* pKeyEvent = (QKeyEvent*)(pEvent);
+        // int keyEvent = pKeyEvent->key();
+        // if ( keyEvent == (int)(Qt::Key_Return) ||
+        //      keyEvent == (int)(Qt::Key_Enter) )
+
+        if ( pKeyEvent->key() == Qt::Key_Return ||
+              pKeyEvent->key() == Qt::Key_Enter )
+        {
 			bool keyMod = ((pKeyEvent->modifiers() & Qt::ControlModifier) == Qt::ControlModifier);
 			if(keyMod == sendKeyMod) {
 				sendMessage();

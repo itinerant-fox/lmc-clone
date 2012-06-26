@@ -25,10 +25,11 @@
 #ifndef BROADCASTWINDOW_H
 #define BROADCASTWINDOW_H
 
+#include <QtGlobal>
 #include <QWidget>
 #include <QToolBar>
 #include <QMenu>
-#include <QEvent.h>
+#include <QEvent>
 
 #include "xmlmessage.h"
 #include "settings.h"
