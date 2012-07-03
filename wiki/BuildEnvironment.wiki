@@ -13,7 +13,7 @@
   * i did not test yet.
 
 = Linux =
-  * i did not test yet.
+  * Ubuntu 11.10 x86
 
 <wiki:comment>
 This text will be removed from the rendered page.
