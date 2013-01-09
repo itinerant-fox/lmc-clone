@@ -1,4 +1,7 @@
 
+The primary domain are as follows:
+http://code.google.com/p/lmc-clone
+
 This project is derived from lmc. 
 We adhere to the GPL license. All code is free and open.
 http://www.gnu.org/licenses/gpl.html
@@ -12,5 +15,4 @@ Louie Mantia, http://interfacelift.com
 http://www.openssl.org
 http://qt.nokia.com
 
-The primary domain are as follows:
-http://code.google.com/p/lmc-clone
+
