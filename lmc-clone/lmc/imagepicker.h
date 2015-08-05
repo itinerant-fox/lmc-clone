@@ -26,7 +26,7 @@
 #define IMAGEPICKER_H
 
 #include <QtGlobal>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 #include <QTableWidget>
 
 class lmcImagePicker : public QTableWidget

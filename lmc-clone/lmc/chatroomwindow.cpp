@@ -103,9 +103,9 @@ void lmcChatRoomWindow::init(User* pLocalUser, bool connected, QString thread)
 	pSoundPlayer = new lmcSoundPlayer();
 
 	ui.tvUserList->setIconSize(QSize(16, 16));
-	ui.tvUserList->header()->setMovable(false);
+    ui.tvUserList->header()->setSectionsMovable(false);
 	ui.tvUserList->header()->setStretchLastSection(false);
-	ui.tvUserList->header()->setResizeMode(0, QHeaderView::Stretch);
+    ui.tvUserList->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 
 	lmcUserTreeWidgetGroupItem *pItem = new lmcUserTreeWidgetGroupItem();
 	pItem->setData(0, IdRole, GroupId);

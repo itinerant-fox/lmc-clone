@@ -11,27 +11,27 @@
 #define UI_SETTINGSDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QCheckBox>
-#include <QtGui/QComboBox>
-#include <QtGui/QDialog>
-#include <QtGui/QFrame>
-#include <QtGui/QGroupBox>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QListWidget>
-#include <QtGui/QPlainTextEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QRadioButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSpinBox>
-#include <QtGui/QStackedWidget>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
+#include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
+#include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -1565,127 +1565,127 @@ public:
 
     void retranslateUi(QDialog *SettingsDialog)
     {
-        SettingsDialog->setWindowTitle(QApplication::translate("SettingsDialog", "Dialog", 0, QApplication::UnicodeUTF8));
+        SettingsDialog->setWindowTitle(QApplication::translate("SettingsDialog", "Dialog", 0));
 
         const bool __sortingEnabled = lvCategories->isSortingEnabled();
         lvCategories->setSortingEnabled(false);
         QListWidgetItem *___qlistwidgetitem = lvCategories->item(0);
-        ___qlistwidgetitem->setText(QApplication::translate("SettingsDialog", "General", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem->setText(QApplication::translate("SettingsDialog", "General", 0));
         QListWidgetItem *___qlistwidgetitem1 = lvCategories->item(1);
-        ___qlistwidgetitem1->setText(QApplication::translate("SettingsDialog", "Account", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem1->setText(QApplication::translate("SettingsDialog", "Account", 0));
         QListWidgetItem *___qlistwidgetitem2 = lvCategories->item(2);
-        ___qlistwidgetitem2->setText(QApplication::translate("SettingsDialog", "Messages", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem2->setText(QApplication::translate("SettingsDialog", "Messages", 0));
         QListWidgetItem *___qlistwidgetitem3 = lvCategories->item(3);
-        ___qlistwidgetitem3->setText(QApplication::translate("SettingsDialog", "History", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem3->setText(QApplication::translate("SettingsDialog", "History", 0));
         QListWidgetItem *___qlistwidgetitem4 = lvCategories->item(4);
-        ___qlistwidgetitem4->setText(QApplication::translate("SettingsDialog", "Alerts", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem4->setText(QApplication::translate("SettingsDialog", "Alerts", 0));
         QListWidgetItem *___qlistwidgetitem5 = lvCategories->item(5);
-        ___qlistwidgetitem5->setText(QApplication::translate("SettingsDialog", "Network", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem5->setText(QApplication::translate("SettingsDialog", "Network", 0));
         QListWidgetItem *___qlistwidgetitem6 = lvCategories->item(6);
-        ___qlistwidgetitem6->setText(QApplication::translate("SettingsDialog", "File Transfer", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem6->setText(QApplication::translate("SettingsDialog", "File Transfer", 0));
         QListWidgetItem *___qlistwidgetitem7 = lvCategories->item(7);
-        ___qlistwidgetitem7->setText(QApplication::translate("SettingsDialog", "Appearance", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem7->setText(QApplication::translate("SettingsDialog", "Appearance", 0));
         QListWidgetItem *___qlistwidgetitem8 = lvCategories->item(8);
-        ___qlistwidgetitem8->setText(QApplication::translate("SettingsDialog", "Hotkeys", 0, QApplication::UnicodeUTF8));
+        ___qlistwidgetitem8->setText(QApplication::translate("SettingsDialog", "Hotkeys", 0));
         lvCategories->setSortingEnabled(__sortingEnabled);
 
-        lblGeneralPage->setText(QApplication::translate("SettingsDialog", "General", 0, QApplication::UnicodeUTF8));
-        grpSystem->setTitle(QApplication::translate("SettingsDialog", "System", 0, QApplication::UnicodeUTF8));
-        chkAutoStart->setText(QApplication::translate("SettingsDialog", "Start %1 on system startup", 0, QApplication::UnicodeUTF8));
-        chkAutoShow->setText(QApplication::translate("SettingsDialog", "Show main window when %1 starts", 0, QApplication::UnicodeUTF8));
-        grpSysTray->setTitle(QApplication::translate("SettingsDialog", "System Tray", 0, QApplication::UnicodeUTF8));
-        chkSysTray->setText(QApplication::translate("SettingsDialog", "Show system tray icon", 0, QApplication::UnicodeUTF8));
-        chkMinimizeTray->setText(QApplication::translate("SettingsDialog", "Minimize main window to system tray", 0, QApplication::UnicodeUTF8));
-        chkSingleClickTray->setText(QApplication::translate("SettingsDialog", "Single click on tray icon to open", 0, QApplication::UnicodeUTF8));
-        chkSysTrayMsg->setText(QApplication::translate("SettingsDialog", "Show balloon notifications in tray", 0, QApplication::UnicodeUTF8));
-        chkAllowSysTrayMin->setText(QApplication::translate("SettingsDialog", "Minimize main window using tray icon", 0, QApplication::UnicodeUTF8));
-        grpLanguage->setTitle(QApplication::translate("SettingsDialog", "Language", 0, QApplication::UnicodeUTF8));
-        lblLanguageDesc->setText(QApplication::translate("SettingsDialog", "Select language:", 0, QApplication::UnicodeUTF8));
+        lblGeneralPage->setText(QApplication::translate("SettingsDialog", "General", 0));
+        grpSystem->setTitle(QApplication::translate("SettingsDialog", "System", 0));
+        chkAutoStart->setText(QApplication::translate("SettingsDialog", "Start %1 on system startup", 0));
+        chkAutoShow->setText(QApplication::translate("SettingsDialog", "Show main window when %1 starts", 0));
+        grpSysTray->setTitle(QApplication::translate("SettingsDialog", "System Tray", 0));
+        chkSysTray->setText(QApplication::translate("SettingsDialog", "Show system tray icon", 0));
+        chkMinimizeTray->setText(QApplication::translate("SettingsDialog", "Minimize main window to system tray", 0));
+        chkSingleClickTray->setText(QApplication::translate("SettingsDialog", "Single click on tray icon to open", 0));
+        chkSysTrayMsg->setText(QApplication::translate("SettingsDialog", "Show balloon notifications in tray", 0));
+        chkAllowSysTrayMin->setText(QApplication::translate("SettingsDialog", "Minimize main window using tray icon", 0));
+        grpLanguage->setTitle(QApplication::translate("SettingsDialog", "Language", 0));
+        lblLanguageDesc->setText(QApplication::translate("SettingsDialog", "Select language:", 0));
         lblUpdateLink->setText(QString());
-        lblAccountPage->setText(QApplication::translate("SettingsDialog", "Account", 0, QApplication::UnicodeUTF8));
-        grpPersonal->setTitle(QApplication::translate("SettingsDialog", "Personal", 0, QApplication::UnicodeUTF8));
-        lblUserNameDesc->setText(QApplication::translate("SettingsDialog", "User name as seen by contacts:", 0, QApplication::UnicodeUTF8));
-        lblFirstNameDesc->setText(QApplication::translate("SettingsDialog", "First Name:", 0, QApplication::UnicodeUTF8));
-        lblLastNameDesc->setText(QApplication::translate("SettingsDialog", "Last Name:", 0, QApplication::UnicodeUTF8));
-        lblAboutDesc->setText(QApplication::translate("SettingsDialog", "About:", 0, QApplication::UnicodeUTF8));
-        grpContacts->setTitle(QApplication::translate("SettingsDialog", "Contacts", 0, QApplication::UnicodeUTF8));
-        lblRefreshTimeDesc->setText(QApplication::translate("SettingsDialog", "Refresh contacts list every", 0, QApplication::UnicodeUTF8));
-        lblSecondsDesc->setText(QApplication::translate("SettingsDialog", "seconds", 0, QApplication::UnicodeUTF8));
-        lblMessagesPage->setText(QApplication::translate("SettingsDialog", "Messages", 0, QApplication::UnicodeUTF8));
-        grpMsgWindow->setTitle(QApplication::translate("SettingsDialog", "Message Window", 0, QApplication::UnicodeUTF8));
-        rdbMessageTop->setText(QApplication::translate("SettingsDialog", "Set incoming messages foreground", 0, QApplication::UnicodeUTF8));
-        rdbMessageBottom->setText(QApplication::translate("SettingsDialog", "Minimize incoming messages to taskbar", 0, QApplication::UnicodeUTF8));
-        chkPublicMessagePop->setText(QApplication::translate("SettingsDialog", "Apply to public messages", 0, QApplication::UnicodeUTF8));
-        chkEmoticon->setText(QApplication::translate("SettingsDialog", "Show emoticons in instant messages", 0, QApplication::UnicodeUTF8));
-        chkMessageTime->setText(QApplication::translate("SettingsDialog", "Add time stamp to instant messages", 0, QApplication::UnicodeUTF8));
-        chkMessageDate->setText(QApplication::translate("SettingsDialog", "Show date in time stamp", 0, QApplication::UnicodeUTF8));
-        chkAllowLinks->setText(QApplication::translate("SettingsDialog", "Allow hyperlinks in instant messages", 0, QApplication::UnicodeUTF8));
-        chkPathToLink->setText(QApplication::translate("SettingsDialog", "Convert network paths to links", 0, QApplication::UnicodeUTF8));
-        chkTrimMessage->setText(QApplication::translate("SettingsDialog", "Remove whitespace from start and end of messages", 0, QApplication::UnicodeUTF8));
-        grpMsgFont->setTitle(QApplication::translate("SettingsDialog", "Message Font", 0, QApplication::UnicodeUTF8));
-        btnFont->setText(QApplication::translate("SettingsDialog", "Change Font...", 0, QApplication::UnicodeUTF8));
-        btnColor->setText(QApplication::translate("SettingsDialog", "Change Color...", 0, QApplication::UnicodeUTF8));
-        lblFontSize->setText(QApplication::translate("SettingsDialog", "Incoming message text size:", 0, QApplication::UnicodeUTF8));
-        lblHistoryPage->setText(QApplication::translate("SettingsDialog", "History", 0, QApplication::UnicodeUTF8));
-        grpMsgHistory->setTitle(QApplication::translate("SettingsDialog", "Message History", 0, QApplication::UnicodeUTF8));
-        chkHistory->setText(QApplication::translate("SettingsDialog", "Keep a history of conversations", 0, QApplication::UnicodeUTF8));
-        btnClearHistory->setText(QApplication::translate("SettingsDialog", "Clear Message History", 0, QApplication::UnicodeUTF8));
-        grpHistoryFile->setTitle(QApplication::translate("SettingsDialog", "History File Location", 0, QApplication::UnicodeUTF8));
-        rdbSysHistoryPath->setText(QApplication::translate("SettingsDialog", "System default location", 0, QApplication::UnicodeUTF8));
-        rdbCustomHistoryPath->setText(QApplication::translate("SettingsDialog", "Custom location", 0, QApplication::UnicodeUTF8));
-        btnHistoryPath->setText(QApplication::translate("SettingsDialog", "...", 0, QApplication::UnicodeUTF8));
-        grpFileHistory->setTitle(QApplication::translate("SettingsDialog", "File Transfer History", 0, QApplication::UnicodeUTF8));
-        chkFileHistory->setText(QApplication::translate("SettingsDialog", "Keep a history of file transfers", 0, QApplication::UnicodeUTF8));
-        btnClearFileHistory->setText(QApplication::translate("SettingsDialog", "Clear Transfer History", 0, QApplication::UnicodeUTF8));
-        lblAlertsPage->setText(QApplication::translate("SettingsDialog", "Alerts", 0, QApplication::UnicodeUTF8));
-        grpAlerts->setTitle(QApplication::translate("SettingsDialog", "Status Alerts", 0, QApplication::UnicodeUTF8));
-        chkAlert->setText(QApplication::translate("SettingsDialog", "Display status alerts", 0, QApplication::UnicodeUTF8));
-        chkNoBusyAlert->setText(QApplication::translate("SettingsDialog", "Suspend alerts when my status is Busy", 0, QApplication::UnicodeUTF8));
-        chkNoDNDAlert->setText(QApplication::translate("SettingsDialog", "Suspend alerts when my status is Do Not Disturb", 0, QApplication::UnicodeUTF8));
-        grpSounds->setTitle(QApplication::translate("SettingsDialog", "Sounds", 0, QApplication::UnicodeUTF8));
-        chkSound->setText(QApplication::translate("SettingsDialog", "Provide feedback with sounds", 0, QApplication::UnicodeUTF8));
-        lblSoundEventsDesc->setText(QApplication::translate("SettingsDialog", "Play sounds for these events:", 0, QApplication::UnicodeUTF8));
+        lblAccountPage->setText(QApplication::translate("SettingsDialog", "Account", 0));
+        grpPersonal->setTitle(QApplication::translate("SettingsDialog", "Personal", 0));
+        lblUserNameDesc->setText(QApplication::translate("SettingsDialog", "User name as seen by contacts:", 0));
+        lblFirstNameDesc->setText(QApplication::translate("SettingsDialog", "First Name:", 0));
+        lblLastNameDesc->setText(QApplication::translate("SettingsDialog", "Last Name:", 0));
+        lblAboutDesc->setText(QApplication::translate("SettingsDialog", "About:", 0));
+        grpContacts->setTitle(QApplication::translate("SettingsDialog", "Contacts", 0));
+        lblRefreshTimeDesc->setText(QApplication::translate("SettingsDialog", "Refresh contacts list every", 0));
+        lblSecondsDesc->setText(QApplication::translate("SettingsDialog", "seconds", 0));
+        lblMessagesPage->setText(QApplication::translate("SettingsDialog", "Messages", 0));
+        grpMsgWindow->setTitle(QApplication::translate("SettingsDialog", "Message Window", 0));
+        rdbMessageTop->setText(QApplication::translate("SettingsDialog", "Set incoming messages foreground", 0));
+        rdbMessageBottom->setText(QApplication::translate("SettingsDialog", "Minimize incoming messages to taskbar", 0));
+        chkPublicMessagePop->setText(QApplication::translate("SettingsDialog", "Apply to public messages", 0));
+        chkEmoticon->setText(QApplication::translate("SettingsDialog", "Show emoticons in instant messages", 0));
+        chkMessageTime->setText(QApplication::translate("SettingsDialog", "Add time stamp to instant messages", 0));
+        chkMessageDate->setText(QApplication::translate("SettingsDialog", "Show date in time stamp", 0));
+        chkAllowLinks->setText(QApplication::translate("SettingsDialog", "Allow hyperlinks in instant messages", 0));
+        chkPathToLink->setText(QApplication::translate("SettingsDialog", "Convert network paths to links", 0));
+        chkTrimMessage->setText(QApplication::translate("SettingsDialog", "Remove whitespace from start and end of messages", 0));
+        grpMsgFont->setTitle(QApplication::translate("SettingsDialog", "Message Font", 0));
+        btnFont->setText(QApplication::translate("SettingsDialog", "Change Font...", 0));
+        btnColor->setText(QApplication::translate("SettingsDialog", "Change Color...", 0));
+        lblFontSize->setText(QApplication::translate("SettingsDialog", "Incoming message text size:", 0));
+        lblHistoryPage->setText(QApplication::translate("SettingsDialog", "History", 0));
+        grpMsgHistory->setTitle(QApplication::translate("SettingsDialog", "Message History", 0));
+        chkHistory->setText(QApplication::translate("SettingsDialog", "Keep a history of conversations", 0));
+        btnClearHistory->setText(QApplication::translate("SettingsDialog", "Clear Message History", 0));
+        grpHistoryFile->setTitle(QApplication::translate("SettingsDialog", "History File Location", 0));
+        rdbSysHistoryPath->setText(QApplication::translate("SettingsDialog", "System default location", 0));
+        rdbCustomHistoryPath->setText(QApplication::translate("SettingsDialog", "Custom location", 0));
+        btnHistoryPath->setText(QApplication::translate("SettingsDialog", "...", 0));
+        grpFileHistory->setTitle(QApplication::translate("SettingsDialog", "File Transfer History", 0));
+        chkFileHistory->setText(QApplication::translate("SettingsDialog", "Keep a history of file transfers", 0));
+        btnClearFileHistory->setText(QApplication::translate("SettingsDialog", "Clear Transfer History", 0));
+        lblAlertsPage->setText(QApplication::translate("SettingsDialog", "Alerts", 0));
+        grpAlerts->setTitle(QApplication::translate("SettingsDialog", "Status Alerts", 0));
+        chkAlert->setText(QApplication::translate("SettingsDialog", "Display status alerts", 0));
+        chkNoBusyAlert->setText(QApplication::translate("SettingsDialog", "Suspend alerts when my status is Busy", 0));
+        chkNoDNDAlert->setText(QApplication::translate("SettingsDialog", "Suspend alerts when my status is Do Not Disturb", 0));
+        grpSounds->setTitle(QApplication::translate("SettingsDialog", "Sounds", 0));
+        chkSound->setText(QApplication::translate("SettingsDialog", "Provide feedback with sounds", 0));
+        lblSoundEventsDesc->setText(QApplication::translate("SettingsDialog", "Play sounds for these events:", 0));
         btnPlaySound->setText(QString());
-        btnSoundPath->setText(QApplication::translate("SettingsDialog", "...", 0, QApplication::UnicodeUTF8));
-        btnResetSounds->setText(QApplication::translate("SettingsDialog", "Reset All", 0, QApplication::UnicodeUTF8));
-        chkNoBusySound->setText(QApplication::translate("SettingsDialog", "Suspend sounds when my status is Busy", 0, QApplication::UnicodeUTF8));
-        chkNoDNDSound->setText(QApplication::translate("SettingsDialog", "Suspend sound when my status is Do Not Disturb", 0, QApplication::UnicodeUTF8));
-        lblNetworkPage->setText(QApplication::translate("SettingsDialog", "Network", 0, QApplication::UnicodeUTF8));
-        grpConnection->setTitle(QApplication::translate("SettingsDialog", "Connection", 0, QApplication::UnicodeUTF8));
-        lblTimeoutDesc->setText(QApplication::translate("SettingsDialog", "Connection timeout (seconds):", 0, QApplication::UnicodeUTF8));
-        lblMaxRetriesDesc->setText(QApplication::translate("SettingsDialog", "Maximum number of retries:", 0, QApplication::UnicodeUTF8));
-        grpBroadcast->setTitle(QApplication::translate("SettingsDialog", "Broadcast", 0, QApplication::UnicodeUTF8));
-        lblBroadcastListDesc->setText(QApplication::translate("SettingsDialog", "Broadcast list:", 0, QApplication::UnicodeUTF8));
-        lblBroadcastDesc->setText(QApplication::translate("SettingsDialog", "Broadcast address:", 0, QApplication::UnicodeUTF8));
-        btnAddBroadcast->setText(QApplication::translate("SettingsDialog", "<- Add", 0, QApplication::UnicodeUTF8));
-        btnDeleteBroadcast->setText(QApplication::translate("SettingsDialog", "Delete", 0, QApplication::UnicodeUTF8));
-        groupBox_2->setTitle(QApplication::translate("SettingsDialog", "Advanced", 0, QApplication::UnicodeUTF8));
-        lblMulticastDesc->setText(QApplication::translate("SettingsDialog", "Multicast address:", 0, QApplication::UnicodeUTF8));
-        lblUDPPortDesc->setText(QApplication::translate("SettingsDialog", "UDP Port*:", 0, QApplication::UnicodeUTF8));
-        lblTCPPortDesc->setText(QApplication::translate("SettingsDialog", "TCP Port*:", 0, QApplication::UnicodeUTF8));
-        lblFinePrint->setText(QApplication::translate("SettingsDialog", "* Takes effect after you restart %1.", 0, QApplication::UnicodeUTF8));
-        lblFileTransferPage->setText(QApplication::translate("SettingsDialog", "File Transfer", 0, QApplication::UnicodeUTF8));
-        grpFileRequest->setTitle(QApplication::translate("SettingsDialog", "Incoming File Request", 0, QApplication::UnicodeUTF8));
-        chkAutoFile->setText(QApplication::translate("SettingsDialog", "Accept and start receiving files automatically", 0, QApplication::UnicodeUTF8));
-        chkAutoShowFile->setText(QApplication::translate("SettingsDialog", "Show File Transfer window when sending or receiving files", 0, QApplication::UnicodeUTF8));
-        rdbFileTop->setText(QApplication::translate("SettingsDialog", "Bring window to foreground", 0, QApplication::UnicodeUTF8));
-        rdbFileBottom->setText(QApplication::translate("SettingsDialog", "Minimize window to taskbar", 0, QApplication::UnicodeUTF8));
-        grpFileFolder->setTitle(QApplication::translate("SettingsDialog", "Store Received Files in this Folder", 0, QApplication::UnicodeUTF8));
-        btnFilePath->setText(QApplication::translate("SettingsDialog", "...", 0, QApplication::UnicodeUTF8));
-        btnViewFiles->setText(QApplication::translate("SettingsDialog", "View Files", 0, QApplication::UnicodeUTF8));
-        lblThemePage->setText(QApplication::translate("SettingsDialog", "Appearance", 0, QApplication::UnicodeUTF8));
-        grpChatTheme->setTitle(QApplication::translate("SettingsDialog", "Chat Theme", 0, QApplication::UnicodeUTF8));
-        groupBox->setTitle(QApplication::translate("SettingsDialog", "Contacts List", 0, QApplication::UnicodeUTF8));
-        lblUserListView->setText(QApplication::translate("SettingsDialog", "Contacts list view:", 0, QApplication::UnicodeUTF8));
-        chkUserListToolTip->setText(QApplication::translate("SettingsDialog", "Show status as tooltip", 0, QApplication::UnicodeUTF8));
-        lblHotkeysPage->setText(QApplication::translate("SettingsDialog", "Hotkeys", 0, QApplication::UnicodeUTF8));
-        grpMsgHotkeys->setTitle(QApplication::translate("SettingsDialog", "Messages", 0, QApplication::UnicodeUTF8));
-        lblSendModDesc->setText(QApplication::translate("SettingsDialog", "Send messages using:", 0, QApplication::UnicodeUTF8));
-        rdbEnter->setText(QApplication::translate("SettingsDialog", "<Enter>", 0, QApplication::UnicodeUTF8));
-        rdbCmdEnter->setText(QApplication::translate("SettingsDialog", "<Cmd + Enter>", 0, QApplication::UnicodeUTF8));
-        btnReset->setText(QApplication::translate("SettingsDialog", "Reset Preferences", 0, QApplication::UnicodeUTF8));
-        btnOK->setText(QApplication::translate("SettingsDialog", "OK", 0, QApplication::UnicodeUTF8));
-        btnCancel->setText(QApplication::translate("SettingsDialog", "Cancel", 0, QApplication::UnicodeUTF8));
+        btnSoundPath->setText(QApplication::translate("SettingsDialog", "...", 0));
+        btnResetSounds->setText(QApplication::translate("SettingsDialog", "Reset All", 0));
+        chkNoBusySound->setText(QApplication::translate("SettingsDialog", "Suspend sounds when my status is Busy", 0));
+        chkNoDNDSound->setText(QApplication::translate("SettingsDialog", "Suspend sound when my status is Do Not Disturb", 0));
+        lblNetworkPage->setText(QApplication::translate("SettingsDialog", "Network", 0));
+        grpConnection->setTitle(QApplication::translate("SettingsDialog", "Connection", 0));
+        lblTimeoutDesc->setText(QApplication::translate("SettingsDialog", "Connection timeout (seconds):", 0));
+        lblMaxRetriesDesc->setText(QApplication::translate("SettingsDialog", "Maximum number of retries:", 0));
+        grpBroadcast->setTitle(QApplication::translate("SettingsDialog", "Broadcast", 0));
+        lblBroadcastListDesc->setText(QApplication::translate("SettingsDialog", "Broadcast list:", 0));
+        lblBroadcastDesc->setText(QApplication::translate("SettingsDialog", "Broadcast address:", 0));
+        btnAddBroadcast->setText(QApplication::translate("SettingsDialog", "<- Add", 0));
+        btnDeleteBroadcast->setText(QApplication::translate("SettingsDialog", "Delete", 0));
+        groupBox_2->setTitle(QApplication::translate("SettingsDialog", "Advanced", 0));
+        lblMulticastDesc->setText(QApplication::translate("SettingsDialog", "Multicast address:", 0));
+        lblUDPPortDesc->setText(QApplication::translate("SettingsDialog", "UDP Port*:", 0));
+        lblTCPPortDesc->setText(QApplication::translate("SettingsDialog", "TCP Port*:", 0));
+        lblFinePrint->setText(QApplication::translate("SettingsDialog", "* Takes effect after you restart %1.", 0));
+        lblFileTransferPage->setText(QApplication::translate("SettingsDialog", "File Transfer", 0));
+        grpFileRequest->setTitle(QApplication::translate("SettingsDialog", "Incoming File Request", 0));
+        chkAutoFile->setText(QApplication::translate("SettingsDialog", "Accept and start receiving files automatically", 0));
+        chkAutoShowFile->setText(QApplication::translate("SettingsDialog", "Show File Transfer window when sending or receiving files", 0));
+        rdbFileTop->setText(QApplication::translate("SettingsDialog", "Bring window to foreground", 0));
+        rdbFileBottom->setText(QApplication::translate("SettingsDialog", "Minimize window to taskbar", 0));
+        grpFileFolder->setTitle(QApplication::translate("SettingsDialog", "Store Received Files in this Folder", 0));
+        btnFilePath->setText(QApplication::translate("SettingsDialog", "...", 0));
+        btnViewFiles->setText(QApplication::translate("SettingsDialog", "View Files", 0));
+        lblThemePage->setText(QApplication::translate("SettingsDialog", "Appearance", 0));
+        grpChatTheme->setTitle(QApplication::translate("SettingsDialog", "Chat Theme", 0));
+        groupBox->setTitle(QApplication::translate("SettingsDialog", "Contacts List", 0));
+        lblUserListView->setText(QApplication::translate("SettingsDialog", "Contacts list view:", 0));
+        chkUserListToolTip->setText(QApplication::translate("SettingsDialog", "Show status as tooltip", 0));
+        lblHotkeysPage->setText(QApplication::translate("SettingsDialog", "Hotkeys", 0));
+        grpMsgHotkeys->setTitle(QApplication::translate("SettingsDialog", "Messages", 0));
+        lblSendModDesc->setText(QApplication::translate("SettingsDialog", "Send messages using:", 0));
+        rdbEnter->setText(QApplication::translate("SettingsDialog", "<Enter>", 0));
+        rdbCmdEnter->setText(QApplication::translate("SettingsDialog", "<Cmd + Enter>", 0));
+        btnReset->setText(QApplication::translate("SettingsDialog", "Reset Preferences", 0));
+        btnOK->setText(QApplication::translate("SettingsDialog", "OK", 0));
+        btnCancel->setText(QApplication::translate("SettingsDialog", "Cancel", 0));
     } // retranslateUi
 
 };

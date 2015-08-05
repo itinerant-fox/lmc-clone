@@ -13,7 +13,7 @@ TARGET = lmc-clone
 
 TEMPLATE = app
 
-QT += core gui network xml webkit
+QT += core gui network xml webkit multimedia webkitwidgets
 
 #-----------------------------------------------------------------------------
 #  preprocessor of product name, detailed properties
@@ -87,20 +87,28 @@ CONFIG(debug, debug|release) {
 #       http://slproweb.com/products/Win32OpenSSL.html
 #-----------------------------------------------------------------------------
 
-win32:INCLUDEPATH += ./openssl/include
-win32:DEPENDPATH  += ./openssl/include
+win32:INCLUDEPATH += $$PWD/openssl/include
+win32:DEPENDPATH += $$PWD/openssl/include
+
+
+
+win32: LIBS += -L$$PWD/openssl/lib/ -llibeay32 advapi32.lib
+
 
 # MinGW (MSYS)
 win32:win32-g++: LIBS += -leay32
 win32:win32-g++: LIBS += -L./openssl/lib/MinGW
 win32:win32-g++: LIBS += -L../lmc-clone/openssl/lib/MinGW
 
-# Visual C++ (2008,2010)
+# Visual C++ (2008,2010,2012)
 win32:win32-msvc2008: LIBS += -leay32
 win32:win32-msvc2008: LIBS += -L./openssl/lib/VC
 
 win32:win32-msvc2010: LIBS += -leay32
 win32:win32-msvc2010: LIBS += -L./openssl/lib/VC
+
+win32:win32-msvc2012: LIBS += -llibeay32
+win32:win32-msvc2012: LIBS += -L./openssl/lib/
 
 win32:LIBS += -liphlpapi
 
@@ -130,7 +138,6 @@ include( messaging/messaging.pri )
 include( lmc/lmc.pri )
 
 #-----------------------------------------------------------------------------
-
 
 
 

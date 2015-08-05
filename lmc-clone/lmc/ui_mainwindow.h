@@ -11,16 +11,16 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QFrame>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 #include "subcontrols.h"
 #include "usertreewidget.h"
 
@@ -206,15 +206,15 @@ public:
 
     void retranslateUi(QWidget *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Form", 0, QApplication::UnicodeUTF8));
-        lblUserName->setText(QApplication::translate("MainWindow", "Username", 0, QApplication::UnicodeUTF8));
-        lblStatus->setText(QApplication::translate("MainWindow", "Status", 0, QApplication::UnicodeUTF8));
-        txtNote->setPlaceholderText(QApplication::translate("MainWindow", "Type a note", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Form", 0));
+        lblUserName->setText(QApplication::translate("MainWindow", "Username", 0));
+        lblStatus->setText(QApplication::translate("MainWindow", "Status", 0));
+        txtNote->setPlaceholderText(QApplication::translate("MainWindow", "Type a note", 0));
 #ifndef QT_NO_TOOLTIP
-        btnAvatar->setToolTip(QApplication::translate("MainWindow", "Change avatar", 0, QApplication::UnicodeUTF8));
+        btnAvatar->setToolTip(QApplication::translate("MainWindow", "Change avatar", 0));
 #endif // QT_NO_TOOLTIP
         QTreeWidgetItem *___qtreewidgetitem = tvUserList->headerItem();
-        ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Contacts", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem->setText(0, QApplication::translate("MainWindow", "Contacts", 0));
     } // retranslateUi
 
 };

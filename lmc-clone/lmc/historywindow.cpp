@@ -22,10 +22,10 @@
 ****************************************************************************/
 
 
-#include <QDesktopWidget>
+#include <QtWidgets/QDesktopWidget>
 #include "historywindow.h"
 
-lmcHistoryWindow::lmcHistoryWindow(QWidget *parent, Qt::WFlags flags)
+lmcHistoryWindow::lmcHistoryWindow(QWidget *parent, Qt::WindowFlags flags)
     : QWidget(parent, flags)
 {
 	ui.setupUi(this);

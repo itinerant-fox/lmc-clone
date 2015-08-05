@@ -11,18 +11,18 @@
 #define UI_BROADCASTWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSplitter>
-#include <QtGui/QTextEdit>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 #include "usertreewidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -205,14 +205,14 @@ public:
 
     void retranslateUi(QWidget *BroadcastWindow)
     {
-        BroadcastWindow->setWindowTitle(QApplication::translate("BroadcastWindow", "Form", 0, QApplication::UnicodeUTF8));
-        btnSend->setText(QApplication::translate("BroadcastWindow", "Send", 0, QApplication::UnicodeUTF8));
-        btnCancel->setText(QApplication::translate("BroadcastWindow", "Cancel", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("BroadcastWindow", "Send To:", 0, QApplication::UnicodeUTF8));
+        BroadcastWindow->setWindowTitle(QApplication::translate("BroadcastWindow", "Form", 0));
+        btnSend->setText(QApplication::translate("BroadcastWindow", "Send", 0));
+        btnCancel->setText(QApplication::translate("BroadcastWindow", "Cancel", 0));
+        label->setText(QApplication::translate("BroadcastWindow", "Send To:", 0));
         QTreeWidgetItem *___qtreewidgetitem = tvUserList->headerItem();
-        ___qtreewidgetitem->setText(0, QApplication::translate("BroadcastWindow", "Send To:", 0, QApplication::UnicodeUTF8));
-        btnSelectAll->setText(QApplication::translate("BroadcastWindow", "Select All", 0, QApplication::UnicodeUTF8));
-        btnSelectNone->setText(QApplication::translate("BroadcastWindow", "Select None", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem->setText(0, QApplication::translate("BroadcastWindow", "Send To:", 0));
+        btnSelectAll->setText(QApplication::translate("BroadcastWindow", "Select All", 0));
+        btnSelectNone->setText(QApplication::translate("BroadcastWindow", "Select None", 0));
     } // retranslateUi
 
 };

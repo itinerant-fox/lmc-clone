@@ -35,7 +35,7 @@
 #include <QTimer>
 #include <QSysInfo>
 #include <QPointer>
-#include <QMessageBox>
+#include <QtWidgets/QMessageBox>
 #include <QTranslator>
 #include <QtGlobal>
 #include <QString>

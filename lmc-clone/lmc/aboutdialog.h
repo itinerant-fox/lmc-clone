@@ -25,7 +25,7 @@
 #ifndef ABOUTDIALOG_H
 #define ABOUTDIALOG_H
 
-#include <QDialog>
+#include <QtWidgets/QDialog>
 #include <QPicture>
 
 #include "settings.h"
@@ -41,7 +41,7 @@ class lmcAboutDialog : public QDialog
 	Q_OBJECT
 
 public:
-	lmcAboutDialog(QWidget *parent = 0, Qt::WFlags flags = 0);
+    lmcAboutDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	~lmcAboutDialog(void);
 
 	void init(void);

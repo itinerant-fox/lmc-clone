@@ -11,18 +11,18 @@
 #define UI_HISTORYWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QFrame>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QSplitter>
-#include <QtGui/QTreeWidget>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QTreeWidget>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -138,12 +138,12 @@ public:
 
     void retranslateUi(QWidget *HistoryWindow)
     {
-        HistoryWindow->setWindowTitle(QApplication::translate("HistoryWindow", "Form", 0, QApplication::UnicodeUTF8));
+        HistoryWindow->setWindowTitle(QApplication::translate("HistoryWindow", "Form", 0));
         QTreeWidgetItem *___qtreewidgetitem = tvMsgList->headerItem();
-        ___qtreewidgetitem->setText(1, QApplication::translate("HistoryWindow", "Date", 0, QApplication::UnicodeUTF8));
-        ___qtreewidgetitem->setText(0, QApplication::translate("HistoryWindow", "Name", 0, QApplication::UnicodeUTF8));
-        btnClearHistory->setText(QApplication::translate("HistoryWindow", "Clear History", 0, QApplication::UnicodeUTF8));
-        btnClose->setText(QApplication::translate("HistoryWindow", "Close", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem->setText(1, QApplication::translate("HistoryWindow", "Date", 0));
+        ___qtreewidgetitem->setText(0, QApplication::translate("HistoryWindow", "Name", 0));
+        btnClearHistory->setText(QApplication::translate("HistoryWindow", "Clear History", 0));
+        btnClose->setText(QApplication::translate("HistoryWindow", "Close", 0));
     } // retranslateUi
 
 };

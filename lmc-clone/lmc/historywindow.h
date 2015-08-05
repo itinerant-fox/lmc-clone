@@ -25,7 +25,7 @@
 #ifndef HISTORYWINDOW_H
 #define HISTORYWINDOW_H
 
-#include <QWidget>
+#include <QtWidgets/QWidget>
 #include <QList>
 #include <QTreeWidget>
 #include "ui_historywindow.h"
@@ -39,7 +39,7 @@ class lmcHistoryWindow : public QWidget
 	Q_OBJECT
 
 public:
-	lmcHistoryWindow(QWidget *parent = 0, Qt::WFlags flags = 0);
+    lmcHistoryWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	~lmcHistoryWindow();
 
 	void init(void);

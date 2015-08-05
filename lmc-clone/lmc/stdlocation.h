@@ -51,8 +51,8 @@ public:
 
     static QString transferHistory(void)
     {
-		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::DataLocation) + "/"SL_TRANSFERHISTORY);
+        return QDir::toNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::DataLocation) + "/"SL_TRANSFERHISTORY);
 	}
 
     /*
@@ -73,8 +73,8 @@ public:
 
     static QString cacheDir(void)
     {
-		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::DataLocation) + "/"SL_CACHEDIR);
+        return QDir::toNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::DataLocation) + "/"SL_CACHEDIR);
 	}
 
     static QString libDir(void)
@@ -100,8 +100,8 @@ public:
 
     static QString userLangDir(void)
     {
-		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::DataLocation) + "/"SL_LANGDIR);
+        return QDir::toNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::DataLocation) + "/"SL_LANGDIR);
 	}
 
     static QString resThemeDir(void)
@@ -115,8 +115,8 @@ public:
 	}
 
 	static QString userThemeDir(void) {
-		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::DataLocation) + "/"SL_THEMEDIR);
+        return QDir::toNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::DataLocation) + "/"SL_THEMEDIR);
 	}
 
     // static QString groupFile(void) {
@@ -125,13 +125,13 @@ public:
     // }
 
 	static QString avatarFile(void) {
-		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::DataLocation) + "/"SL_AVATARFILE);
+        return QDir::toNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::DataLocation) + "/"SL_AVATARFILE);
 	}
 
 	static QString logDir(void) {
-		return QDir::toNativeSeparators(QDesktopServices::storageLocation(
-			QDesktopServices::DataLocation) + "/"SL_LOGDIR);
+        return QDir::toNativeSeparators(QStandardPaths::writableLocation(
+            QStandardPaths::DataLocation) + "/"SL_LOGDIR);
 	}
 
 	static QString freeLogFile(void) {

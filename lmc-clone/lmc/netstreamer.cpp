@@ -23,7 +23,7 @@
 
 
 
-
+#include <QDataStream>
 #include "netstreamer.h"
 
 const qint64 bufferSize = 65535;

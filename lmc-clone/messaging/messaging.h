@@ -62,18 +62,18 @@
 #include <QUuid>
 #include <QHostInfo>
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   #include <windows.h>
   #include <LMCons.h>
 #else
   #include <stdlib.h>
 #endif
 
-#if defined Q_WS_WIN
+#if defined Q_OS_WIN
 #define IDA_PLATFORM	"Windows"
-#elif defined Q_WS_MAC
+#elif defined Q_OS_MAC
 #define IDA_PLATFORM	"Macintosh"
-#elif defined Q_WS_X11
+#elif defined Q_OS_UNIX
 #define IDA_PLATFORM	"Linux"
 #endif
 

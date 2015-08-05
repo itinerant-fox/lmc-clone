@@ -26,13 +26,13 @@
 #define CHATWINDOW_H
 
 #include <QtGlobal>
-#include <QtGui/QWidget>
-#include <QToolBar>
-#include <QToolButton>
-#include <QMenu>
-#include <QFileDialog>
-#include <QFontDialog>
-#include <QColorDialog>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QToolButton>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QFontDialog>
+#include <QtWidgets/QColorDialog>
 #include <QFile>
 #include <QTextStream>
 #include <QEvent>
@@ -62,7 +62,7 @@ class lmcChatWindow : public QWidget
 	Q_OBJECT
 
 public:
-	lmcChatWindow(QWidget *parent = 0, Qt::WFlags flags = 0);
+    lmcChatWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	~lmcChatWindow(void);
 
 	void init(User* pLocalUser, User* pRemoteUser, bool connected);

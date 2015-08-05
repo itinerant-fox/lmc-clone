@@ -26,7 +26,7 @@
 #define BROADCASTWINDOW_H
 
 #include <QtGlobal>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 #include <QToolBar>
 #include <QMenu>
 #include <QEvent>

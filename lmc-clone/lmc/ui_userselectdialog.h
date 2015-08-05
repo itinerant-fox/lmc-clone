@@ -11,15 +11,15 @@
 #define UI_USERSELECTDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QDialog>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QVBoxLayout>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
 #include "usertreewidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -81,11 +81,11 @@ public:
 
     void retranslateUi(QDialog *UserSelectDialog)
     {
-        UserSelectDialog->setWindowTitle(QApplication::translate("UserSelectDialog", "Dialog", 0, QApplication::UnicodeUTF8));
+        UserSelectDialog->setWindowTitle(QApplication::translate("UserSelectDialog", "Dialog", 0));
         QTreeWidgetItem *___qtreewidgetitem = tvUserList->headerItem();
-        ___qtreewidgetitem->setText(0, QApplication::translate("UserSelectDialog", "Contacts", 0, QApplication::UnicodeUTF8));
-        btnOK->setText(QApplication::translate("UserSelectDialog", "OK", 0, QApplication::UnicodeUTF8));
-        btnCancel->setText(QApplication::translate("UserSelectDialog", "Cancel", 0, QApplication::UnicodeUTF8));
+        ___qtreewidgetitem->setText(0, QApplication::translate("UserSelectDialog", "Contacts", 0));
+        btnOK->setText(QApplication::translate("UserSelectDialog", "OK", 0));
+        btnCancel->setText(QApplication::translate("UserSelectDialog", "Cancel", 0));
     } // retranslateUi
 
 };

@@ -11,16 +11,16 @@
 #define UI_CHATWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QSplitter>
-#include <QtGui/QTextEdit>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -163,7 +163,7 @@ public:
 
     void retranslateUi(QWidget *ChatWindow)
     {
-        ChatWindow->setWindowTitle(QApplication::translate("ChatWindow", "Form", 0, QApplication::UnicodeUTF8));
+        ChatWindow->setWindowTitle(QApplication::translate("ChatWindow", "Form", 0));
     } // retranslateUi
 
 };

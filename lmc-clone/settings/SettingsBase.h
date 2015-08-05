@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QString>
 #include <QSettings>
-#include <QApplication>
+#include <QtWidgets/QApplication>
 #include <QDir>
 #include <QUuid>
 #include <QDir>

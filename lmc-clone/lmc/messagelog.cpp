@@ -22,8 +22,8 @@
 ****************************************************************************/
 
 
-#include <QMenu>
-#include <QAction>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QAction>
 #include "messagelog.h"
 
 lmcMessageLog::lmcMessageLog(QWidget *parent)

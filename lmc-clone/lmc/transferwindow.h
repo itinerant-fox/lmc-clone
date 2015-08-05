@@ -26,14 +26,14 @@
 #define TRANSFERWINDOW_H
 
 #include <QtGlobal>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 #include <QFileInfo>
-#include <QFileIconProvider>
+#include <QtWidgets/QFileIconProvider>
 #include <QDir>
-#include <QToolBar>
-#include <QToolButton>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QToolButton>
 #include <QDesktopServices>
-#include <QDesktopWidget>
+#include <QtWidgets/QDesktopWidget>
 #include <QUrl>
 
 #include "settings.h"

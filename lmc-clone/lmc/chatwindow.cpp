@@ -21,12 +21,12 @@
 **
 ****************************************************************************/
 
-
+#include <QMimeData>
 #include "chatwindow.h"
 
 const qint64 pauseTime = 5000;
 
-lmcChatWindow::lmcChatWindow(QWidget *parent, Qt::WFlags flags)
+lmcChatWindow::lmcChatWindow(QWidget *parent, Qt::WindowFlags flags)
     : QWidget(parent, flags)
 {
 	ui.setupUi(this);

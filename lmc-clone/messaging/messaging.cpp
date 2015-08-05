@@ -280,7 +280,7 @@ int lmcMessaging::userCount(void) {
 
 QString lmcMessaging::groupFile(void)
 {
-    return QDir::toNativeSeparators(QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_GROUPFILE );
+    return QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/"SL_GROUPFILE );
 }
 
 void lmcMessaging::network_connectionStateChanged(void) {
@@ -614,7 +614,7 @@ QString  lmcMessaging::getUuid(void)
 
 QString  lmcMessaging::getLogonName(void)
 {
-#if defined Q_WS_WIN	//	if platform is Windows
+#if defined Q_OS_WIN	//	if platform is Windows
     TCHAR szUserName[UNLEN + 1];
     DWORD nSize = sizeof(szUserName);
     GetUserName(szUserName, &nSize);
@@ -623,7 +623,7 @@ QString  lmcMessaging::getLogonName(void)
     char* szUserName;
     szUserName = getenv("USER");
     if(szUserName)
-        return QString::fromAscii(szUserName);
+        return QString::fromLatin1(szUserName);
 #endif
 
     return QString::null;
@@ -638,7 +638,7 @@ QString  lmcMessaging::getOSName(void)
 {
     QString osName = "Unknown";
 
-#if defined Q_WS_WIN
+#if defined Q_OS_WIN
     switch(QSysInfo::WindowsVersion) {
     case QSysInfo::WV_NT:
         osName = "Windows NT";
@@ -662,7 +662,7 @@ QString  lmcMessaging::getOSName(void)
         osName = "Windows";
         break;
     }
-#elif defined Q_WS_MAC
+#elif defined Q_OS_MAC
     switch(QSysInfo::MacintoshVersion) {
     case QSysInfo::MV_CHEETAH:
         osName = "Mac OS X 10.0";
@@ -692,7 +692,7 @@ QString  lmcMessaging::getOSName(void)
         osName = "Mac OS X";
         break;
     }
-#elif defined Q_WS_X11
+#elif defined Q_OS_LINUX
     osName = "Linux/X11";
 #endif
 
@@ -830,7 +830,8 @@ void lmcMessaging::sendWebMessage(MessageType type, XmlMessage *pMessage)
     {
     case MT_Version:
         // szUrl = QString(IDA_DOMAIN"/webservice.php?q=version&p="IDA_PLATFORM);
-        szUrl = QString( "http://lanmsngr.sourceforge.net/webservice.php?q=version&p="IDA_PLATFORM );
+
+        szUrl = QString( "http://lanmsngr.sourceforge.net/webservice.php?q=version&p=").append(IDA_PLATFORM);
         pNetwork->sendWebMessage(&szUrl, NULL);
         break;
     default:

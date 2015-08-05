@@ -26,7 +26,7 @@
 #define SOUNDPLAYER_H
 
 #include <QtGlobal>
-#include <QSound>
+#include <QtMultimedia/QSound>
 
 #include "settings.h"
 

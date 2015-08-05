@@ -368,10 +368,10 @@ QString lmcSettings::getUuid(void)
 
 QString lmcSettings::getGroupFile(void)
 {
-    return QDir::toNativeSeparators( QDesktopServices::storageLocation( QDesktopServices::DataLocation) + "/"SL_GROUPFILE );
+    return QDir::toNativeSeparators( QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/"SL_GROUPFILE );
 }
 
 QString lmcSettings::getTempConfigFile(void)
 {
-    return QDir::toNativeSeparators( QDesktopServices::storageLocation( QDesktopServices::TempLocation) + "/"SL_TEMPCONFIG );
+    return QDir::toNativeSeparators( QStandardPaths::writableLocation( QStandardPaths::TempLocation) + "/"SL_TEMPCONFIG );
 }

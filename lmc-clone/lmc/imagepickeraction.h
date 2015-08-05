@@ -27,8 +27,8 @@
 
 #include <QtGlobal>
 #include <QList>
-#include <QWidget>
-#include <QWidgetAction>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QWidgetAction>
 
 #include "imagepicker.h"
 

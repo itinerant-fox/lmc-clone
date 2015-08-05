@@ -11,19 +11,19 @@
 #define UI_ABOUTDIALOG_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QDialog>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QPlainTextEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QTabWidget>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -167,16 +167,16 @@ public:
 
     void retranslateUi(QDialog *AboutDialog)
     {
-        AboutDialog->setWindowTitle(QApplication::translate("AboutDialog", "Dialog", 0, QApplication::UnicodeUTF8));
-        lblLogoSmall->setText(QApplication::translate("AboutDialog", "<Logo>", 0, QApplication::UnicodeUTF8));
-        lblTitle->setText(QApplication::translate("AboutDialog", "<Application Title>", 0, QApplication::UnicodeUTF8));
-        lblDescription->setText(QApplication::translate("AboutDialog", "<Description>", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tabAbout), QApplication::translate("AboutDialog", "About", 0, QApplication::UnicodeUTF8));
+        AboutDialog->setWindowTitle(QApplication::translate("AboutDialog", "Dialog", 0));
+        lblLogoSmall->setText(QApplication::translate("AboutDialog", "<Logo>", 0));
+        lblTitle->setText(QApplication::translate("AboutDialog", "<Application Title>", 0));
+        lblDescription->setText(QApplication::translate("AboutDialog", "<Description>", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tabAbout), QApplication::translate("AboutDialog", "About", 0));
         txtThanks->setPlainText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tabThanks), QApplication::translate("AboutDialog", "Thanks", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tabThanks), QApplication::translate("AboutDialog", "Thanks", 0));
         txtLicense->setPlainText(QString());
-        tabWidget->setTabText(tabWidget->indexOf(tabLicense), QApplication::translate("AboutDialog", "License", 0, QApplication::UnicodeUTF8));
-        btnClose->setText(QApplication::translate("AboutDialog", "Close", 0, QApplication::UnicodeUTF8));
+        tabWidget->setTabText(tabWidget->indexOf(tabLicense), QApplication::translate("AboutDialog", "License", 0));
+        btnClose->setText(QApplication::translate("AboutDialog", "Close", 0));
     } // retranslateUi
 
 };

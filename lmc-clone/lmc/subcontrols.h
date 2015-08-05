@@ -28,8 +28,8 @@
 #define SUBCONTROLS_H
 
 #include <QtGlobal>
-#include <QApplication>
-#include <QWidget>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QWidget>
 #include <QStylePainter>
 #include <QStyleOption>
 #include <QToolButton>

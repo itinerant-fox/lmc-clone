@@ -22,7 +22,7 @@
 ****************************************************************************/
 
 
-#include <QDesktopWidget>
+#include <QtWidgets/QDesktopWidget>
 
 #include "updatewindow.h"
 

@@ -5,7 +5,7 @@
 #include <QObject>
 #include <QString>
 #include <QResource>
-#include <QMessageBox>
+#include <QtWidgets/QMessageBox>
 
 #include "application.h"
 #include "lmc.h"

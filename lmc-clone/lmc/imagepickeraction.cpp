@@ -22,7 +22,7 @@
 ****************************************************************************/
 
 
-#include <QMenu>
+#include <QtWidgets/QMenu>
 #include "imagepickeraction.h"
 
 lmcImagePickerAction::lmcImagePickerAction(QObject* parent, const QString source[], int sourceCount, int picSize, int columns, int* selected) 

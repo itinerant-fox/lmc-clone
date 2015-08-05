@@ -32,10 +32,10 @@
 #include <QUrl>
 #include <QHash>
 #include <QList>
-#include <QMenu>
+#include <QtWidgets/QMenu>
 #include <QFont>
 #include <QColor>
-#include <QAction>
+#include <QtWidgets/QAction>
 
 // webkit
 #include <QWebView>

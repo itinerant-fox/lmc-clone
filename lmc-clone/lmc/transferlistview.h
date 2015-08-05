@@ -25,8 +25,8 @@
 #ifndef TRANSFERLISTVIEW_H
 #define TRANSFERLISTVIEW_H
 
-#include <QListView>
-#include <QPushButton>
+#include <QtWidgets/QListView>
+#include <QtWidgets/QPushButton>
 
 #include "filemodelview.h"
 

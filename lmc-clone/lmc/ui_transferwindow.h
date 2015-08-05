@@ -11,16 +11,16 @@
 #define UI_TRANSFERWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QFrame>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 #include "transferlistview.h"
 
 QT_BEGIN_NAMESPACE
@@ -111,9 +111,9 @@ public:
 
     void retranslateUi(QWidget *TransferWindow)
     {
-        TransferWindow->setWindowTitle(QApplication::translate("TransferWindow", "Form", 0, QApplication::UnicodeUTF8));
-        btnClear->setText(QApplication::translate("TransferWindow", "Clear List", 0, QApplication::UnicodeUTF8));
-        btnClose->setText(QApplication::translate("TransferWindow", "Close", 0, QApplication::UnicodeUTF8));
+        TransferWindow->setWindowTitle(QApplication::translate("TransferWindow", "Form", 0));
+        btnClear->setText(QApplication::translate("TransferWindow", "Clear List", 0));
+        btnClose->setText(QApplication::translate("TransferWindow", "Close", 0));
     } // retranslateUi
 
 };

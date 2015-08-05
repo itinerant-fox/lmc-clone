@@ -11,7 +11,7 @@
 #include <QUuid>
 #include <QHostInfo>
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
   #include <windows.h>
   #include <LMCons.h>
 #else

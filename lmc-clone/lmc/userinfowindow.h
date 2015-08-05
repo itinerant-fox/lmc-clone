@@ -26,7 +26,7 @@
 #define USERINFOWINDOW_H
 
 #include <QtGlobal>
-#include <QDialog>
+#include <QtWidgets/QDialog>
 
 #include "xmlmessage.h"
 #include "settings.h"

@@ -26,13 +26,13 @@
 #define SETTINGSDIALOG_H
 
 #include <QtGlobal>
-#include <QDialog>
-#include <QListWidget>
-#include <QFileDialog>
-#include <QFontDialog>
-#include <QColorDialog>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QListWidget>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QFontDialog>
+#include <QtWidgets/QColorDialog>
 #include <QDesktopServices>
-#include <QSound>
+#include <QtMultimedia/QSound>
 
 #include "settings.h"
 
@@ -52,7 +52,7 @@ class lmcSettingsDialog : public QDialog
 	Q_OBJECT
 
 public:
-	lmcSettingsDialog(QWidget *parent = 0, Qt::WFlags flags = 0);
+    lmcSettingsDialog(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	~lmcSettingsDialog(void);
 
 	void init(void);

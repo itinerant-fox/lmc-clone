@@ -23,7 +23,7 @@
 
 #include "mainwindow.h"
 
-lmcMainWindow::lmcMainWindow(QWidget *parent, Qt::WFlags flags)
+lmcMainWindow::lmcMainWindow(QWidget *parent, Qt::WindowFlags flags)
     : QWidget(parent, flags)
 {
 	ui.setupUi(this);
@@ -67,9 +67,9 @@ void lmcMainWindow::init(User* pLocalUser, QList<Group>* pGroupList, bool connec
 	ui.lblDividerTop->setAutoFillBackground(true);
 
 	ui.tvUserList->setIconSize(QSize(16, 16));
-	ui.tvUserList->header()->setMovable(false);
+    ui.tvUserList->header()->setSectionsMovable(false);
 	ui.tvUserList->header()->setStretchLastSection(false);
-	ui.tvUserList->header()->setResizeMode(0, QHeaderView::Stretch);
+    ui.tvUserList->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 	btnStatus->setIconSize(QSize(20, 20));
 	int index = Helper::statusIndexFromCode(pLocalUser->status);
 	//	if status is not recognized, default to available

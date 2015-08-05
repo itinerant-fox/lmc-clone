@@ -11,16 +11,16 @@
 #define UI_CHATROOMWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QSplitter>
-#include <QtGui/QTextEdit>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSplitter>
+#include <QtWidgets/QTextEdit>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 #include "usertreewidget.h"
 
 QT_BEGIN_NAMESPACE
@@ -211,7 +211,7 @@ public:
 
     void retranslateUi(QWidget *ChatRoomWindow)
     {
-        ChatRoomWindow->setWindowTitle(QApplication::translate("ChatRoomWindow", "Form", 0, QApplication::UnicodeUTF8));
+        ChatRoomWindow->setWindowTitle(QApplication::translate("ChatRoomWindow", "Form", 0));
     } // retranslateUi
 
 };

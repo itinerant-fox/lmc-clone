@@ -27,7 +27,7 @@
 #include <QtGlobal>
 #include <QString>
 #include <QRect>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 
 #include "xmlmessage.h"
 

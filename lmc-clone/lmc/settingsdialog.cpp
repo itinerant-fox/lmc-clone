@@ -23,10 +23,11 @@
 
 
 #include <QUrl>
-#include <QSound>
-#include <QSystemTrayIcon>
+#include <QtMultimedia/QSound>
+#include <QAudioDeviceInfo>
+#include <QtWidgets/QSystemTrayIcon>
 #include <QLocale>
-#include <QMessageBox>
+#include <QtWidgets/QMessageBox>
 
 #include "settingsdialog.h"
 
@@ -36,15 +37,15 @@ QString fileStorageDir(void)
 
     lmcSettings settings;
 
-    QString path = QDir::toNativeSeparators( QDesktopServices::storageLocation(
-        QDesktopServices::DocumentsLocation ) + "/"SL_FILESTORAGEDIR );
+    QString path = QDir::toNativeSeparators( QStandardPaths::writableLocation(
+        QStandardPaths::DocumentsLocation ) + "/"SL_FILESTORAGEDIR );
 
     path = settings.value(IDS_FILESTORAGEPATH, path).toString();
 
     return path;
 }
 
-lmcSettingsDialog::lmcSettingsDialog(QWidget *parent, Qt::WFlags flags)
+lmcSettingsDialog::lmcSettingsDialog(QWidget *parent, Qt::WindowFlags flags)
     : QDialog(parent, flags)
 {
 	ui.setupUi(this);
@@ -426,7 +427,7 @@ void lmcSettingsDialog::setUIText(void)
 		ui.grpAlerts->setEnabled(false);
 		ui.grpAlerts->setTitle(tr("Status Alerts (Not Available)"));
 	}
-    if(!QSound::isAvailable()) {
+    if(QAudioDeviceInfo::availableDevices(QAudio::AudioOutput).isEmpty()) {
 		ui.grpSounds->setEnabled(false);
 		ui.grpSounds->setTitle(tr("Sounds (Not Available)"));
 	}
@@ -446,7 +447,7 @@ void lmcSettingsDialog::setUIText(void)
 
 	cboTheme_currentIndexChanged(ui.cboTheme->currentIndex());
 
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 	ui.rdbEnter->setText("Return");
 	ui.rdbCmdEnter->setText(QString(QChar(0x2318)) + " + Return"); // U+2318 is the hex code for Bowen Knot symbol
 #else
@@ -460,7 +461,7 @@ void lmcSettingsDialog::setUIText(void)
 
 void lmcSettingsDialog::loadSettings(void) {
     //	Auto start function not implemented on Mac since Mac itself provides an easy UI for it
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
 	ui.chkAutoStart->setChecked(false);
     ui.chkAutoStart->hide();
 #else

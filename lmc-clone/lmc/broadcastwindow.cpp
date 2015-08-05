@@ -22,7 +22,7 @@
 ****************************************************************************/
 
 
-#include <QMessageBox>
+#include <QtWidgets/QMessageBox>
 #include "broadcastwindow.h"
 
 //	constructor
@@ -66,9 +66,9 @@ void lmcBroadcastWindow::init(bool connected) {
 	ui.splitter->setStyleSheet("QSplitter::handle { image: url("IDR_HGRIP"); }");
 
 	ui.tvUserList->setIconSize(QSize(16, 16));
-	ui.tvUserList->header()->setMovable(false);
+    ui.tvUserList->header()->setSectionsMovable(false);
 	ui.tvUserList->header()->setStretchLastSection(false);
-	ui.tvUserList->header()->setResizeMode(0, QHeaderView::Stretch);
+    ui.tvUserList->header()->setSectionResizeMode(0, QHeaderView::Stretch);
 	ui.tvUserList->setCheckable(true);
 
 	//	load settings

@@ -11,21 +11,21 @@
 #define UI_USERINFOWINDOW_H
 
 #include <QtCore/QVariant>
-#include <QtGui/QAction>
-#include <QtGui/QApplication>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QDialog>
-#include <QtGui/QFormLayout>
-#include <QtGui/QHBoxLayout>
-#include <QtGui/QHeaderView>
-#include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
-#include <QtGui/QPlainTextEdit>
-#include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
-#include <QtGui/QTabWidget>
-#include <QtGui/QVBoxLayout>
-#include <QtGui/QWidget>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QDialog>
+#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPlainTextEdit>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QTabWidget>
+#include <QtWidgets/QVBoxLayout>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
@@ -277,29 +277,29 @@ public:
 
     void retranslateUi(QDialog *UserInfoWindow)
     {
-        UserInfoWindow->setWindowTitle(QApplication::translate("UserInfoWindow", "Dialog", 0, QApplication::UnicodeUTF8));
-        lblAvatar->setText(QApplication::translate("UserInfoWindow", "<Avatar>", 0, QApplication::UnicodeUTF8));
-        lblUserName->setText(QApplication::translate("UserInfoWindow", "<User Name>", 0, QApplication::UnicodeUTF8));
-        lblStatus->setText(QApplication::translate("UserInfoWindow", "<Status>", 0, QApplication::UnicodeUTF8));
-        lblFirstNameDesc->setText(QApplication::translate("UserInfoWindow", "First Name:", 0, QApplication::UnicodeUTF8));
-        txtFirstName->setText(QApplication::translate("UserInfoWindow", "N/A", 0, QApplication::UnicodeUTF8));
-        lblLastNameDesc->setText(QApplication::translate("UserInfoWindow", "Last Name:", 0, QApplication::UnicodeUTF8));
-        txtLastName->setText(QApplication::translate("UserInfoWindow", "N/A", 0, QApplication::UnicodeUTF8));
-        lblAbout->setText(QApplication::translate("UserInfoWindow", "About:", 0, QApplication::UnicodeUTF8));
-        txtAbout->setPlainText(QApplication::translate("UserInfoWindow", "N/A", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tabPersonal), QApplication::translate("UserInfoWindow", "Personal Information", 0, QApplication::UnicodeUTF8));
-        lblIPAddressDesc->setText(QApplication::translate("UserInfoWindow", "IP Address:", 0, QApplication::UnicodeUTF8));
-        lblIPAddress->setText(QApplication::translate("UserInfoWindow", "<IP Address>", 0, QApplication::UnicodeUTF8));
-        lblLogonNameDesc->setText(QApplication::translate("UserInfoWindow", "Logon Name:", 0, QApplication::UnicodeUTF8));
-        lblLogonName->setText(QApplication::translate("UserInfoWindow", "<Logon Name>", 0, QApplication::UnicodeUTF8));
-        lblComputerNameDesc->setText(QApplication::translate("UserInfoWindow", "Computer Name:", 0, QApplication::UnicodeUTF8));
-        lblComputerName->setText(QApplication::translate("UserInfoWindow", "<Computer Name>", 0, QApplication::UnicodeUTF8));
-        lblOSNameDesc->setText(QApplication::translate("UserInfoWindow", "Operating System:", 0, QApplication::UnicodeUTF8));
-        lblOSName->setText(QApplication::translate("UserInfoWindow", "<Operating System>", 0, QApplication::UnicodeUTF8));
-        lblVersionDesc->setText(QApplication::translate("UserInfoWindow", "Messenger Version:", 0, QApplication::UnicodeUTF8));
-        lblVersion->setText(QApplication::translate("UserInfoWindow", "<Messenger Version>", 0, QApplication::UnicodeUTF8));
-        tabWidget->setTabText(tabWidget->indexOf(tabSystem), QApplication::translate("UserInfoWindow", "System Information", 0, QApplication::UnicodeUTF8));
-        btnClose->setText(QApplication::translate("UserInfoWindow", "Close", 0, QApplication::UnicodeUTF8));
+        UserInfoWindow->setWindowTitle(QApplication::translate("UserInfoWindow", "Dialog", 0));
+        lblAvatar->setText(QApplication::translate("UserInfoWindow", "<Avatar>", 0));
+        lblUserName->setText(QApplication::translate("UserInfoWindow", "<User Name>", 0));
+        lblStatus->setText(QApplication::translate("UserInfoWindow", "<Status>", 0));
+        lblFirstNameDesc->setText(QApplication::translate("UserInfoWindow", "First Name:", 0));
+        txtFirstName->setText(QApplication::translate("UserInfoWindow", "N/A", 0));
+        lblLastNameDesc->setText(QApplication::translate("UserInfoWindow", "Last Name:", 0));
+        txtLastName->setText(QApplication::translate("UserInfoWindow", "N/A", 0));
+        lblAbout->setText(QApplication::translate("UserInfoWindow", "About:", 0));
+        txtAbout->setPlainText(QApplication::translate("UserInfoWindow", "N/A", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tabPersonal), QApplication::translate("UserInfoWindow", "Personal Information", 0));
+        lblIPAddressDesc->setText(QApplication::translate("UserInfoWindow", "IP Address:", 0));
+        lblIPAddress->setText(QApplication::translate("UserInfoWindow", "<IP Address>", 0));
+        lblLogonNameDesc->setText(QApplication::translate("UserInfoWindow", "Logon Name:", 0));
+        lblLogonName->setText(QApplication::translate("UserInfoWindow", "<Logon Name>", 0));
+        lblComputerNameDesc->setText(QApplication::translate("UserInfoWindow", "Computer Name:", 0));
+        lblComputerName->setText(QApplication::translate("UserInfoWindow", "<Computer Name>", 0));
+        lblOSNameDesc->setText(QApplication::translate("UserInfoWindow", "Operating System:", 0));
+        lblOSName->setText(QApplication::translate("UserInfoWindow", "<Operating System>", 0));
+        lblVersionDesc->setText(QApplication::translate("UserInfoWindow", "Messenger Version:", 0));
+        lblVersion->setText(QApplication::translate("UserInfoWindow", "<Messenger Version>", 0));
+        tabWidget->setTabText(tabWidget->indexOf(tabSystem), QApplication::translate("UserInfoWindow", "System Information", 0));
+        btnClose->setText(QApplication::translate("UserInfoWindow", "Close", 0));
     } // retranslateUi
 
 };

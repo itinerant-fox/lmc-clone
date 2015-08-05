@@ -116,7 +116,7 @@ void lmcCore::init(const QString& szCommandArgs)
 	}
 
     // trace
-    LmcTraceMode traceMode = DoNotTrace;
+    LmcTraceMode traceMode = TraceQtDebug;
     if ( Helper::stringToBool( pInitParams->data(XN_TRACEMODE) ) )
         traceMode = TraceFile;
 
@@ -1062,7 +1062,7 @@ void lmcCore::setAutoStart( bool on )
 {
 
     // windows
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
         QSettings::NativeFormat);
     if(on)
@@ -1072,12 +1072,12 @@ void lmcCore::setAutoStart( bool on )
 #endif
 
     // mac os x
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     Q_UNUSED(on);
 #endif
 
     // x-windows (gtk? kde? ...)
-#ifdef Q_WS_X11
+#ifdef Q_OS_LINUX
     //  get the path of .desktop file
     QString autoStartDir;
     char* buffer = getenv("XDG_CONFIG_HOME");

@@ -26,20 +26,20 @@
 #define MAINWINDOW_H
 
 #include <QtGlobal>
-#include <QtGui/QWidget>
-#include <QSystemTrayIcon>
-#include <QMenuBar>
-#include <QMenu>
-#include <QToolBar>
-#include <QAction>
-#include <QActionGroup>
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QSystemTrayIcon>
+#include <QtWidgets/QMenuBar>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QToolBar>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QActionGroup>
 #include <QIcon>
 #include <qevent.h>
-#include <QTreeWidget>
-#include <QWidgetAction>
-#include <QInputDialog>
-#include <QMessageBox>
-#include <QFileDialog>
+#include <QtWidgets/QTreeWidget>
+#include <QtWidgets/QWidgetAction>
+#include <QtWidgets/QInputDialog>
+#include <QtWidgets/QMessageBox>
+#include <QtWidgets/QFileDialog>
 #include <QDesktopServices>
 #include <QTimer>
 #include <QUrl>
@@ -65,7 +65,7 @@ class lmcMainWindow : public QWidget
 	Q_OBJECT
 
 public:
-	lmcMainWindow(QWidget *parent = 0, Qt::WFlags flags = 0);
+    lmcMainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
 	~lmcMainWindow(void);
 
 public:

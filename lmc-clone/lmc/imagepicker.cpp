@@ -22,8 +22,8 @@
 ****************************************************************************/
 
 
-#include <QMenu>
-#include <QHeaderView>
+#include <QtWidgets/QMenu>
+#include <QtWidgets/QHeaderView>
 #include <QPainter>
 #include <QMouseEvent>
 // #include <QMath>

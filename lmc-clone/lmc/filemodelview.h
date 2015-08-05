@@ -28,9 +28,9 @@
 #include <QMetaType>
 #include <QPointF>
 #include <QVector>
-#include <QStyledItemDelegate>
+#include <QtWidgets/QStyledItemDelegate>
 #include <QAbstractListModel>
-#include <QWidget>
+#include <QtWidgets/QWidget>
 #include <QDateTime>
 #include <QCoreApplication>
 
